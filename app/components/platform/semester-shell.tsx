@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from 'react';
 import type { ScreenDefinition } from '@/lib/platform/catalog';
 import { screens } from '@/lib/platform/catalog';
 import { modeFor, screenProfile, workspaceGroups, workspaceHome, workspaceNames } from '@/lib/platform/presentation';
-import { upstreamDestinations, upstreamGroups, upstreamSemester, upstreamStudyModes } from '@/lib/platform/upstream';
+import { upstreamDestinations, upstreamGroups, upstreamRouteFor, upstreamSemester, upstreamStudyModes } from '@/lib/platform/upstream';
 import { Icon } from './icon';
 
 type ViewState = 'default' | 'loading' | 'empty' | 'error' | 'offline' | 'denied';
@@ -145,11 +145,25 @@ function ScreenContent({ definition, completed, onComplete, onToast }: { definit
   const slug = definition.slug;
   if ((definition.workspace === 'os' && slug === 'home') || (definition.workspace === 'student' && slug === 'today')) return <UpstreamSemesterScreen />;
   if (definition.workspace === 'institution' && ['integrations', 'activation', 'authority'].includes(slug)) return <LiveIntegrationsScreen onToast={onToast} />;
+  const upstreamRoute = upstreamRouteFor(definition);
+  if (upstreamRoute) return <LiveProductRoute definition={definition} route={upstreamRoute} />;
   if (['grades', 'gradebook', 'transcript', 'records', 'roster'].some((word) => slug.includes(word))) return <AcademicScreen definition={definition} onToast={onToast} />;
   if (definition.workspace === 'studio' || ['write', 'solve', 'coursework', 'builder'].includes(slug)) return <StudioScreen definition={definition} onToast={onToast} />;
   if (['social', 'messages', 'feed', 'community', 'network', 'thread'].some((word) => slug.includes(word)) || definition.workspace === 'social') return <CommunityScreen definition={definition} onToast={onToast} />;
   if (['operations', 'trust', 'institution', 'executive', 'insights', 'company'].includes(definition.workspace)) return <OperationsScreen definition={definition} onToast={onToast} />;
   return <UniversalScreen definition={definition} completed={completed} onComplete={onComplete} onToast={onToast} />;
+}
+
+function LiveProductRoute({ definition, route }: { definition: ScreenDefinition; route: string }) {
+  const href = `${upstreamSemester.production}#/${route}`;
+  return <section className="panel upstream-frame-card live-product-route">
+    <div className="frame-toolbar">
+      <span><i/>Live Semester runtime · {definition.component}</span>
+      <code>/{route}</code>
+      <a href={href} target="_blank" rel="noreferrer" aria-label={`Open ${definition.label} in a new tab`}><Icon name="arrow" size={16}/></a>
+    </div>
+    <iframe className="upstream-frame" title={`${definition.label} live application`} src={href} allow="microphone; camera; clipboard-read; clipboard-write" />
+  </section>;
 }
 
 function UpstreamSemesterScreen() {

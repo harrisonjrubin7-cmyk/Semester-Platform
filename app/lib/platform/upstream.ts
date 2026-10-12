@@ -22,6 +22,8 @@ export type UpstreamDestination = {
   group: string;
 };
 
+export type PlatformRoute = { workspace: string; slug: string; label: string };
+
 // Synchronized from app/src/lib/nav.ts on upstream main at bcc1e3b.
 export const upstreamDestinations: readonly UpstreamDestination[] = [
   ['home', 'Today', 'Semester'], ['brief', 'Reports', 'Semester'], ['courses', 'Courses', 'Courses'],
@@ -49,3 +51,72 @@ export const upstreamDestinations: readonly UpstreamDestination[] = [
 ].map(([screen, label, group]) => ({ screen, label, group }));
 
 export const upstreamGroups = ['Semester', 'Courses', 'Study', 'Make', 'Campus', 'Life', 'Beyond', 'Data'] as const;
+
+const routeAliases: Record<string, string> = {
+  'applicant:application': 'applying',
+  'applicant:onboarding': 'onboarding',
+  'applicant:admitted': 'launchpad',
+  'applicant:status': 'applying',
+  'student:today': 'home',
+  'student:assignments': 'work',
+  'student:coursework': 'write',
+  'student:feedback': 'brief',
+  'student:grades': 'courses',
+  'student:registration': 'registration',
+  'student:advising': 'people',
+  'student:messages': 'mail',
+  'student:account': 'costs',
+  'student:toolkit': 'work',
+  'student:teach': 'essay',
+  'student:briefing': 'brief',
+  'student:ai': 'ask',
+  'student:recommendation': 'degree',
+  'student:actions': 'home',
+  'faculty:roster': 'classmates',
+  'faculty:gradebook': 'gradebook',
+  'faculty:messages': 'mail',
+  'advisor:students': 'people',
+  'advisor:appointments': 'calendar',
+  'ta:gradebook': 'gradebook',
+  'ta:students': 'classmates',
+  'career:postings': 'opportunities',
+  'career:students': 'career',
+  'campus:directory': 'university',
+  'support:desk': 'support',
+  'support:requests': 'support',
+  'family:shared': 'family',
+  'alumni:home': 'community',
+  'alumni:mentoring': 'community',
+  'employer:roles': 'opportunities',
+  'clubs:home': 'community',
+  'clubs:members': 'community',
+  'social:home': 'community',
+  'social:feed': 'community',
+  'social:moderation': 'moderation',
+  'studio:home': 'create',
+  'studio:document': 'write',
+  'studio:slides': 'deck',
+  'studio:sheet': 'sheet',
+  'studio:equations': 'equations',
+  'studio:drawing': 'draw',
+  'studio:analysis': 'analyse',
+  'trust:privacy': 'privacy',
+  'trust:data': 'data',
+  'operations:console': 'console',
+  'institution:console': 'console',
+  'os:home': 'directory',
+};
+
+const upstreamScreens = new Set([
+  ...upstreamDestinations.map((destination) => destination.screen),
+  'search', 'directory', 'onboarding', 'registration', 'gradebook', 'moderation', 'console',
+]);
+
+/** Resolve platform routes to the canonical runtime without claiming an unrelated route is implemented. */
+export function upstreamRouteFor(route: PlatformRoute): string | null {
+  const alias = routeAliases[`${route.workspace}:${route.slug}`];
+  if (alias) return alias;
+  if (upstreamScreens.has(route.slug)) return route.slug;
+  const match = upstreamDestinations.find((destination) => destination.label.toLowerCase() === route.label.toLowerCase());
+  return match?.screen ?? null;
+}
