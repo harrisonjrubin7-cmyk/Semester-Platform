@@ -1,0 +1,9 @@
+app/.next/
+app/node_modules/
+app/*.tsbuildinfo
+app/.env.local
+app/playwright-report/
+app/test-results/
+audit/
+handoff/unified-platform-starter/*.sqlite
+.npm-cache/
