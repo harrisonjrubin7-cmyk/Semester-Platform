@@ -1,0 +1,7 @@
+step,proposed_duration,assessor,competencies,assessment_rule
+Screen,25 min,Hiring manager,Role scope and relevant evidence,Same core questions for comparable candidates
+Work sample,60-90 min,Domain assessor,Synthetic task aligned to real work,Bounded effort; no unpaid production deliverable
+Technical/domain interview,45 min,Technical or implementation lead,"Architecture, policy boundaries and failure handling",Explain tradeoffs and test approach
+Operations scenario,40 min,Operations/trust reviewer,"Incident, mismatch, authority and escalation",Safety judgment under uncertainty
+Collaboration interview,30 min,Cross-functional reviewer,"Ownership, documentation and disagreement",Concrete examples; no vague culture-fit scoring
+Debrief,30 min,Hiring manager + panel,Independent ratings and evidence gaps,Record decision; do not average away critical safety failure

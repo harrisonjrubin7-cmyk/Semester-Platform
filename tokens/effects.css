@@ -1,0 +1,33 @@
+/* Shape, elevation, motion, layers — values from app/src/styles/app.css, tokens.css, industry.css. */
+:root{
+  /* "Drawn" corners — the app default. Square (0) and Soft (6/12/18) are reader settings. */
+  --r-sm:3px;--r-md:6px;--r-lg:10px;
+  --shape-control:var(--r-sm);--shape-card:var(--r-md);--shape-surface:var(--r-lg);--shape-sheet:var(--r-lg);--shape-pill:999px;
+
+  /* Lifts. Dark grounds: --lift-*; light grounds: ink-tinted --shadow-*. Border first, shadow second. */
+  --lift-1:0 1px 2px rgba(0,0,0,.4);
+  --lift-2:0 1px 2px rgba(0,0,0,.45),0 6px 18px rgba(0,0,0,.35);
+  --lift-3:0 1px 3px rgba(0,0,0,.5),0 12px 36px rgba(0,0,0,.5);
+  --shadow-sm:0 1px 2px rgba(43,43,45,.14);
+  --shadow-md:0 3px 10px rgba(43,43,45,.16);
+  --shadow-lg:0 12px 32px rgba(43,43,45,.22);
+  --elevation-none:none;--elevation-raised:var(--shadow-sm);--elevation-floating:var(--shadow-md);--elevation-modal:var(--shadow-lg);
+
+  --ease:cubic-bezier(.22,1,.36,1);/* @kind other */
+  --ease-standard:var(--ease);/* @kind other */
+  --ease-emphasized:cubic-bezier(.2,.8,.2,1);/* @kind other */
+  --duration-instant:0ms;/* @kind other */--duration-fast:130ms;/* @kind other */--duration-standard:180ms;/* @kind other */--duration-slow:240ms;/* @kind other */--duration-sheet:280ms;/* @kind other */
+  --fast:130ms var(--ease);/* @kind other */
+  --motion-save:var(--duration-standard) var(--ease-standard);/* @kind other */
+  --motion-insert:var(--duration-standard) var(--ease-standard);/* @kind other */
+  --motion-panel:var(--duration-slow) var(--ease-emphasized);/* @kind other */
+  --motion-sheet:var(--duration-sheet) var(--ease-emphasized);/* @kind other */
+  --motion-progress:var(--duration-standard) linear;/* @kind other */
+
+  --layer-base:0;/* @kind other */--layer-raised:1;/* @kind other */--layer-sticky:20;/* @kind other */--layer-chrome:21;/* @kind other */--layer-overlay:80;/* @kind other */--layer-menu:90;/* @kind other */--layer-skip:100;/* @kind other */--layer-curtain:1500;/* @kind other */
+
+  --blur-chrome:14px;/* @kind other */
+}
+[data-theme="dark"]{--elevation-raised:var(--lift-1);--elevation-floating:var(--lift-2);--elevation-modal:var(--lift-3)}
+@media (prefers-reduced-motion:reduce){:root{--fast:0ms linear;/* @kind other */--motion-save:0ms linear;/* @kind other */--motion-insert:0ms linear;/* @kind other */--motion-panel:0ms linear;/* @kind other */--motion-sheet:0ms linear;/* @kind other */--motion-progress:0ms linear;/* @kind other */}}
+:root[data-calm='still'],:root[data-calm='calm']{--fast:0ms linear;/* @kind other */--motion-save:0ms linear;/* @kind other */--motion-insert:0ms linear;/* @kind other */--motion-panel:0ms linear;/* @kind other */--motion-sheet:0ms linear;/* @kind other */--motion-progress:0ms linear;/* @kind other */}

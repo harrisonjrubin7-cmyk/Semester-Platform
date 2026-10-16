@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Where the Operations Console is — and why you can't see it</title>
+<link rel="stylesheet" href="../../styles.css">
+<style>
+doc-page:not(:defined){visibility:hidden}
+body{font-family:var(--font-body);color:#1b1a17}
+a{color:var(--blue-700,#416180)}a:hover{color:#1b1a17}
+h1{font-family:var(--font-heading);font-weight:600;font-size:30pt;letter-spacing:-.015em;line-height:1.05;margin:0 0 6pt}
+h2{font-family:var(--font-heading);font-weight:600;font-size:17pt;letter-spacing:-.01em;margin:22pt 0 6pt;break-after:avoid}
+h3{font-size:12pt;font-weight:700;margin:14pt 0 4pt;break-after:avoid}
+p,li{font-size:11pt;line-height:1.5;margin:0 0 6pt}
+.kicker{font-size:8.5pt;letter-spacing:.08em;text-transform:uppercase;color:rgba(27,26,23,.62);margin:0 0 4pt}
+.lead{font-size:13pt;line-height:1.45;max-width:58ch}
+.answer{border:1px solid rgba(27,26,23,.16);border-left:4pt solid #416180;padding:10pt 12pt;margin:12pt 0;break-inside:avoid;background:#fbf9f4}
+.answer p{margin:0 0 4pt}
+table{width:100%;border-collapse:collapse;margin:6pt 0 10pt;font-size:9.5pt}
+th{text-align:left;font-size:8pt;letter-spacing:.06em;text-transform:uppercase;color:rgba(27,26,23,.62);font-weight:600;border-bottom:1px solid rgba(27,26,23,.34);padding:4pt 5pt}
+td{border-bottom:1px solid rgba(27,26,23,.12);padding:4pt 5pt;vertical-align:top;line-height:1.35}
+tr{break-inside:avoid}
+code{font-family:ui-monospace,Menlo,monospace;font-size:9pt;overflow-wrap:anywhere}
+td code{overflow-wrap:normal;white-space:nowrap}td:last-child code,td:nth-child(3) code{white-space:normal;overflow-wrap:anywhere}
+.caps th:nth-child(2),.caps td:nth-child(2){width:30%}
+.s{white-space:nowrap;font-size:9pt}
+.ok{color:#3e6141}.no{color:#a3301f}.uv{color:#7a5310}
+pre{font-family:ui-monospace,Menlo,monospace;font-size:8.5pt;line-height:1.45;background:#f4f1ea;border:1px solid rgba(27,26,23,.12);padding:8pt 10pt;white-space:pre-wrap;break-inside:avoid}
+ol.steps li{margin-bottom:5pt}
+.foot{font-size:8.5pt;color:rgba(27,26,23,.62)}
+</style>
+<script src="./doc-page.js"></script>
+</head><body>
+<doc-page margin="0.75in">
+<p class="kicker">Semester · Operations · Evidence from <code>harrisonjrubin7-cmyk/semester@main</code>, read 6 Oct 2026</p>
+<h1>Where the Operations Console is — and why you can't see it</h1>
+<p class="lead">It exists. It lives inside the app you already have, at <code>#/console</code>. It is hidden on purpose, and it opens only for a signed-in account holding one specific grant. You do not need to launch separate apps to see it.</p>
+
+<div class="answer">
+<p><b>The console opens only when all three are true:</b></p>
+<p>1. The account service is configured in the build you're using (<code>cloudConfigured</code>).</p>
+<p>2. You are signed in.</p>
+<p>3. Your account holds a live <code>console:operate</code> grant at platform scope, in <code>role_grants</code>.</p>
+<p>Miss any one and the screen shows a single sentence and stops. It is also deliberately absent from every menu a student sees: <code>lib/nav.ts</code> lists it as a nested screen "offered from nothing a student sees".</p>
+</div>
+
+<h2>1. What the repository actually contains</h2>
+<p>The audit in the repo (<code>OPS-CONSOLE-DISCOVERY-AUDIT.md</code>, 3 Oct) found a substantial, security-first console foundation. Since then, more workspaces have landed. The console screen is <code>app/src/screens/Console.tsx</code>; its navigation contract is <code>app/src/lib/console/workspaces.ts</code>.</p>
+<table class="caps"><thead><tr><th>Workspace</th><th>Capability</th><th>Scope</th><th>Repository state</th></tr></thead><tbody>
+<tr><td>Command center</td><td><code>console:operate</code></td><td>Platform</td><td class="ok">Mounted · RPC, policy check, tests</td></tr>
+<tr><td>Support</td><td><code>support:ticket</code></td><td>Platform</td><td class="uv">Mounted · hidden while flag <code>supportTickets</code> is off</td></tr>
+<tr><td>Approvals</td><td><code>console:operate</code></td><td>Platform</td><td class="ok">Mounted · two-person, fresh MFA</td></tr>
+<tr><td>Break-glass</td><td><code>console:operate</code></td><td>Platform</td><td class="ok">Mounted · ≤4 h, reviewed by another person</td></tr>
+<tr><td>Audit</td><td><code>console:operate</code></td><td>Platform</td><td class="ok">Mounted · hash chain, every read logged</td></tr>
+<tr><td>Tenant operations</td><td><code>tenant:implement</code></td><td>Exact school</td><td class="ok">Mounted · migration 20261005121000</td></tr>
+<tr><td>Privacy requests</td><td><code>data_request:handle</code></td><td>Exact school</td><td class="ok">Mounted · migrations 20261005123000/124000</td></tr>
+<tr><td>Integration health</td><td><code>integration:view</code></td><td>Exact school</td><td class="ok">Mounted · migration 20261005125000</td></tr>
+<tr><td>Release &amp; incidents</td><td><code>incident:communicate</code></td><td>Platform</td><td class="ok">Mounted · migration 20261005126000</td></tr>
+<tr><td>Customers</td><td><code>console:operate</code></td><td>Platform</td><td class="ok">Mounted · tenant-scoped RLS</td></tr>
+<tr><td>Figures</td><td><code>console:operate</code></td><td>Platform</td><td class="ok">Mounted · seven provenance fields per figure</td></tr>
+<tr><td>Finance model, Releases and flags, Launch readiness, Trust controls</td><td><code>console:operate</code></td><td>Platform</td><td class="uv">Mounted · built from in-app registers, not live tables</td></tr>
+<tr><td>Evidence, Views</td><td><code>console:operate</code></td><td>Platform</td><td class="ok">Mounted · preferences stored server-side</td></tr>
+</tbody></table>
+<p class="foot">"Mounted" means the route renders the component in the repo. <b>None of these is verified as deployed with a live grant.</b> Production deployment, staffing and live operation still need outside evidence, as the audit says.</p>
+
+<h2>2. Why you don't see it: the visibility chain</h2>
+<table><thead><tr><th>Link in the chain</th><th>State</th><th>Evidence / what to check</th></tr></thead><tbody>
+<tr><td>Screen implemented</td><td class="s ok">✓ Yes</td><td><code>screens/Console.tsx</code> plus 31 files in <code>components/console/</code></td></tr>
+<tr><td>Route registered</td><td class="s ok">✓ Yes</td><td><code>#/console</code> (hash routing); <code>docs/OPERATIONS-CONSOLE-MAP.md</code></td></tr>
+<tr><td>Navigation entry</td><td class="s no">⊘ None, by design</td><td>Nested in <code>lib/nav.ts</code>; you have to type the address. <b>This is the main discoverability gap.</b></td></tr>
+<tr><td>Account service in this build</td><td class="s uv">? Unverified</td><td>The public GitHub Pages site is the product demo. If that build has no account service configured, the console shows its notice to everyone.</td></tr>
+<tr><td>Signed in</td><td class="s uv">? Yours to check</td><td>A real account, not the local demo profile</td></tr>
+<tr><td><code>console:operate</code> grant</td><td class="s uv">? Unverified</td><td>A row in <code>role_grants</code> at platform scope, unexpired. Being the founder or owning the repo grants nothing.</td></tr>
+<tr><td>Per-workspace capability</td><td class="s uv">? Unverified</td><td>Tenant, privacy, integration and incident views each need their own grant on top</td></tr>
+<tr><td>Backend migrations applied</td><td class="s uv">? Unverified</td><td>The 2026-10-05 and 2026-10-06 console migrations, applied to the environment you're using</td></tr>
+<tr><td>Deployed revision</td><td class="s uv">? Unverified</td><td>The build you open must include the 167 commits since 5 Oct</td></tr>
+</tbody></table>
+
+<h2>3. Do you need separate apps?</h2>
+<p><b>No, not now.</b> Keep one repository, one set of shared platform services, and three surfaces:</p>
+<table><thead><tr><th>Surface</th><th>Where it lives today</th><th>Split later only if</th></tr></thead><tbody>
+<tr><td>Public company site</td><td><code>company-site/</code> and <code>app/src/site/</code></td><td>It already has its own build</td></tr>
+<tr><td>Education app (student, faculty, advisor, institution)</td><td><code>app/</code></td><td>Not needed</td></tr>
+<tr><td>Semester Operations</td><td><code>app/</code> at <code>#/console</code></td><td>You need independent releases, stronger staff-only auth, or network restrictions, and have a team to run another deployable</td></tr>
+</tbody></table>
+<p>A separate app would add login callbacks, configuration and deployments. It would not make any hidden screen appear.</p>
+
+<h2>4. How to open it, step by step</h2>
+<ol class="steps">
+<li>On a development or staging environment, never production first, apply the Supabase migrations, including the console ones.</li>
+<li>Run the app from <code>app/</code> with the account-service environment variables set. The audit lists the build and test commands; read <code>app/package.json</code> for the exact local-start script.</li>
+<li>Create two test accounts: one <b>operator</b> and one ordinary <b>student</b>.</li>
+<li>Give the operator a <code>console:operate</code> grant at platform scope, through the repo's existing role-grant mechanism (see <code>supabase/rolegrants.check.sql</code> for the grant shape: scope, expiry, audited grantor). Add one domain grant, for example <code>tenant:implement</code> for one school, to see a domain workspace.</li>
+<li>Sign in as the operator and open <code>&lt;your local address&gt;/#/console</code>. The context bar should show the environment, your identity, your grants and MFA freshness.</li>
+<li>Sign in as the student and open the same address. It must show the notice, and calling the console functions directly must be refused by the database.</li>
+</ol>
+<p class="foot">I didn't run any of this. Script names, environment-variable names and the local port come from the repo's files, and you need to confirm them there.</p>
+
+<h2>5. The smallest change that makes it discoverable</h2>
+<p>Add an <b>Operations</b> entry, shown only to accounts that hold the grant, to the account menu or workspace switcher. Use the same check the console already makes (<code>holdsConsole(grants)</code>, fed by <code>loadMyCapabilities()</code>). Students never see it. Navigation stays a convenience; the database still decides access.</p>
+<p>Interactive mock of this entry and the real gate: <a href="../../ui_kits/console-entry/index.html">ui_kits/console-entry</a>.</p>
+<p>Then pick one complete flow to prove end to end. <b>Support</b> is the strongest candidate: list → case detail → assign or change status → saved → refresh shows the result and its audit entry. Its UI, tests and migrations already exist; its build flag is the remaining switch.</p>
+
+<h2>6. Prompt for Claude Code or Cursor</h2>
+<p>Also saved as <code>handoff/ops-console-visibility/PROMPT.md</code>.</p>
+<pre>Make Semester's existing Operations Console discoverable and prove one workflow.
+Do NOT create a separate app, hosting project, permission model or admin role.
+
+FACTS (verify, don't assume):
+- Console: app/src/screens/Console.tsx at #/console; gate = cloudConfigured &amp;&amp; account &amp;&amp; holdsConsole(grants).
+- Workspaces: app/src/lib/console/workspaces.ts (17; capability-gated via visibleConsoleWorkspaces).
+- Deliberately unlinked: NESTED in app/src/lib/nav.ts.
+- Audit: OPS-CONSOLE-DISCOVERY-AUDIT.md; map: docs/OPERATIONS-CONSOLE-MAP.md.
+
+PHASE A: Return a visibility matrix per workspace: route, component, nav entry,
+capability + scope, flag, backend RPC/migration, local status, deployed status.
+Classify: documented only / logic only / not mounted / mounted-undiscoverable /
+permission-blocked / flag-off / backend incomplete / local only / deployed+verified.
+
+PHASE B: Add an "Operations" entry (account menu or workspace switcher) rendered
+only when holdsConsole(loadMyCapabilities()) is true. No entry for anyone else.
+Keep the console's own gate unchanged.
+
+PHASE C: Dev/staging only. Document provisioning of one operator test user
+(console:operate @ platform + support:ticket) and one student test user through
+the existing role_grants path. No auto-grant by email or ownership.
+
+PHASE D: Prove Support end to end with supportTickets enabled in dev:
+list → detail → assign/status → persisted → refresh → audit visible.
+Tests: operator sees entry; student sees no entry, gets the notice at #/console,
+and direct RPC calls are refused; cross-tenant read refused.
+Run from app/: npx tsc -b, npm run lint, npm test, npm run build; supabase/check.sh.
+Report anything skipped. Do not invent passes.
+
+DELIVER: why it was hidden, files changed, exact local start command and URL,
+test identities, test results, local vs deployed status, remaining gaps.
+Do not deploy, change production grants, or send notifications without approval.</pre>
+<p class="foot">Sources: <code>OPS-CONSOLE-DISCOVERY-AUDIT.md</code>, <code>app/src/screens/Console.tsx</code>, <code>app/src/lib/console/workspaces.ts</code>, <code>app/src/lib/nav.ts</code> and <code>docs/OPERATIONS-CONSOLE-MAP.md</code> at <code>main</code> (e560ee09f5bb), plus the two uploaded PDFs ("do i need to launch…" and "expand more on how to execute this").</p>
+</doc-page>
+</body></html>

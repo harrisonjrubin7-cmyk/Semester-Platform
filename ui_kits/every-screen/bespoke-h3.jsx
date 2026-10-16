@@ -1,0 +1,63 @@
+// Bespoke Moderation screens (group H), batch 3: reports, cases, content review, escalations, appeals, restrictions, audit, volunteer review. Uses window.ESH. Sample data only.
+(() => {
+const { N, ref, Box, Receipt, T, Chip, now } = window.ESB;
+const { useCom, audit, cn, area } = window.ESH;
+const { useState } = React;
+const MODS = ['Mod J. Ito', 'Mod R. Banks', 'Lead K. Varga'];
+const Who = ({ v, set }) => <N.Segmented label="Acting as" value={v} onChange={set} options={MODS.map((m) => ({ value: m, label: m }))} />;
+const post = (C, id) => C.posts.find((p) => p.id === id) || { t: '(deleted)', body: '', by: '?' };
+const sevT = (s) => (s === 'High' ? 'bad' : s === 'Medium' ? 'warn' : undefined);
+
+function ModReportsQueue() {
+  const [C, setC] = useCom(); const [me, setMe] = useState(MODS[0]); const [rc, setRc] = useState(null); const q = C.reports.filter((r) => r.st === 'New').sort((a, b) => (a.sev === 'High' ? -1 : 1));
+  const open = (r) => { const id = ref('CS'); setC(audit({ ...C, reports: C.reports.map((x) => (x.id === r.id ? { ...x, st: 'In case', case: id } : x)), cases: [...C.cases, { id, report: r.id, post: r.post, reason: r.reason, sev: r.sev, owner: me, st: 'Open', actions: [] }] }, 'Opened case ' + id + ' from ' + r.id, me)); setRc({ head: 'Case opened', body: 'Assigned to you · see Mod: Cases', ref: id }); };
+  const dismiss = (r) => setC(audit({ ...C, reports: C.reports.map((x) => (x.id === r.id ? { ...x, st: 'Dismissed' } : x)) }, 'Dismissed ' + r.id + ' (no violation)', me));
+  return <div className="two"><div className="stack"><Who v={me} set={setMe} /><T head={['Report', 'Content', 'Reason', 'Severity', '']} rows={q.map((r) => [r.id, post(C, r.post).t, r.reason, <Chip tone={sevT(r.sev)}>{r.sev}</Chip>, <span className="row"><N.Button variant="primary" onClick={() => open(r)}>Open case</N.Button><N.Button onClick={() => dismiss(r)}>No violation</N.Button></span>])} empty="Queue clear." /><Receipt r={rc} /></div><aside className="stack"><Box title="Order">High severity first, then oldest. Reporter identity is hidden from the reported person.</Box></aside></div>;
+}
+
+function ModCases() {
+  const [C, setC] = useCom(); const [me, setMe] = useState(MODS[0]); const [sel, setSel] = useState(0); const cs = C.cases[sel]; const [act, setAct] = useState('Remove content'); const [why, setWhy] = useState(''); const [rc, setRc] = useState(null);
+  if (!C.cases.length) return <N.EmptyState title="No cases" body="Open one from Mod: Reports queue." />;
+  const apply = () => { const p = post(C, cs.post); const restr = act === 'Pause posting 7 days' ? [...C.restrictions, { who: p.by, what: 'Posting paused 7 days', until: 'Oct 15', by: me, why }] : C.restrictions; setC(audit({ ...C, cases: C.cases.map((x, i) => (i === sel ? { ...x, st: 'Actioned', actions: [...x.actions, [act, why, me]] } : x)), posts: act !== 'Warn only' ? C.posts.map((x) => (x.id === cs.post ? { ...x, st: 'Removed' } : x)) : C.posts, restrictions: restr }, act + ' · ' + cs.id + ' · rule: ' + why, me)); setRc({ head: act, body: 'Author notified with the rule and how to appeal', ref: cs.id }); setWhy(''); };
+  return <div className="two"><div className="stack"><Who v={me} set={setMe} /><T head={['Case', 'Reason', 'Owner', 'Status']} rows={C.cases.map((c) => [c.id, c.reason, c.owner, <Chip tone={c.st === 'Open' ? 'warn' : 'ok'}>{c.st}</Chip>])} onRow={setSel} sel={sel} />
+    {cs && <Box title={cs.id + ' · ' + post(C, cs.post).t}><span style={{ fontSize: 14 }}>{post(C, cs.post).body}</span><span className="muted">Author {post(C, cs.post).by} · {cn(C, post(C, cs.post).c)}</span>{cs.st === 'Open' && <><N.Segmented label="Action" value={act} onChange={setAct} options={['Warn only', 'Remove content', 'Pause posting 7 days'].map((x) => ({ value: x, label: x }))} /><N.TextField label="Rule applied (shown to author)" value={why} onChange={(e) => setWhy(e.target.value)} placeholder="e.g. Guideline 2 · Keep it honest" /><N.Button variant="primary" disabled={!why.trim() || cs.owner !== me} disabledReason={cs.owner !== me ? 'Only the case owner can act' : 'Cite the rule'} onClick={apply}>Apply</N.Button><button className="link-quiet" onClick={() => setC(audit({ ...C, cases: C.cases.map((x, i) => (i === sel ? { ...x, st: 'Escalated' } : x)) }, 'Escalated ' + cs.id, me))}>Escalate instead</button></>}{cs.actions.map((a, i) => <div key={i} className="muted">{a[0]} · {a[1]} · {a[2]}</div>)}</Box>}<Receipt r={rc} /></div><aside className="stack"><Box title="Proportionate">Pick the lightest action that fixes the harm. Restrictions need a cited rule.</Box></aside></div>;
+}
+
+function ModContentReview() {
+  const [C, setC] = useCom(); const [me, setMe] = useState(MODS[1]); const held = C.posts.filter((p) => p.st === 'Held');
+  const dec = (p, ok) => setC(audit({ ...C, posts: C.posts.map((x) => (x.id === p.id ? { ...x, st: ok ? 'Visible' : 'Removed' } : x)) }, (ok ? 'Approved held post ' : 'Rejected held post ') + p.id, me));
+  return <div className="two"><div className="stack"><Who v={me} set={setMe} />{held.length ? held.map((p) => <Box key={p.id} title={p.t} aside={<span className="muted">{cn(C, p.c)}</span>}><span style={{ fontSize: 14 }}>{p.body}</span><span className="muted">By {p.by}</span><div className="row"><N.Button variant="primary" onClick={() => dec(p, true)}>Approve</N.Button><N.Button onClick={() => dec(p, false)}>Reject</N.Button></div></Box>) : <N.EmptyState title="Nothing held" body="Posts matching hold terms (Policy configuration) land here. Try posting “DM me” in Post creation." />}</div><aside className="stack"><Box title="Held vs blocked">Held: posted after review. Blocked: never posted (author told why).</Box></aside></div>;
+}
+
+function ModEscalations() {
+  const [C, setC] = useCom(); const [me, setMe] = useState(MODS[2]); const [to, setTo] = useState('Dean of Students'); const [rc, setRc] = useState(null); const E = C.cases.filter((c) => c.st === 'Escalated');
+  const send = (c) => { setC(audit({ ...C, cases: C.cases.map((x) => (x.id === c.id ? { ...x, st: 'Referred', to } : x)) }, c.id + ' referred to ' + to, me)); setRc({ head: 'Referred', body: to + ' now owns the outcome; moderation keeps the content hidden', ref: c.id }); };
+  return <div className="two"><div className="stack"><Who v={me} set={setMe} />{E.length ? E.map((c) => <Box key={c.id} title={c.id + ' · ' + c.reason} tone="warn"><span style={{ fontSize: 14 }}>{post(C, c.post).t}</span><N.Segmented label="Refer to" value={to} onChange={setTo} options={['Dean of Students', 'Title IX', 'Campus safety', 'Academic integrity'].map((x) => ({ value: x, label: x }))} /><N.Button variant="primary" disabled={!me.startsWith('Lead')} disabledReason="Only a lead can refer outside moderation" onClick={() => send(c)}>Refer</N.Button></Box>) : <N.EmptyState title="No escalations" body="Escalate from Mod: Cases." />}<Receipt r={rc} /></div><aside className="stack"><Box title="When to escalate">Threats, self-harm, sexual misconduct, or academic dishonesty with evidence. Safety first: call 555-0100 for immediate danger.</Box></aside></div>;
+}
+
+function ModAppeals() {
+  const [C, setC] = useCom(); const [me, setMe] = useState(MODS[1]); const [note, setNote] = useState(''); const [rc, setRc] = useState(null);
+  const dec = (a, over) => { setC(audit({ ...C, appeals: C.appeals.map((x) => (x.id === a.id ? { ...x, st: over ? 'Overturned' : 'Upheld', result: note, by2: me } : x)) }, a.id + (over ? ' overturned' : ' upheld') + ' · ' + note, me)); setRc({ head: over ? 'Overturned' : 'Upheld', body: 'Student notified with your note', ref: a.id }); setNote(''); };
+  return <div className="two"><div className="stack"><Who v={me} set={setMe} />{C.appeals.filter((a) => a.st === 'Submitted').map((a) => <Box key={a.id} title={a.id + ' · ' + a.what}><span style={{ fontSize: 14 }}>“{a.why}”</span><span className="muted">Original decision: {a.decidedBy}</span>{a.decidedBy === me ? <N.Notice head="Conflict">You made the original decision. Switch to another moderator.</N.Notice> : <><textarea rows={2} value={note} onChange={(e) => setNote(e.target.value)} placeholder="Reason for decision (shown to student)" style={area}></textarea><div className="row"><N.Button variant="primary" disabled={!note.trim()} disabledReason="Give a reason" onClick={() => dec(a, true)}>Overturn</N.Button><N.Button disabled={!note.trim()} disabledReason="Give a reason" onClick={() => dec(a, false)}>Uphold</N.Button></div></>}</Box>)}{!C.appeals.some((a) => a.st === 'Submitted') && <N.EmptyState title="No open appeals" body="Students file them in Appeal decision." />}<Receipt r={rc} /></div><aside className="stack"><Box title="Decided">{C.appeals.filter((a) => a.st !== 'Submitted').map((a) => <div key={a.id} style={{ fontSize: 13 }}>{a.id} · {a.st} · {a.by2}</div>)}</Box></aside></div>;
+}
+
+function ModRestrictionActions() {
+  const [C, setC] = useCom(); const [me, setMe] = useState(MODS[0]); const [rc, setRc] = useState(null);
+  const lift = (r, i) => { setC(audit({ ...C, restrictions: C.restrictions.filter((_, j) => j !== i) }, 'Lifted restriction on ' + r.who + ' early', me)); setRc({ head: 'Lifted', body: r.who + ' can post again', ref: ref('RS') }); };
+  return <div className="two"><div className="stack"><Who v={me} set={setMe} /><T head={['Who', 'Restriction', 'Until', 'By', 'Reason', '']} rows={C.restrictions.map((r, i) => [r.who, r.what, r.until, r.by, r.why, <N.Button onClick={() => lift(r, i)}>Lift early</N.Button>])} empty="No active restrictions." /><Receipt r={rc} /></div><aside className="stack"><Box title="Limits">Moderators can pause posting up to 14 days. Longer or account-level action goes to the Dean of Students. Restrictions never affect coursework access.</Box></aside></div>;
+}
+
+function ModAuditTrail() {
+  const [C] = useCom(); const [q, setQ] = useState(''); const rows = C.audit.filter((a) => !q || a.join(' ').toLowerCase().includes(q.toLowerCase())).slice().reverse();
+  const dl = () => { const s = 'time,event,actor\n' + C.audit.map((a) => a.map((x) => '"' + String(x).replace(/"/g, '""') + '"').join(',')).join('\n'); const el = document.createElement('a'); el.href = URL.createObjectURL(new Blob([s], { type: 'text/csv' })); el.download = 'community-audit.csv'; el.click(); };
+  return <div className="two"><div className="stack"><div className="row"><N.TextField label="Search" value={q} onChange={(e) => setQ(e.target.value)} /><N.Button onClick={dl}>Download CSV</N.Button></div><T head={['When', 'Event', 'Actor']} rows={rows} empty="Nothing recorded yet." /></div><aside className="stack"><Box title="Kept">Every moderation and member action, 3 years. Read access for leads and the Dean of Students.</Box></aside></div>;
+}
+
+function ModVolunteerReviewTasks() {
+  const [C, setC] = useCom(); const [me, setMe] = useState('Volunteer A'); const T0 = C.vtasks;
+  const vote = (t, v) => setC(audit({ ...C, vtasks: C.vtasks.map((x) => { if (x.id !== t.id) return x; const votes = [...x.votes.filter((y) => y[0] !== me), [me, v]]; const ok = votes.filter((y) => y[1] === 'ok').length, bad = votes.filter((y) => y[1] === 'bad').length; return { ...x, votes, st: votes.length >= 3 ? (ok >= 2 ? 'Cleared' : bad >= 2 ? 'Sent to moderator' : 'Open') : 'Open' }; }) }, me + ' voted ' + v + ' on ' + t.id, me));
+  return <div className="two"><div className="stack"><N.Segmented label="Acting as" value={me} onChange={setMe} options={['Volunteer A', 'Volunteer B', 'Volunteer C'].map((x) => ({ value: x, label: x }))} />{T0.map((t) => { const p = post(C, t.post); const mine = (t.votes.find((v) => v[0] === me) || [])[1]; return <Box key={t.id} title={t.id + ' · ' + p.t} aside={<Chip tone={t.st === 'Cleared' ? 'ok' : t.st === 'Open' ? 'warn' : 'bad'}>{t.st} · {t.votes.length}/3</Chip>}><span style={{ fontSize: 14 }}>{p.body}</span>{t.st === 'Open' && <div className="row"><N.Button variant={mine === 'ok' ? 'primary' : undefined} onClick={() => vote(t, 'ok')}>Fine</N.Button><N.Button variant={mine === 'bad' ? 'primary' : undefined} onClick={() => vote(t, 'bad')}>Breaks a rule</N.Button></div>}</Box>; })}</div><aside className="stack"><Box title="How it works">Three trained volunteers vote on low-severity reports. Two "breaks a rule" sends it to a moderator — volunteers never remove content themselves. Author names are hidden.</Box></aside></div>;
+}
+
+Object.assign(window.EVERY_BESPOKE, { 'H:Mod: Reports queue': ModReportsQueue, 'H:Mod: Cases': ModCases, 'H:Mod: Content review': ModContentReview, 'H:Mod: Escalations': ModEscalations, 'H:Mod: Appeals': ModAppeals, 'H:Mod: Restriction actions': ModRestrictionActions, 'H:Mod: Audit trail': ModAuditTrail, 'H:Mod: Volunteer review tasks': ModVolunteerReviewTasks });
+})();

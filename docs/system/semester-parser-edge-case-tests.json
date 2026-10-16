@@ -1,0 +1,117 @@
+{
+  "timezone": "America/Chicago",
+  "results": [
+    {
+      "value": "2026-10-07T12:40",
+      "expected": true,
+      "accepted": true,
+      "passed": true,
+      "utc": "2026-10-07T17:40:00.000Z"
+    },
+    {
+      "value": "2028-02-29T09:00",
+      "expected": true,
+      "accepted": true,
+      "passed": true,
+      "utc": "2028-02-29T15:00:00.000Z"
+    },
+    {
+      "value": "2026-02-29T09:00",
+      "expected": false,
+      "accepted": false,
+      "passed": true,
+      "utc": null
+    },
+    {
+      "value": "2026-02-30T12:00",
+      "expected": false,
+      "accepted": false,
+      "passed": true,
+      "utc": null
+    },
+    {
+      "value": "2026-04-31T12:00",
+      "expected": false,
+      "accepted": false,
+      "passed": true,
+      "utc": null
+    },
+    {
+      "value": "2026-13-01T12:00",
+      "expected": false,
+      "accepted": false,
+      "passed": true,
+      "utc": null
+    },
+    {
+      "value": "2026-10-07T24:00",
+      "expected": false,
+      "accepted": false,
+      "passed": true,
+      "utc": null
+    },
+    {
+      "value": "2026-10-07T12:60",
+      "expected": false,
+      "accepted": false,
+      "passed": true,
+      "utc": null
+    },
+    {
+      "value": "2026-10-07",
+      "expected": false,
+      "accepted": false,
+      "passed": true,
+      "utc": null
+    },
+    {
+      "value": "2026-10-07T12:40:00",
+      "expected": false,
+      "accepted": false,
+      "passed": true,
+      "utc": null
+    },
+    {
+      "value": "2026-10-07T12:40Z",
+      "expected": false,
+      "accepted": false,
+      "passed": true,
+      "utc": null
+    },
+    {
+      "value": " 2026-10-07T12:40 ",
+      "expected": false,
+      "accepted": false,
+      "passed": true,
+      "utc": null
+    },
+    {
+      "value": "",
+      "expected": false,
+      "accepted": false,
+      "passed": true,
+      "utc": null
+    },
+    {
+      "value": null,
+      "expected": false,
+      "accepted": false,
+      "passed": true,
+      "utc": null
+    },
+    {
+      "value": "2026-03-08T02:30",
+      "expected": false,
+      "accepted": false,
+      "passed": true,
+      "utc": null
+    },
+    {
+      "value": "2026-11-01T01:30",
+      "expected": true,
+      "accepted": true,
+      "passed": true,
+      "utc": "2026-11-01T06:30:00.000Z"
+    }
+  ]
+}

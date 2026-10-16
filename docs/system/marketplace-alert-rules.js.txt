@@ -1,0 +1,23 @@
+export function evaluateAlerts(current, previous, rules) {
+  if (!current.complete || !previous.complete || current.currency !== previous.currency)
+    return [{kind: 'data_quality', state: 'blocked'}];
+  if (!Number.isFinite(current.ageSeconds) || current.ageSeconds > rules.maxAgeSeconds)
+    return [{kind: 'data_quality', state: 'stale'}];
+  const alerts = [];
+  if (current.startingPartners >= rules.minPartners && current.startingPartners > 0) {
+    const churn = current.exitedStartingPartners / current.startingPartners;
+    if (churn > rules.churnLimit) alerts.push({kind:'partner_churn', value:churn});
+  }
+  if (current.netGMV >= rules.minGMV && previous.netGMV >= rules.minGMV
+      && current.netGMV > 0 && previous.netGMV > 0) {
+    const delta = current.netFees/current.netGMV - previous.netFees/previous.netGMV;
+    if (delta < -rules.takeDropLimit) alerts.push({kind:'take_rate_drop', value:delta});
+  }
+  return alerts.map(a=>({...a, state:'candidate', policyVersion:rules.version,
+    dedupeKey:[current.scopeId,current.period,a.kind,rules.version].join(':')}));
+}
+// Reference evaluator, not a deployed notifier. Validate complete numeric inputs server-side.
+// Worker must compare equivalent closed periods/cohorts, enforce permission,
+// persist candidates, require repeated breach if configured, apply cooldown,
+// route to approved recipients and log delivered/failed/acknowledged/resolved events.
+// Candidate key must be backed by unique persistence. No automatic tier/hold/payment action.

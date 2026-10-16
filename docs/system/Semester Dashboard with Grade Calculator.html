@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Semester master dashboard</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f4f1ea;color:#171b24;font:16px system-ui}header{background:#090a0e;color:white;padding:24px}main{max-width:1200px;margin:auto;padding:24px}section{margin:24px 0;padding:16px;background:#fbf9f4;border:1px solid #aaa;border-radius:6px}.tools{display:flex;flex-wrap:wrap;gap:12px}label{display:block}input,select,button{font:inherit;min-height:44px;padding:8px;border:1px solid #777;border-radius:4px}button{cursor:pointer;background:white;color:#254460}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #416180;outline-offset:2px}.scroll{overflow:auto}table{width:100%;border-collapse:collapse}th,td{padding:10px;text-align:left;border-bottom:1px solid #ccc}th button{border:0;text-align:left}small{display:block}.primary{background:#416180;color:white}li{margin:8px 0}#trace{max-height:260px;overflow:auto}
+</style>
+</head>
+<body>
+<header><h1>Semester master dashboard</h1><p>Sample data · local prototype · personal workspace</p></header>
+<main>
+<p>No live connection. Session changes reset on reload. Priority uses a fixed October 7, 2026, 12:00 browser-local clock.</p>
+<section><h2>Courses and assignments</h2>
+<div class="tools">
+<label>Search<input id="search" type="search"></label>
+<label>Course<select id="course"><option value="">All</option></select></label>
+<label>Priority<select id="priority"><option value="">All</option><option>High</option><option>Medium</option><option>Low</option></select></label>
+<label>Status<select id="status"><option value="">All</option><option>Not started</option><option>In progress</option><option>Submitted</option><option>Graded</option></select></label>
+</div>
+<p>High: active work due within 72 hours, or a stale source needing review. Medium: active work due within 7 days. Submitted/graded work is Low. These are sample rules, not institutional judgments.</p>
+<p id="summary" role="status"></p>
+<div class="scroll"><table><caption>Linked academic master view — activate headings to sort</caption><thead><tr id="headers"></tr></thead><tbody id="assignments"></tbody></table></div>
+</section>
+<section><h2>Action Center: plan study</h2>
+<div class="tools">
+<label>Assignment<select id="task"></select></label>
+<label>Start<input id="start" type="datetime-local" value="2026-10-08T15:00"></label>
+<label>Minutes<input id="minutes" type="number" min="15" max="480" step="15" value="60"></label>
+<button id="plan" class="primary">Review study block</button>
+<label><input id="fail" type="checkbox"> Simulate calendar failure</label>
+<button id="retry">Retry deliveries</button>
+</div>
+<p id="receipt" role="status" aria-live="polite"></p>
+<h3>Study schedule</h3><ul id="schedule"></ul>
+<h3>Propagation trace</h3><ol id="trace" aria-live="polite"></ol>
+<p>Only private planning changes. Submission status and released scores never change from scheduling.</p>
+</section>
+<section><h2>Personal grade calculator</h2>
+<p>Select a course, then load its released sample scores. Or use weighted categories with one subtotal per category. Blank earned values are unknown; entered zero is a real zero. Results are personal estimates, not official grades.</p>
+<div class="tools">
+<label>Course<select id="gradeCourse"></select></label>
+<label>Mode<select id="mode"><option value="points">Points subtotal</option><option value="weighted">Weighted categories</option></select></label>
+<button id="load">Load sample released scores</button><button id="add">Add row</button><button id="calc">Calculate</button>
+</div>
+<div class="scroll"><table><caption>Personal calculator inputs</caption><thead><tr><th>Item/category</th><th>Earned</th><th>Possible</th><th>Weight %</th><th>Remove</th></tr></thead><tbody id="gradeRows"></tbody></table></div>
+<p id="result" role="status" aria-live="polite">No estimate calculated.</p>
+<p>Weighted mode requires configured weights totaling 100%. Results normalize across scored categories and show coverage. Drop rules, penalties, rounding policies and extra-credit rules are not applied.</p>
+</section>
+<section><h2>Environment boundaries</h2><p>Personal: private blocks and calculations. Institution: authorized course, submission and released-grade records. Company: minimized service health, not private content. This file simulates behavior; it does not enforce production permissions.</p></section>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+const escapeHtml = v => String(v ?? '').replace(/[&<>"']/g,
+ c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clock = new Date('2026-10-07T12:00').getTime();
+const tasks = [
+ {id:'a1',course:'BIO 110',title:'Cell biology quiz',milestone:'Unit 3',due:'2026-10-09T17:00',status:'Not started',earned:null,possible:20,stale:false},
+ {id:'a2',course:'ENG 210',title:'Argument essay',milestone:'Draft review',due:'2026-10-12T23:59',status:'In progress',earned:null,possible:100,stale:false},
+ {id:'a3',course:'MATH 150',title:'Problem set 4',milestone:'Integration',due:'2026-10-08T18:00',status:'Submitted',earned:null,possible:30,stale:false},
+ {id:'a4',course:'BIO 110',title:'Lab report 2',milestone:'Methods',due:'2026-10-06T17:00',status:'Graded',earned:42,possible:50,stale:false},
+ {id:'a5',course:'MATH 150',title:'Problem set 3',milestone:'Derivatives',due:'2026-10-05T18:00',status:'Graded',earned:27,possible:30,stale:false},
+ {id:'a6',course:'ENG 210',title:'Reading response',milestone:'Evidence',due:'2026-10-10T12:00',status:'Not started',earned:null,possible:10,stale:true}
+];
+const blocks = [{id:'b0',task:'a1',start:'2026-10-08T14:00',minutes:60}];
+const events = [], seen = new Set(), calendar = new Set(['b0']);
+let sequence = 0, sortKey = 'due', direction = 1, gradeRows = [];
+const columns = [['course','Course'],['title','Assignment'],['milestone','Milestone'],['due','Due'],['status','Status'],['priority','Priority'],['score','Released score'],['planned','Planned hours'],['source','Source']];
+function priority(t) {
+ if (['Submitted','Graded'].includes(t.status)) return 'Low';
+ const hours = (new Date(t.due).getTime()-clock)/3600000;
+ return t.stale || hours<=72 ? 'High' : hours<=168 ? 'Medium' : 'Low';
+}
+function value(t,key) {
+ if(key==='priority') return priority(t);
+ if(key==='score') return t.earned===null ? null : 100*t.earned/t.possible;
+ if(key==='planned') return blocks.filter(b=>b.task===t.id).reduce((s,b)=>s+b.minutes/60,0);
+ if(key==='source') return t.stale ? 'Sample source: stale' : 'Sample source: current';
+ return t[key];
+}
+function visibleTasks() {
+ return tasks.filter(t=>(!$('course').value || t.course===$('course').value)
+ && (!$('priority').value || priority(t)===$('priority').value)
+ && (!$('status').value || t.status===$('status').value)
+ && [t.course,t.title,t.milestone].join(' ').toLowerCase().includes($('search').value.toLowerCase()))
+ .sort((a,b)=>{
+  let x=value(a,sortKey),y=value(b,sortKey);
+  if(x===null || y===null) return x===y ? 0 : x===null ? 1 : -1;
+  if(sortKey==='priority') return direction*(['High','Medium','Low'].indexOf(x)-['High','Medium','Low'].indexOf(y));
+  return direction*(typeof x==='number' ? x-y : String(x).localeCompare(String(y)));
+ });
+}
+function render() {
+ $('headers').innerHTML=columns.map(([key,label])=>
+  `<th scope="col" aria-sort="${key===sortKey?(direction===1?'ascending':'descending'):'none'}"><button data-sort="${key}">${label}${key===sortKey?(direction===1?' ↑':' ↓'):''}</button></th>`).join('');
+ const list=visibleTasks();
+ $('summary').textContent=`${list.length} matching assignments; ${list.filter(t=>priority(t)==='High').length} high-priority items.`;
+ $('assignments').innerHTML=list.map(t=>'<tr>'+columns.map(([key])=>{
+  let v=value(t,key);
+  if(key==='score') v=t.earned===null?'Not released':`${t.earned}/${t.possible} (${v.toFixed(1)}%)`;
+  if(key==='planned') v=v.toFixed(1);
+  return `<td>${escapeHtml(v)}</td>`;
+ }).join('')+'</tr>').join('') || '<tr><td colspan="9">No matches.</td></tr>';
+ $('schedule').innerHTML=[...blocks].sort((a,b)=>a.start.localeCompare(b.start)).map(b=>{
+  const t=tasks.find(t=>t.id===b.task);
+  return `<li>${escapeHtml(b.start.replace('T',' '))} · ${b.minutes} min · ${escapeHtml(t.course+' / '+t.title)} · ${calendar.has(b.id)?'Calendar current':'Calendar pending'}</li>`;
+ }).join('');
+}
+function log(text) {
+ const li=document.createElement('li');li.textContent=text;$('trace').append(li);
+}
+function deliver(event) {
+ for(const consumer of ['master-view','calendar','action-center']) {
+  const key=consumer+':'+event.id;
+  if(seen.has(key)) {log(consumer+': duplicate ignored');continue;}
+  if(consumer==='calendar' && $('fail').checked) {log('calendar: failed, pending retry');continue;}
+  if(consumer==='calendar') calendar.add(event.blockId);
+  seen.add(key);log(consumer+': applied '+event.id);
+ }
+ render();
+}
+$('plan').onclick=()=>{
+ const t=tasks.find(t=>t.id===$('task').value),start=$('start').value;
+ const minutes=Number($('minutes').value),begin=new Date(start).getTime(),end=begin+minutes*60000;
+ if(!t || !Number.isFinite(begin) || minutes<15 || minutes>480 || minutes%15) {
+  $('receipt').textContent='Choose a valid date and 15–480 minutes in 15-minute increments.';return;
+ }
+ if(t.stale) {$('receipt').textContent='Refresh the stale deadline source before planning in this sample.';return;}
+ if(end>new Date(t.due).getTime()) {$('receipt').textContent='Block must end before the deadline.';return;}
+ if(blocks.some(b=>begin<new Date(b.start).getTime()+b.minutes*60000 && end>new Date(b.start).getTime())) {
+  $('receipt').textContent='Overlapping block. Choose another time.';return;
+ }
+ if(!confirm(`Create a private ${minutes}-minute block for ${t.title} at ${start}? No submission or grade changes.`)) return;
+ const block={id:'b'+(++sequence),task:t.id,start,minutes};blocks.push(block);
+ const event={id:'e'+sequence,type:'personal.study_block.created.v1',blockId:block.id};events.push(event);
+ log('Locally validated command; simulated block + audit + outbox commit');
+ deliver(event);
+ $('receipt').textContent='Private block saved in this session. '+(calendar.has(block.id)?'Calendar current.':'Calendar pending. Retry after disabling failure.');
+};
+$('retry').onclick=()=>{
+ events.forEach(deliver);
+ $('receipt').textContent=events.some(e=>!calendar.has(e.blockId))?'Calendar deliveries still pending.':'Calendar deliveries current; duplicates ignored.';
+};
+$('headers').onclick=e=>{
+ const b=e.target.closest('[data-sort]');if(!b)return;
+ direction=sortKey===b.dataset.sort?-direction:1;sortKey=b.dataset.sort;render();
+ $('headers').querySelector(`[data-sort="${sortKey}"]`).focus();
+};
+['search','course','priority','status'].forEach(id=>$(id).addEventListener('input',render));
+for(const c of [...new Set(tasks.map(t=>t.course))]) {
+ $('course').add(new Option(c,c));$('gradeCourse').add(new Option(c,c));
+}
+for(const t of tasks.filter(t=>!['Submitted','Graded'].includes(t.status))) $('task').add(new Option(t.course+' / '+t.title,t.id));
+function gradeRender() {
+ $('gradeRows').innerHTML=gradeRows.map((r,i)=>'<tr><td><input aria-label="Row '+(i+1)+' name" data-i="'+i+'" data-key="name" value="'+escapeHtml(r.name)+'"></td>'+['earned','possible','weight'].map(key=>`<td><input type="number" min="0" step="any" aria-label="Row ${i+1} ${key}" data-i="${i}" data-key="${key}" value="${escapeHtml(r[key])}"></td>`).join('')+`<td><button data-remove="${i}" aria-label="Remove row ${i+1}">Remove</button></td></tr>`).join('');
+ $('result').textContent='Inputs changed. Calculate to update the estimate.';
+}
+$('gradeRows').oninput=e=>{
+ if(e.target.dataset.key) {gradeRows[Number(e.target.dataset.i)][e.target.dataset.key]=e.target.value;$('result').textContent='Inputs changed. Recalculate.';}
+};
+$('gradeRows').onclick=e=>{const b=e.target.closest('[data-remove]');if(b){gradeRows.splice(Number(b.dataset.remove),1);gradeRender();}};
+$('add').onclick=()=>{gradeRows.push({name:'New item/category',earned:'',possible:'100',weight:'0'});gradeRender();};
+$('load').onclick=()=>{
+ $('mode').value='points';gradeRows=tasks.filter(t=>t.course===$('gradeCourse').value && t.earned!==null).map(t=>({name:t.title,earned:String(t.earned),possible:String(t.possible),weight:'0'}));gradeRender();
+};
+$('gradeCourse').onchange=()=>{gradeRows=[];gradeRender();};
+$('mode').onchange=()=>{$('result').textContent='Mode changed. Verify inputs and recalculate.';};
+function calculate(rows,weighted) {
+ const parsed=rows.map(r=>({e:r.earned.trim()===''?null:Number(r.earned),p:Number(r.possible),w:Number(r.weight),raw:r}));
+ if(parsed.some(r=>!r.raw.possible.trim() || !Number.isFinite(r.p) || r.p<=0 || (r.e!==null && (!Number.isFinite(r.e)||r.e<0)) || (weighted && (!r.raw.weight.trim() || !Number.isFinite(r.w)||r.w<0||r.w>100)))) throw Error('Possible must be positive; earned must be blank or nonnegative; weights must be 0–100.');
+ if(weighted && Math.abs(parsed.reduce((s,r)=>s+r.w,0)-100)>0.001) throw Error('Configured category weights must total 100%.');
+ const known=parsed.filter(r=>r.e!==null);
+ const denominator=known.reduce((s,r)=>s+(weighted?r.w:r.p),0);
+ if(!denominator) throw Error('No scored inputs with positive points or weight. Result unknown.');
+ const numerator=known.reduce((s,r)=>s+(weighted?r.e/r.p*r.w:r.e),0);
+ const coverage=weighted?denominator:100*denominator/parsed.reduce((s,r)=>s+r.p,0);
+ return {percent:100*numerator/denominator,coverage,unknown:parsed.length-known.length,extra:known.some(r=>r.e>r.p)};
+}
+$('calc').onclick=()=>{
+ try {
+  const weighted=$('mode').value==='weighted',r=calculate(gradeRows,weighted);
+  $('result').textContent=`Personal estimate: ${r.percent.toFixed(2)}%. ${weighted?'Syllabus weight':'Configured points'} coverage: ${r.coverage.toFixed(1)}%. ${r.unknown} unknown row(s) excluded. ${weighted?'Normalized over scored category weights only. ':''}${r.extra?'Above-maximum score entered; verify extra-credit rules. ':''}Not a final or official grade.`;
+ } catch(e) {$('result').textContent=e.message;}
+};
+render();$('load').click();
+</script>
+</body>
+</html>

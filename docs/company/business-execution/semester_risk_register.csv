@@ -1,0 +1,13 @@
+id,risk,illustrative_likelihood,illustrative_impact,illustrative_inherent_score,accountable_role,control,trigger,owner_name,control_evidence,residual_score,review_date
+R01,Unauthorized tenant/student disclosure,3,5,15,Trust/platform,"Isolation tests, least privilege, scoped retrieval",Any suspected disclosure: contain and invoke incident plan,,,,
+R02,Stale grant or unconfirmed revocation,3,5,15,Platform,"Fresh revocation, expiry, reconciliation",Revocation cannot be confirmed: deny access; escalate recovery,,,,
+R03,Duplicate or partial consequential action,3,5,15,Backend,"Digest-bound keys, transactional audit/outbox, compensation",State mismatch: pause affected commands and reconcile,,,,
+R04,Incorrect or stale source data,4,4,16,Integration,"Freshness policy, mappings, reconciliation",Authoritative mismatch: halt affected transition,,,,
+R05,Legal or institutional authority absent,3,5,15,CEO/counsel/sponsor,Approved scope and documents,Missing required approval: no activation,,,,
+R06,Support/on-call owner unavailable,4,4,16,Operations,"Backups, handoff, rehearsals, capacity budget",Coverage absent: defer cohort expansion,,,,
+R07,Cash or commitments underestimated,3,5,15,Finance/CEO,"Reconciliation, scenarios, spending approvals",Cash below approved floor: freeze discretionary commitments,,,,
+R08,Accessibility blocks critical journey,3,4,12,Design/frontend,Manual assistive-tech and keyboard tests,Critical task inaccessible: block affected release,,,,
+R09,Unsupported fundraising/product claims,3,4,12,CEO/product,"Evidence register, claims review",Unverified claim: remove before distribution,,,,
+R10,Hiring delay or founder bottleneck,4,3,12,CEO,"Role scorecards, delegates, contractor fallback","Capacity shortfall: rescope sequence, not security gates",,,,
+R11,Privileged data-room/HR disclosure,3,4,12,CEO/trust,"Audience segregation, expiry, access logs",Wrong audience: revoke access and investigate,,,,
+R12,Scope fragmentation/duplicate systems,4,3,12,Product/technical,"Canonical model audit, shared workflow",Parallel authority model: stop and reconcile,,,,

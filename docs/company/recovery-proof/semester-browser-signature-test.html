@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><title>Semester browser signature tests</title><h1>Browser signature test harness</h1><p>Local test only; no institutional keys or data. Serve on localhost for a secure context.</p><button id="run">Run tests</button><pre id="result" aria-live="polite"></pre><script>async function run(){
+const results=[];const check=(name,ok)=>{results.push({name,passed:Boolean(ok)});if(!ok)throw Error(name)};
+check('secure context',isSecureContext);check('Web Crypto available',!!crypto.subtle);
+const alg={name:'ECDSA',hash:'SHA-256'};
+const pair=await crypto.subtle.generateKey({name:'ECDSA',namedCurve:'P-256'},false,['sign','verify']);
+check('private key non-extractable',!pair.privateKey.extractable);
+const enc=new TextEncoder();const original=enc.encode(JSON.stringify({type:'semester.test.v1',tenant:'demo',release:'r1'}));
+const sig=await crypto.subtle.sign(alg,pair.privateKey,original);
+check('P-256 signature generated',sig.byteLength===64);
+check('original verifies',await crypto.subtle.verify(alg,pair.publicKey,sig,original));
+const changed=enc.encode(JSON.stringify({type:'semester.test.v1',tenant:'demo',release:'r2'}));
+check('tampered payload rejected',!await crypto.subtle.verify(alg,pair.publicKey,sig,changed));
+const other=await crypto.subtle.generateKey({name:'ECDSA',namedCurve:'P-256'},false,['sign','verify']);
+check('wrong public key rejected',!await crypto.subtle.verify(alg,other.publicKey,sig,original));
+const corrupt=new Uint8Array(sig.slice(0));corrupt[0]^=1;
+check('corrupt signature rejected',!await crypto.subtle.verify(alg,pair.publicKey,corrupt,original));
+const reordered=enc.encode(JSON.stringify({release:'r1',tenant:'demo',type:'semester.test.v1'}));
+check('reordered noncanonical JSON rejected',!await crypto.subtle.verify(alg,pair.publicKey,sig,reordered));
+check('replay still verifies: authorization must prevent replay',await crypto.subtle.verify(alg,pair.publicKey,sig,original));
+return {browser:navigator.userAgent,origin:location.origin,algorithm:'ECDSA P-256 / SHA-256',serialization:'fixed JSON.stringify UTF-8 bytes, not RFC 8785',results};
+}
+document.getElementById('run').onclick=async()=>{try{document.getElementById('result').textContent=JSON.stringify(await run(),null,2)}catch(e){document.getElementById('result').textContent=e.stack}};</script></html>

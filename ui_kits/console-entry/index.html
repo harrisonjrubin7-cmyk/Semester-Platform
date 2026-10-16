@@ -1,0 +1,28 @@
+<!-- @dsCard group="Company & operations" viewport="1280x820" name="Operations entry & console gate" subtitle="Proposed grant-aware Operations entry in the account menu, with the real #/console gate and workspace filter from the repo" -->
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../../styles.css"><script src="../platform/appearance.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script><title>Semester — Operations entry</title>
+<style>
+html,body,#root{min-height:100%}body{margin:0;background:var(--surface-canvas);color:var(--text-primary);font-family:var(--font-body)}a{color:var(--text-link)}a:hover{color:var(--text-primary)}
+.kicker{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary);line-height:1.4}.muted{color:var(--text-secondary);font-size:13.5px;margin:0}
+.stack{display:grid;gap:14px;align-content:start;min-width:0}.row{display:flex;gap:8px;flex-wrap:wrap}
+.seg-field{display:grid;gap:4px;justify-items:start;min-width:0}.seg-label{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary)}
+.ce-wrap{display:grid;grid-template-columns:minmax(260px,320px) minmax(0,1fr);gap:20px;padding:20px;max-width:1320px;margin:0 auto;align-items:start}@media (max-width:860px){.ce-wrap{grid-template-columns:1fr}}
+.ce-ctl{display:grid;gap:10px;padding:16px;border:1px solid var(--border-default);border-radius:6px;background:var(--surface-base);min-width:0}.ce-ctl>*{min-width:0}.ce-ctl label{overflow-wrap:anywhere}
+.ce-app{position:relative;border:1px solid var(--border-default);border-radius:10px;overflow:hidden;background:var(--surface-canvas);min-height:640px;min-width:0}
+.ce-top{display:flex;align-items:center;gap:14px;padding:0 16px;height:52px;background:#090a0e;color:#eceef2}.ce-brand{font-family:var(--font-heading);font-weight:600;font-size:17px}.ce-where{font-size:13px;color:rgba(236,238,242,.7)}
+.ce-me{all:unset;cursor:pointer;margin-left:auto;width:36px;height:36px;border-radius:999px;display:grid;place-items:center;background:#416180;color:#fff;font-size:13px;font-weight:600}.ce-me:focus-visible{outline:2px solid #94bce3;outline-offset:2px}
+.ce-menu{position:absolute;right:12px;top:58px;width:280px;max-width:calc(100% - 24px);background:var(--surface-base);border:1px solid var(--border-default);border-radius:6px;box-shadow:0 12px 32px rgba(9,10,14,.18);padding:6px;z-index:2;display:grid}
+.ce-id{display:grid;padding:8px 10px 10px;border-bottom:1px solid var(--border-subtle);margin-bottom:4px}.ce-id span{font-size:12.5px;color:var(--text-secondary);overflow-wrap:anywhere}
+.ce-sec{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary);padding:6px 10px 2px}
+.ce-item{all:unset;cursor:pointer;display:grid;gap:1px;padding:8px 10px;border-radius:3px;font-size:14px}.ce-item small{font-size:12px;color:var(--text-secondary)}.ce-item:hover{background:var(--action-secondary)}.ce-item[aria-checked=true]{font-weight:600;box-shadow:inset 3px 0 0 #416180}.ce-item:focus-visible{outline:2px solid var(--action-primary)}
+.ce-sep{height:1px;background:var(--border-subtle);margin:4px 0}.ce-note{font-size:12px;color:var(--text-secondary);margin:6px 10px 4px}
+.ce-main{padding:24px 20px 40px}.ce-h1{margin:0;font-family:var(--font-heading);font-weight:600;font-size:26px;letter-spacing:-.015em}
+.ce-ctx{display:flex;flex-wrap:wrap;gap:6px 16px;padding:10px 12px;border:1px solid var(--border-default);border-radius:6px;font-size:12.5px;background:var(--surface-base)}.ce-ctx b{font-weight:600;margin-right:4px}.ce-ctx span{overflow-wrap:anywhere}
+.ce-tabs{display:flex;gap:2px;flex-wrap:wrap;border-bottom:1px solid var(--border-default)}.ce-tab{all:unset;cursor:pointer;padding:9px 11px;font-size:13.5px;color:var(--text-secondary);margin-bottom:-1px;border-bottom:2px solid transparent}.ce-tab[aria-selected=true]{color:var(--text-primary);font-weight:500;border-bottom-color:var(--action-primary)}.ce-tab:focus-visible{outline:2px solid var(--action-primary);outline-offset:-2px}
+</style></head>
+<body><div id="root"></div>
+<script type="text/babel" src="ConsoleEntry.jsx"></script>
+</body></html>

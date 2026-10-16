@@ -1,0 +1,21 @@
+id,check,accountable_role,named_owner,result,reviewer,evidence_reference,verified_date,blocker,next_action
+P01,Charter/sponsor,CEO + sponsor,,Not assessed,,,,,Attach applicable acceptance evidence
+P02,Legal/signature authority,Counsel + signatory,,Not assessed,,,,,Attach applicable acceptance evidence
+P03,Source authority,Institution data owner,,Not assessed,,,,,Attach applicable acceptance evidence
+P04,Identity/scoped grants,Platform,,Not assessed,,,,,Attach applicable acceptance evidence
+P05,Tenant/data isolation,Trust,,Not assessed,,,,,Attach applicable acceptance evidence
+P06,Integration reconciliation,Integration,,Not assessed,,,,,Attach applicable acceptance evidence
+P07,Privacy/consent/retention,Privacy,,Not assessed,,,,,Attach applicable acceptance evidence
+P08,Accessibility,Design,,Not assessed,,,,,Attach applicable acceptance evidence
+P09,Controlled-action correctness,Backend,,Not assessed,,,,,Attach applicable acceptance evidence
+P10,Recovery/revocation,Platform,,Not assessed,,,,,Attach applicable acceptance evidence
+P11,Support access,Support + trust,,Not assessed,,,,,Attach applicable acceptance evidence
+P12,Incident coverage,Operations,,Not assessed,,,,,Attach applicable acceptance evidence
+P13,Restore/continuity,Platform,,Not assessed,,,,,Attach applicable acceptance evidence
+P14,Training/handoff,Implementation,,Not assessed,,,,,Attach applicable acceptance evidence
+P15,Metrics/baseline/cost,Product + finance,,Not assessed,,,,,Attach applicable acceptance evidence
+P16,Portability/offboarding,Implementation + privacy,,Not assessed,,,,,Attach applicable acceptance evidence
+P17,Deployment revision/config,Release,,Not assessed,,,,,Attach applicable acceptance evidence
+P18,Internal approval,CEO + reviewers,,Not assessed,,,,,Attach applicable acceptance evidence
+P19,Institution authorization,Sponsor,,Not assessed,,,,,Attach applicable acceptance evidence
+P20,Review/stop plan,Sponsor + operations,,Not assessed,,,,,Attach applicable acceptance evidence

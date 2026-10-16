@@ -1,0 +1,110 @@
+TAP version 13
+# Subtest: US to ECTS
+ok 1 - US to ECTS
+  ---
+  duration_ms: 2.075262
+  ...
+# Subtest: CATS to ECTS
+ok 2 - CATS to ECTS
+  ---
+  duration_ms: 0.143687
+  ...
+# Subtest: Australian explicit factor
+ok 3 - Australian explicit factor
+  ---
+  duration_ms: 0.123961
+  ...
+# Subtest: Australian no default
+ok 4 - Australian no default
+  ---
+  duration_ms: 0.254097
+  ...
+# Subtest: 120/60 baseline
+ok 5 - 120/60 baseline
+  ---
+  duration_ms: 0.227968
+  ...
+# Subtest: Pending remains separate
+ok 6 - Pending remains separate
+  ---
+  duration_ms: 0.12056
+  ...
+# Subtest: Conditional scenario
+ok 7 - Conditional scenario
+  ---
+  duration_ms: 0.119373
+  ...
+# Subtest: Reject -1
+ok 8 - Reject -1
+  ---
+  duration_ms: 0.123951
+  ...
+# Subtest: Reject 
+ok 9 - Reject 
+  ---
+  duration_ms: 0.222587
+  ...
+# Subtest: Reject null
+ok 10 - Reject null
+  ---
+  duration_ms: 0.166611
+  ...
+# Subtest: Reject Infinity
+ok 11 - Reject Infinity
+  ---
+  duration_ms: 0.105347
+  ...
+# Subtest: Reject true
+ok 12 - Reject true
+  ---
+  duration_ms: 0.093978
+  ...
+# Subtest: Adjacent disjoint intervals
+ok 13 - Adjacent disjoint intervals
+  ---
+  duration_ms: 6.452462
+  ...
+# Subtest: Shared endpoint counts one day
+ok 14 - Shared endpoint counts one day
+  ---
+  duration_ms: 0.232725
+  ...
+# Subtest: Contained break counts nine
+ok 15 - Contained break counts nine
+  ---
+  duration_ms: 0.145781
+  ...
+# Subtest: Winter break counts sixteen
+ok 16 - Winter break counts sixteen
+  ---
+  duration_ms: 0.197787
+  ...
+# Subtest: Leap-day count
+ok 17 - Leap-day count
+  ---
+  duration_ms: 0.126804
+  ...
+# Subtest: Invalid leap date rejected
+ok 18 - Invalid leap date rejected
+  ---
+  duration_ms: 0.216803
+  ...
+# Subtest: Reversed dates rejected
+ok 19 - Reversed dates rejected
+  ---
+  duration_ms: 0.148496
+  ...
+# Subtest: Missing date rejected
+ok 20 - Missing date rejected
+  ---
+  duration_ms: 0.169295
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 20
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 97.398673

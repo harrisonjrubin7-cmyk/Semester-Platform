@@ -1,0 +1,121 @@
+{
+  "verified_on": "2026-10-07",
+  "records": [
+    {
+      "university": "UCL",
+      "academic_year": "2026\u20132027",
+      "source": "https://www.ucl.ac.uk/study/current-students/life-ucl/term-dates-and-closures",
+      "scope": "Standard terms; exceptions apply; exam windows not provided by this source",
+      "intervals": [
+        {
+          "kind": "term",
+          "name": "Term 1",
+          "start": "2026-09-28",
+          "end": "2026-12-18"
+        },
+        {
+          "kind": "term",
+          "name": "Term 2",
+          "start": "2027-01-11",
+          "end": "2027-03-25"
+        },
+        {
+          "kind": "term",
+          "name": "Term 3",
+          "start": "2027-04-26",
+          "end": "2027-06-11"
+        }
+      ]
+    },
+    {
+      "university": "Cambridge",
+      "academic_year": "2026\u20132027",
+      "source": "https://www.cam.ac.uk/about-the-university/term-dates-and-calendars",
+      "scope": "Undergraduate Full Term; not exam windows; postgraduate activity differs",
+      "intervals": [
+        {
+          "kind": "full_term",
+          "name": "Michaelmas",
+          "start": "2026-10-06",
+          "end": "2026-12-04"
+        },
+        {
+          "kind": "full_term",
+          "name": "Lent",
+          "start": "2027-01-19",
+          "end": "2027-03-19"
+        },
+        {
+          "kind": "full_term",
+          "name": "Easter",
+          "start": "2027-04-27",
+          "end": "2027-06-18"
+        }
+      ]
+    },
+    {
+      "university": "Edinburgh",
+      "academic_year": "2026\u20132027",
+      "source": "https://semester-dates.ed.ac.uk/202627",
+      "scope": "Standard academic year. Semester 2 header ends May 22 but event table ends May 21; no canonical semester end selected. Teaching and exam intervals are explicit.",
+      "intervals": [
+        {
+          "kind": "teaching",
+          "name": "Block 1",
+          "start": "2026-09-21",
+          "end": "2026-10-23"
+        },
+        {
+          "kind": "teaching",
+          "name": "Block 2",
+          "start": "2026-10-26",
+          "end": "2026-12-04"
+        },
+        {
+          "kind": "exam",
+          "name": "Semester 1 exams",
+          "start": "2026-12-09",
+          "end": "2026-12-21"
+        },
+        {
+          "kind": "vacation",
+          "name": "Winter teaching vacation",
+          "start": "2026-12-22",
+          "end": "2027-01-10"
+        },
+        {
+          "kind": "teaching",
+          "name": "Block 3",
+          "start": "2027-01-11",
+          "end": "2027-02-12"
+        },
+        {
+          "kind": "flexible_learning",
+          "name": "Flexible Learning Week",
+          "start": "2027-02-15",
+          "end": "2027-02-19"
+        },
+        {
+          "kind": "teaching",
+          "name": "Block 4",
+          "start": "2027-02-22",
+          "end": "2027-04-02"
+        },
+        {
+          "kind": "vacation",
+          "name": "Spring teaching vacation",
+          "start": "2027-04-05",
+          "end": "2027-04-16"
+        },
+        {
+          "kind": "exam",
+          "name": "Semester 2 exams",
+          "start": "2027-04-26",
+          "end": "2027-05-21"
+        }
+      ]
+    }
+  ],
+  "remaining_original_universities_not_reverified": 17,
+  "does_not_replace_full_dataset": true
+}

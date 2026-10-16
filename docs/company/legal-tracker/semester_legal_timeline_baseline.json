@@ -1,0 +1,400 @@
+{
+  "version": 2,
+  "preparedDate": "2026-10-07",
+  "company": "Semester",
+  "assessmentBasis": "Planning baseline only; no corporate evidence or browser-local edits supplied",
+  "tasks": [
+    {
+      "id": "F01",
+      "stage": "Formation",
+      "title": "Confirm entity and jurisdiction",
+      "deps": [],
+      "owner": "Founder / Counsel",
+      "evidence": "Entity decision and jurisdiction review",
+      "rule": "Before drafting",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "F02",
+      "stage": "Formation",
+      "title": "File formation instrument",
+      "deps": [
+        "F01"
+      ],
+      "owner": "Counsel",
+      "evidence": "Filed charter and receipt",
+      "rule": "Jurisdiction-specific",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "F03",
+      "stage": "Formation",
+      "title": "Adopt initial governance",
+      "deps": [
+        "F02"
+      ],
+      "owner": "Board / Counsel",
+      "evidence": "Incorporator action, bylaws and initial consent",
+      "rule": "After formation",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "F04",
+      "stage": "Formation",
+      "title": "Tax, banking and registration setup",
+      "deps": [
+        "F02"
+      ],
+      "owner": "Finance / Counsel",
+      "evidence": "EIN record, bank authority, applicable registrations",
+      "rule": "Jurisdiction-specific",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "IP01",
+      "stage": "IP",
+      "title": "Inventory pre-company assets and obligations",
+      "deps": [
+        "F01"
+      ],
+      "owner": "Founder / Counsel",
+      "evidence": "Asset inventory, prior employer/university rights",
+      "rule": "Before assignment",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "IP02",
+      "stage": "IP",
+      "title": "Execute founder IP assignments",
+      "deps": [
+        "F02",
+        "IP01"
+      ],
+      "owner": "Founder / Counsel",
+      "evidence": "Signed present assignments and exclusions",
+      "rule": "Before ownership representations",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "V01",
+      "stage": "Equity",
+      "title": "Agree founder stock and vesting",
+      "deps": [
+        "F03",
+        "IP01"
+      ],
+      "owner": "Founder / Board",
+      "evidence": "Shares, price, vesting, cliff, acceleration and repurchase",
+      "rule": "Before issuance",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "V02",
+      "stage": "Equity",
+      "title": "Approve and complete founder issuance",
+      "deps": [
+        "V01",
+        "IP02"
+      ],
+      "owner": "Board / Counsel",
+      "evidence": "Approval, executed purchase, payment, actual transfer date",
+      "rule": "Verify actual property transfer date",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "V03",
+      "stage": "Equity",
+      "title": "Assess and file 83(b) if appropriate",
+      "deps": [
+        "V02"
+      ],
+      "owner": "Founder / Tax adviser",
+      "evidence": "Signed election, filing evidence and required copies",
+      "rule": "30 days after transfer; weekend/legal-holiday adjustment",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "V04",
+      "stage": "Equity",
+      "title": "Reconcile ledger and vesting",
+      "deps": [
+        "V02"
+      ],
+      "owner": "Finance / Counsel",
+      "evidence": "Stock ledger, cap table and vesting register",
+      "rule": "Each equity transaction",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "IP03",
+      "stage": "IP",
+      "title": "Execute employee and contractor IP agreements",
+      "deps": [
+        "IP02"
+      ],
+      "owner": "People / Counsel",
+      "evidence": "Signed agreements and asset ownership mapping",
+      "rule": "Before work/access",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "O01",
+      "stage": "Governance",
+      "title": "Maintain recurring compliance calendar",
+      "deps": [
+        "F03",
+        "F04"
+      ],
+      "owner": "Founder / Counsel",
+      "evidence": "Annual filings, taxes, qualifications and approvals",
+      "rule": "Jurisdiction-specific; recurring",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "C01",
+      "stage": "Customer readiness",
+      "title": "Map data, purposes and vendors",
+      "deps": [
+        "F02"
+      ],
+      "owner": "Privacy / Product",
+      "evidence": "Processing inventory, roles, retention and regions",
+      "rule": "Before contract commitments",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "C02",
+      "stage": "Customer readiness",
+      "title": "Review ToS and enterprise risk terms",
+      "deps": [
+        "C01"
+      ],
+      "owner": "Counsel / Revenue",
+      "evidence": "Terms, disclosures, caps and indemnities",
+      "rule": "Before sale",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "C03",
+      "stage": "Customer readiness",
+      "title": "Review DPA and education privacy",
+      "deps": [
+        "C01"
+      ],
+      "owner": "Privacy / Counsel",
+      "evidence": "DPA, annexes, applicable transfer/education requirements",
+      "rule": "Before covered processing",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "C04",
+      "stage": "Customer readiness",
+      "title": "Validate SLA and security promises",
+      "deps": [
+        "C01"
+      ],
+      "owner": "Engineering / Trust",
+      "evidence": "Measured reliability, support and control evidence",
+      "rule": "Before offering guarantees",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "C05",
+      "stage": "Customer readiness",
+      "title": "Approve launch / institutional activation",
+      "deps": [
+        "C02",
+        "C03",
+        "C04"
+      ],
+      "owner": "Product / Institution",
+      "evidence": "Acceptance and authorization records",
+      "rule": "Official actions require separate institutional gate",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "S01",
+      "stage": "Seed",
+      "title": "Select financing and exemption",
+      "deps": [
+        "V04",
+        "IP02"
+      ],
+      "owner": "Founder / Counsel",
+      "evidence": "Instrument and exemption review",
+      "rule": "Before investor commitment",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "S02",
+      "stage": "Seed",
+      "title": "Approve and execute financing",
+      "deps": [
+        "S01"
+      ],
+      "owner": "Board / Counsel",
+      "evidence": "Signed instruments, consents and funds records",
+      "rule": "Counsel determines first-sale date",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "S03",
+      "stage": "Seed",
+      "title": "Complete applicable securities notices",
+      "deps": [
+        "S02"
+      ],
+      "owner": "Counsel",
+      "evidence": "Form D/state notices if applicable; submission receipts",
+      "rule": "Form D candidate: first sale + 15 days; applicability/adjustments reviewed",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "S04",
+      "stage": "Seed",
+      "title": "Reconcile financing and rights",
+      "deps": [
+        "S02"
+      ],
+      "owner": "Finance / Counsel",
+      "evidence": "Instrument register, dilution and side-letter rights",
+      "rule": "After financing",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "A01",
+      "stage": "Series A",
+      "title": "Complete diligence evidence",
+      "deps": [
+        "S04",
+        "IP03",
+        "O01"
+      ],
+      "owner": "Founder / Finance / Counsel",
+      "evidence": "Data room, financials, IP, contracts, employment and risk",
+      "rule": "Before readiness representation",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "A02",
+      "stage": "Series A",
+      "title": "Negotiate priced-round documents",
+      "deps": [
+        "A01"
+      ],
+      "owner": "Counsel / Board",
+      "evidence": "Charter, SPA, investor rights, voting, ROFR/co-sale and schedules",
+      "rule": "Transaction-specific",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "A03",
+      "stage": "Series A",
+      "title": "Close, file charter and reconcile",
+      "deps": [
+        "A02"
+      ],
+      "owner": "Counsel / Finance",
+      "evidence": "Approvals, effective charter, conversion, payment and closing binder",
+      "rule": "Charter effectiveness before relevant issuance",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    },
+    {
+      "id": "A04",
+      "stage": "Series A",
+      "title": "Post-close filings and governance",
+      "deps": [
+        "A03"
+      ],
+      "owner": "Counsel / Board",
+      "evidence": "Applicable filings, board changes and investor obligations",
+      "rule": "Assess new offering deadlines separately",
+      "status": "Not assessed",
+      "due": "",
+      "notes": ""
+    }
+  ],
+  "meta": {},
+  "sources": [
+    [
+      "IRS Form 15620 and instructions",
+      "https://www.irs.gov/pub/irs-pdf/f15620.pdf"
+    ],
+    [
+      "Cooley Delaware incorporation generator",
+      "https://www.cooleygo.com/documents/incorporation-package-delaware/"
+    ],
+    [
+      "YC SAFE forms",
+      "https://www.ycombinator.com/safe"
+    ],
+    [
+      "NVCA financing model documents",
+      "https://nvca.org/model-legal-documents/"
+    ],
+    [
+      "SEC Form D guidance",
+      "https://www.sec.gov/resources-small-businesses/exempt-offerings/filing-form-d-notice"
+    ]
+  ],
+  "deadlineRules": {
+    "83b": {
+      "trigger": "actual property transfer date",
+      "calendarDays": 30,
+      "adjustment": "next non-weekend/non-applicable-legal-holiday; holiday list requires adviser verification"
+    },
+    "formD": {
+      "trigger": "first sale under applicable offering",
+      "calendarDays": 15,
+      "applicability": "conditional; counsel verifies exemption and adjustments"
+    }
+  }
+}

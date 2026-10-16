@@ -1,0 +1,127 @@
+{
+  "tests": [
+    {
+      "name": "US to ECTS",
+      "status": "PASS"
+    },
+    {
+      "name": "ECTS to US",
+      "status": "PASS"
+    },
+    {
+      "name": "CATS to ECTS",
+      "status": "PASS"
+    },
+    {
+      "name": "US to CATS",
+      "status": "PASS"
+    },
+    {
+      "name": "CATS to US",
+      "status": "PASS"
+    },
+    {
+      "name": "Australian custom factor (illustrative only)",
+      "status": "PASS"
+    },
+    {
+      "name": "ECTS to Australian custom factor",
+      "status": "PASS"
+    },
+    {
+      "name": "No Australian default",
+      "status": "PASS"
+    },
+    {
+      "name": "Fractional value",
+      "status": "PASS"
+    },
+    {
+      "name": "Zero",
+      "status": "PASS"
+    },
+    {
+      "name": "Reject amount -1",
+      "status": "PASS"
+    },
+    {
+      "name": "Reject amount ",
+      "status": "PASS"
+    },
+    {
+      "name": "Reject amount null",
+      "status": "PASS"
+    },
+    {
+      "name": "Reject amount undefined",
+      "status": "PASS"
+    },
+    {
+      "name": "Reject amount true",
+      "status": "PASS"
+    },
+    {
+      "name": "Reject amount abc",
+      "status": "PASS"
+    },
+    {
+      "name": "Reject amount Infinity",
+      "status": "PASS"
+    },
+    {
+      "name": "Zero ratio",
+      "status": "PASS"
+    },
+    {
+      "name": "Unknown unit",
+      "status": "PASS"
+    },
+    {
+      "name": "Overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "Round trip",
+      "status": "PASS"
+    },
+    {
+      "name": "Baseline pending separation",
+      "status": "PASS"
+    },
+    {
+      "name": "Overcompletion clamps",
+      "status": "PASS"
+    },
+    {
+      "name": "Zero term load",
+      "status": "PASS"
+    },
+    {
+      "name": "Negative pending",
+      "status": "PASS"
+    },
+    {
+      "name": "Syllabus lower bound",
+      "status": "PASS"
+    },
+    {
+      "name": "Syllabus upper bound",
+      "status": "PASS"
+    },
+    {
+      "name": "Syllabus below range",
+      "status": "PASS"
+    },
+    {
+      "name": "Syllabus above range",
+      "status": "PASS"
+    },
+    {
+      "name": "Negative workload",
+      "status": "PASS"
+    }
+  ],
+  "passed": 30,
+  "browser_UI_tested": false,
+  "script_syntax": "PASS"
+}

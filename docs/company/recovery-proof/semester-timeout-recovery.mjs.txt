@@ -1,0 +1,39 @@
+// Proposed pure recovery reducer. Effects are intents, not network calls.
+export function recover(s, e, p) {
+  const states = ['executing','outcome_unknown','reconciling','manual_review','confirmed','failed','ready'];
+  if (!states.includes(s.state)) throw new Error('Invalid recovery state');
+  if (!Number.isInteger(p.maxQueries) || p.maxQueries < 1) throw new Error('Invalid query budget');
+  if (e.commandId !== s.commandId || e.attemptId !== s.attemptId) return {state:s,effects:[]};
+  if (['confirmed','failed','ready'].includes(s.state)) return {state:s,effects:[]};
+  const move = (state, reason, effects=[], extra={}) => ({
+    state:{...s,...extra,state,version:s.version+1},
+    effects:[{type:'APPEND_AUDIT',reason,from:s.state,to:state},...effects]
+  });
+  const query = () => {
+    if (s.queries >= p.maxQueries) return move('manual_review','QUERY_BUDGET_EXHAUSTED',[{type:'OPEN_REVIEW'}]);
+    return move('reconciling','QUERY_SOURCE', [{type:'QUERY_STATUS',operationKey:s.operationKey}],{queries:s.queries+1});
+  };
+  if (e.type === 'TIMEOUT' && s.state === 'executing')
+    return move('outcome_unknown','DELIVERY_OUTCOME_UNKNOWN',[{type:'SCHEDULE_STATUS_CHECK'}]);
+  if (e.type === 'CHECK_DUE' && s.state === 'outcome_unknown') return query();
+  if (e.type === 'STATUS' && ['reconciling','manual_review','outcome_unknown'].includes(s.state)) {
+    if (!e.trusted || !e.matchesRequest) return move('manual_review','UNTRUSTED_OR_MISMATCHED_SOURCE',[{type:'OPEN_REVIEW'}]);
+    if (e.result === 'APPLIED') return move('confirmed','SOURCE_CONFIRMED',[{type:'EMIT_CONFIRMED',sourceRef:e.sourceRef}]);
+    if (e.result === 'REJECTED' && e.terminal && e.noEffects)
+      return move('failed','SOURCE_REJECTED_NO_EFFECTS',[{type:'EMIT_FAILURE'}]);
+    // NOT_FOUND in an eventually consistent source is NOT proof of non-execution.
+    if (e.result === 'NOT_APPLIED' && e.terminal && e.noEffects && e.originalCannotComplete) {
+      if (!e.currentAuthority || !e.approvalValid || !e.preconditionsValid || e.killSwitch)
+        return move('manual_review','RETRY_AUTHORITY_BLOCKED',[{type:'OPEN_REVIEW'}]);
+      return move('ready','VERIFIED_SAFE_TO_REEVALUATE',[{type:'REEVALUATE_COMMAND'}]);
+    }
+    if (s.state === 'manual_review') return {state:s,effects:[]};
+    if (s.queries >= p.maxQueries) return move('manual_review','QUERY_BUDGET_EXHAUSTED',[{type:'OPEN_REVIEW'}]);
+    return move('outcome_unknown','SOURCE_INCONCLUSIVE',[{type:'SCHEDULE_STATUS_CHECK'}]);
+  }
+  if (e.type === 'LOOKUP_FAILED' && s.state === 'reconciling') {
+    if (s.queries >= p.maxQueries) return move('manual_review','LOOKUP_BUDGET_EXHAUSTED',[{type:'OPEN_REVIEW'}]);
+    return move('outcome_unknown','LOOKUP_UNAVAILABLE',[{type:'SCHEDULE_STATUS_CHECK'}]);
+  }
+  return {state:s,effects:[]};
+}

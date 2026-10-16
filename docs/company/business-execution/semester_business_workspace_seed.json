@@ -1,0 +1,788 @@
+{
+  "slides": [
+    [
+      "Semester Native Business",
+      "Execution baseline | October 7, 2026",
+      [
+        "Proposed window: October 8, 2026-January 5, 2027. Dates are conditional planning targets.",
+        "Local editable workspace plus slide deck; no production connection, deployment or customer outcome is asserted.",
+        "Source basis: project role-system execution specification; legal operations document; console-entry prototype from prior review."
+      ]
+    ],
+    [
+      "Workspace execution model",
+      "One platform, bounded operating contexts",
+      [
+        "Overview, My Work, Inbox, Launch, Hiring, Finance, Fundraising, Institution Growth and Individual Growth.",
+        "Every record has scope, owner/backup, state, due date, dependency, evidence, reviewer and permitted next action.",
+        "Separate designed, implemented, tested, deployed, institution-authorized, production-enabled and native-authoritative."
+      ]
+    ],
+    [
+      "G01: discovery is not authorization",
+      "Walk the complete route-to-runtime chain",
+      [
+        "1 Inspect the actual router and console mount; #/console is the route mirrored by the inspected prototype, not a new /app/ops implementation claim.",
+        "2 Verify account service configuration, signed-in state, active membership and trusted console:operate capability at platform scope.",
+        "3 Add/reconcile account-menu discovery only for eligible users; keep denied direct-route behavior intact.",
+        "4 Reconcile the workspace catalog and capability/scope filters; Support also depends on its enabled configuration in the inspected prototype.",
+        "5 Verify server/RPC, RLS, storage, export and AI boundaries; menu visibility grants no authority.",
+        "6 Compare deployed revision/configuration with tested code; test real authorized and denied journeys before accepting G01."
+      ]
+    ],
+    [
+      "G01 acceptance and diagnostics",
+      "Owner: frontend lead | reviewers: platform and trust",
+      [
+        "No menu: inspect discovery, session and trusted scoped grants. Forbidden route: inspect intended provisioning, not removal of guards.",
+        "Missing route: inspect hash routing and registered screen. Empty/blank: inspect configuration, failed queries and runtime errors.",
+        "Visible tabs but denied action: trace capability/scope, policy, API/RPC and database decision. Local-only: compare deployment revision and flags.",
+        "Tests: signed out denied; student denied; scoped operator allowed; support-disabled hidden; expired/revoked access denied; cross-tenant access denied.",
+        "Acceptance requires inspected code references, test outputs, authorized navigation, direct-route denial, correct filters and matching deployment evidence.",
+        "G01 discovers the shell. G02 proves data authorization; G03 proves controlled execution. All three are required for an operational launch."
+      ]
+    ],
+    [
+      "Days 1-15: Oct 8-22",
+      "Proposed phase deliverables",
+      [
+        "Audit routes, models, grants and source authority; assign owners/backups; approve pilot charter.",
+        "Gate: Canonical systems identified and blockers recorded.",
+        "Hiring: review workload, budget and backup coverage at each phase. Fundraising: share only approved evidence and snapshots."
+      ]
+    ],
+    [
+      "Days 16-30: Oct 23-Nov 6",
+      "Proposed phase deliverables",
+      [
+        "Complete trusted discovery and isolation; implement Inbox projection; approve staffing and coverage.",
+        "Gate: Authorized/denied tests and first real owned work item pass.",
+        "Hiring: review workload, budget and backup coverage at each phase. Fundraising: share only approved evidence and snapshots."
+      ]
+    ],
+    [
+      "Days 31-45: Nov 7-21",
+      "Proposed phase deliverables",
+      [
+        "Complete controlled actions, document obligations and fault testing.",
+        "Gate: End-to-end staging workflow with receipts and recovery.",
+        "Hiring: review workload, budget and backup coverage at each phase. Fundraising: share only approved evidence and snapshots."
+      ]
+    ],
+    [
+      "Days 46-60: Nov 22-Dec 6",
+      "Proposed phase deliverables",
+      [
+        "Rehearse integrations, incidents, restore, support access and offboarding; complete reviews.",
+        "Gate: Current reviewer-approved readiness package.",
+        "Hiring: review workload, budget and backup coverage at each phase. Fundraising: share only approved evidence and snapshots."
+      ]
+    ],
+    [
+      "Days 61-75: Dec 7-21",
+      "Proposed phase deliverables",
+      [
+        "Run only authorized cohort; monitor support, errors, costs and reconciliation.",
+        "Gate: Evidence supports continuation; no automatic expansion.",
+        "Hiring: review workload, budget and backup coverage at each phase. Fundraising: share only approved evidence and snapshots."
+      ]
+    ],
+    [
+      "Days 76-90: Dec 22-Jan 5",
+      "Proposed phase deliverables",
+      [
+        "Harden defects; review outcomes/costs; revise capital and capacity plans.",
+        "Gate: Explicit continue, expand, pause or stop decision.",
+        "Hiring: review workload, budget and backup coverage at each phase. Fundraising: share only approved evidence and snapshots."
+      ]
+    ],
+    [
+      "Pilot risk matrix 1",
+      "Illustrative likelihood x impact; residual risk requires evidence",
+      [
+        "R01 Unauthorized disclosure | 3 x 5 = 15 | Trust/platform. Control: Isolation and least privilege. Trigger: Suspected disclosure: contain.",
+        "R02 Stale grants/revocation | 3 x 5 = 15 | Platform. Control: Fresh revocation and reconciliation. Trigger: Cannot confirm revoke: deny access.",
+        "R03 Duplicate/partial action | 3 x 5 = 15 | Backend. Control: Idempotency and atomic evidence. Trigger: Mismatch: pause commands.",
+        "R04 Stale/incorrect data | 4 x 4 = 16 | Integration. Control: Freshness and reconciliation. Trigger: Official mismatch: stop transition.",
+        "R05 Absent authority | 3 x 5 = 15 | CEO/counsel/sponsor. Control: Approved scope and agreements. Trigger: Missing approval: no activation."
+      ]
+    ],
+    [
+      "Pilot risk matrix 2",
+      "Illustrative scores are not a measured live assessment",
+      [
+        "R06 Insufficient coverage | 4 x 4 = 16 | Operations. Control: Backup owners and rehearsal. Trigger: No coverage: defer rollout.",
+        "R07 Cash underestimated | 3 x 5 = 15 | Finance/CEO. Control: Reconcile cash and commitments. Trigger: Approved cash floor breached: review spend.",
+        "R08 Inaccessible critical task | 3 x 4 = 12 | Design. Control: Manual accessibility validation. Trigger: Critical barrier: block release.",
+        "R09 Unsupported claims | 3 x 4 = 12 | CEO/product. Control: Evidence-linked claims review. Trigger: Unverified claim: remove.",
+        "R10 Expansion without review | 3 x 5 = 15 | Implementation. Control: New-scope gates. Trigger: Unapproved module/data scope: block expansion."
+      ]
+    ],
+    [
+      "Pilot checklist 1",
+      "Each check requires owner, reviewer, current evidence and result",
+      [
+        "P01: Charter and sponsor.",
+        "P02: Legal and signature authority.",
+        "P03: Source authority.",
+        "P04: Identity and scoped grants.",
+        "P05: Tenant/data isolation.",
+        "P06: Integration reconciliation.",
+        "P07: Privacy/consent/retention.",
+        "Missing mandatory evidence blocks activation; not applicable requires reviewer rationale."
+      ]
+    ],
+    [
+      "Pilot checklist 2",
+      "Each check requires owner, reviewer, current evidence and result",
+      [
+        "P08: Critical-journey accessibility.",
+        "P09: Controlled-action correctness.",
+        "P10: Recovery and revocation.",
+        "P11: Support access controls.",
+        "P12: Incident response and coverage.",
+        "P13: Restore/continuity exercise.",
+        "P14: Training and handoff.",
+        "Missing mandatory evidence blocks activation; not applicable requires reviewer rationale."
+      ]
+    ],
+    [
+      "Pilot checklist 3",
+      "Each check requires owner, reviewer, current evidence and result",
+      [
+        "P15: Metrics/baseline/cost.",
+        "P16: Portability and offboarding.",
+        "P17: Deployment revision/configuration.",
+        "P18: Internal release approval.",
+        "P19: Institution authorization.",
+        "P20: Review and stop plan.",
+        "Missing mandatory evidence blocks activation; not applicable requires reviewer rationale."
+      ]
+    ],
+    [
+      "Institutional acquisition and procurement",
+      "Native business workflow from buyer interest to approved agreement",
+      [
+        "Capture approved lead -> deduplicate account -> assign owner and response clock -> qualify need, sponsor, budget process and timeline.",
+        "Discovery -> scope proposal -> implementation feasibility -> pilot success plan -> procurement/security/privacy/accessibility review.",
+        "Track procurement requirements, questionnaire answers, evidence versions, reviewers, exceptions, dependencies and expiry; responses cannot overstate readiness.",
+        "Quote -> pricing authority -> approved contract versions -> authorized signatures -> executed-document verification -> obligation extraction.",
+        "Signature completion starts obligations; it does not automatically authorize tenant activation or official-record authority.",
+        "Use bounded signing/payment/identity providers when needed; Semester owns canonical state, approvals, receipts, reconciliation and vendor exit path."
+      ]
+    ],
+    [
+      "Institutional activation and expansion",
+      "Expansion is a new gated scope, not a sales toggle",
+      [
+        "Executed scope -> tenant setup -> identity configuration -> capabilities -> integration validation -> training -> pilot gates -> authorized cohort.",
+        "Success review -> renewal/expansion request -> define new campuses, users, modules, data, costs and authoritative boundaries.",
+        "Reassess procurement, security/privacy/accessibility, entitlements, capacity, agreement amendments and institution authority for changed scope.",
+        "Approve revised success plan -> controlled configuration -> bounded rollout -> monitor/reconcile -> report verified outcomes.",
+        "Expansion is blocked by unresolved critical access/integrity risks, inadequate support capacity, missing authority or unreviewed data scope.",
+        "Offboarding: contract/hold review -> export -> final reconciliation -> revoke memberships/credentials -> retention/archive -> closure evidence."
+      ]
+    ],
+    [
+      "Individual-user acquisition and lifecycle",
+      "Student-private work remains separate from institutional records",
+      [
+        "Discovery -> clear product claims -> account creation/recovery -> policy and consent -> optional plan entitlement -> goal/term onboarding.",
+        "First value: create a useful plan/task/course workspace; do not equate signup with activation or an imported plan with an official record.",
+        "Return/use -> privacy-preserving service analytics -> user-controlled reminders -> support -> paid upgrade if applicable -> renewal/cancellation.",
+        "Institution linking requires verified membership and explicit boundaries; never infer official affiliation or merge private work silently.",
+        "Referral/invite workflows are permissioned and consent-aware; no contact scraping, dark patterns or protected educational targeting.",
+        "Export/delete requests -> identity verification -> holds/retention -> scoped execution -> receipt; institution-linked records follow their authority."
+      ]
+    ],
+    [
+      "Native acquisition operating records",
+      "Logical entities to reconcile, not automatic new tables",
+      [
+        "Account, contact/communication preferences, opportunity, procurement review, requirement, evidence version, quote, agreement and document version.",
+        "Signature request/receipt, obligation, implementation, tenant, success plan, expansion request, entitlement change and renewal.",
+        "Individual journey, activation definition/event, subscription if applicable, consent, support case, rights request and closure receipt.",
+        "All state transitions carry scope, owner, current policy, source authority, idempotency, audit correlation, next action and recovery behavior.",
+        "Metrics: qualified opportunity conversion, procurement age, signature cycle, launch gate pass rate, first value, support load and renewal; definitions approved before reporting."
+      ]
+    ],
+    [
+      "Phase-gate decision policy",
+      "Proposed review model: GO, CONDITIONAL, NO-GO, PAUSE",
+      [
+        "GO: all applicable mandatory checks pass with current evidence, named owners and required approvals.",
+        "CONDITIONAL: only explicitly permitted noncritical gaps; named remediation owner/date; no waiver of authorization, data integrity or required legal authority.",
+        "NO-GO: mandatory missing/failed/stale evidence, inadequate coverage, critical accessibility failure or unapproved scope.",
+        "PAUSE: live trigger occurs; contain affected function/cohort, preserve evidence, notify authorized stakeholders and investigate.",
+        "Resume requires verified repair, reconciliation, repeat affected tests and renewed approval when scope or risk changed.",
+        "Tracker completeness is not readiness. Independent release, institution and authoritative-domain gates remain separate."
+      ]
+    ],
+    [
+      "Hiring pipeline",
+      "Planning roles, not approved headcount",
+      [
+        "Prioritize platform/backend capacity, then pilot implementation/operations coverage; obtain fractional counsel and trust/accessibility review as required.",
+        "Requisition -> workload justification -> affordability -> scorecard -> structured assessment -> approved offer -> IP/agreement -> scoped access -> training.",
+        "Do not enter sensitive candidate data into the local workspace. Production hiring needs restricted records and retention controls."
+      ]
+    ],
+    [
+      "Investor fundraising tracker",
+      "No invented investors, funding ask or commitments",
+      [
+        "Research -> qualified -> introduction -> meeting -> follow-up -> diligence -> nonbinding interest -> definitive documents -> funds received.",
+        "Track owner, next action/date, approved deck version, diligence asks, authority and outcome.",
+        "Days 1-30: reconcile capital needs; Days 31-60: approve deck/data room; Days 61-90: authorized outreach and diligence.",
+        "Signing interest is not cash. External outreach and sharing require approval."
+      ]
+    ],
+    [
+      "Operations Inbox",
+      "Canonical events, not a parallel ticket database",
+      [
+        "Queues: approvals, escalations, incidents, renewals, data requests, security alerts and lead response obligations.",
+        "Ingest -> deduplicate -> scope -> assign -> approved clock -> triage -> controlled action -> receipt -> verify -> resolve/escalate.",
+        "Define business/elapsed time, timezone, pauses, reopening and escalation; no contractual SLA is invented."
+      ]
+    ],
+    [
+      "Evidence and first actions",
+      "Source-grounded plan, not a runtime status report",
+      [
+        "Project basis: handoff/specifications/role-system-execution-prompt.pdf; docs/business/CORPORATE_GOVERNANCE_AND_LEGAL_OPS.md; ui_kits/console-entry/ConsoleEntry.jsx (prior inspected excerpt).",
+        "Assign names/backups; inspect actual router/models; verify scoped grants; choose first controlled action; record blockers; schedule readiness rehearsal.",
+        "Local HTML allows editing/export. It has no login, tenant isolation or server sync and must not store sensitive data."
+      ]
+    ]
+  ],
+  "sections": {
+    "Launch tracker": {
+      "headers": [
+        "ID",
+        "Workstream",
+        "Named owner",
+        "Status",
+        "Evidence",
+        "Next action"
+      ],
+      "rows": [
+        [
+          "G01",
+          "Console discovery/routing",
+          "",
+          "Not assessed",
+          "",
+          "Inspect canonical implementation"
+        ],
+        [
+          "G02",
+          "Access/isolation",
+          "",
+          "Not assessed",
+          "",
+          "Inspect canonical implementation"
+        ],
+        [
+          "G03",
+          "Controlled actions",
+          "",
+          "Not assessed",
+          "",
+          "Inspect canonical implementation"
+        ],
+        [
+          "G04",
+          "Inbox/approvals",
+          "",
+          "Not assessed",
+          "",
+          "Inspect canonical implementation"
+        ],
+        [
+          "G05",
+          "Pilot authority",
+          "",
+          "Not assessed",
+          "",
+          "Inspect canonical implementation"
+        ],
+        [
+          "G06",
+          "Legal obligations",
+          "",
+          "Not assessed",
+          "",
+          "Inspect canonical implementation"
+        ],
+        [
+          "G07",
+          "Integration integrity",
+          "",
+          "Not assessed",
+          "",
+          "Inspect canonical implementation"
+        ],
+        [
+          "G08",
+          "Recovery/coverage",
+          "",
+          "Not assessed",
+          "",
+          "Inspect canonical implementation"
+        ],
+        [
+          "G09",
+          "Accessibility/lifecycle",
+          "",
+          "Not assessed",
+          "",
+          "Inspect canonical implementation"
+        ],
+        [
+          "G10",
+          "Finance reporting",
+          "",
+          "Not assessed",
+          "",
+          "Inspect canonical implementation"
+        ],
+        [
+          "G11",
+          "Capacity/hiring",
+          "",
+          "Not assessed",
+          "",
+          "Inspect canonical implementation"
+        ],
+        [
+          "G12",
+          "Fundraising",
+          "",
+          "Not assessed",
+          "",
+          "Inspect canonical implementation"
+        ]
+      ]
+    },
+    "Pilot checklist": {
+      "headers": [
+        "ID",
+        "Check",
+        "Result",
+        "Owner",
+        "Reviewer",
+        "Evidence",
+        "Verified date"
+      ],
+      "rows": [
+        [
+          "P01",
+          "Charter and sponsor",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P02",
+          "Legal and signature authority",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P03",
+          "Source authority",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P04",
+          "Identity and scoped grants",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P05",
+          "Tenant/data isolation",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P06",
+          "Integration reconciliation",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P07",
+          "Privacy/consent/retention",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P08",
+          "Critical-journey accessibility",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P09",
+          "Controlled-action correctness",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P10",
+          "Recovery and revocation",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P11",
+          "Support access controls",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P12",
+          "Incident response and coverage",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P13",
+          "Restore/continuity exercise",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P14",
+          "Training and handoff",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P15",
+          "Metrics/baseline/cost",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P16",
+          "Portability and offboarding",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P17",
+          "Deployment revision/configuration",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P18",
+          "Internal release approval",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P19",
+          "Institution authorization",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ],
+        [
+          "P20",
+          "Review and stop plan",
+          "Not assessed",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    "Risk matrix": {
+      "headers": [
+        "ID",
+        "Risk",
+        "Illustrative L",
+        "Illustrative I",
+        "Role",
+        "Control",
+        "Trigger",
+        "Residual evidence"
+      ],
+      "rows": [
+        [
+          "R01",
+          "Unauthorized disclosure",
+          "3",
+          "5",
+          "Trust/platform",
+          "Isolation and least privilege",
+          "Suspected disclosure: contain",
+          "Not assessed"
+        ],
+        [
+          "R02",
+          "Stale grants/revocation",
+          "3",
+          "5",
+          "Platform",
+          "Fresh revocation and reconciliation",
+          "Cannot confirm revoke: deny access",
+          "Not assessed"
+        ],
+        [
+          "R03",
+          "Duplicate/partial action",
+          "3",
+          "5",
+          "Backend",
+          "Idempotency and atomic evidence",
+          "Mismatch: pause commands",
+          "Not assessed"
+        ],
+        [
+          "R04",
+          "Stale/incorrect data",
+          "4",
+          "4",
+          "Integration",
+          "Freshness and reconciliation",
+          "Official mismatch: stop transition",
+          "Not assessed"
+        ],
+        [
+          "R05",
+          "Absent authority",
+          "3",
+          "5",
+          "CEO/counsel/sponsor",
+          "Approved scope and agreements",
+          "Missing approval: no activation",
+          "Not assessed"
+        ],
+        [
+          "R06",
+          "Insufficient coverage",
+          "4",
+          "4",
+          "Operations",
+          "Backup owners and rehearsal",
+          "No coverage: defer rollout",
+          "Not assessed"
+        ],
+        [
+          "R07",
+          "Cash underestimated",
+          "3",
+          "5",
+          "Finance/CEO",
+          "Reconcile cash and commitments",
+          "Approved cash floor breached: review spend",
+          "Not assessed"
+        ],
+        [
+          "R08",
+          "Inaccessible critical task",
+          "3",
+          "4",
+          "Design",
+          "Manual accessibility validation",
+          "Critical barrier: block release",
+          "Not assessed"
+        ],
+        [
+          "R09",
+          "Unsupported claims",
+          "3",
+          "4",
+          "CEO/product",
+          "Evidence-linked claims review",
+          "Unverified claim: remove",
+          "Not assessed"
+        ],
+        [
+          "R10",
+          "Expansion without review",
+          "3",
+          "5",
+          "Implementation",
+          "New-scope gates",
+          "Unapproved module/data scope: block expansion",
+          "Not assessed"
+        ]
+      ]
+    },
+    "Hiring pipeline": {
+      "headers": [
+        "ID",
+        "Role",
+        "Stage",
+        "Owner",
+        "Budget gate",
+        "Next action",
+        "Due date"
+      ],
+      "rows": [
+        [
+          "H01",
+          "Platform/backend",
+          "Planning",
+          "",
+          "Not approved",
+          "Measure workload",
+          ""
+        ],
+        [
+          "H02",
+          "Implementation/operations",
+          "Planning",
+          "",
+          "Not approved",
+          "Confirm coverage",
+          ""
+        ],
+        [
+          "H03",
+          "Fractional counsel/trust review",
+          "Planning",
+          "",
+          "Not approved",
+          "Scope reviews",
+          ""
+        ]
+      ]
+    },
+    "Investor tracker": {
+      "headers": [
+        "ID",
+        "Investor",
+        "Stage",
+        "Owner",
+        "Next action",
+        "Due date",
+        "Approved materials",
+        "Diligence"
+      ],
+      "rows": [
+        [
+          "F01",
+          "",
+          "Not started",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ]
+      ]
+    },
+    "Institution growth": {
+      "headers": [
+        "ID",
+        "Institution",
+        "Stage",
+        "Owner",
+        "Procurement gate",
+        "Agreement gate",
+        "Activation/expansion gate",
+        "Next action"
+      ],
+      "rows": [
+        [
+          "A01",
+          "",
+          "Not started",
+          "",
+          "Not assessed",
+          "Not assessed",
+          "Not assessed",
+          ""
+        ]
+      ]
+    },
+    "Individual growth": {
+      "headers": [
+        "ID",
+        "Journey/cohort",
+        "Stage",
+        "Owner",
+        "Consent/source gate",
+        "First value",
+        "Evidence",
+        "Next action"
+      ],
+      "rows": [
+        [
+          "U01",
+          "",
+          "Planning",
+          "",
+          "Not assessed",
+          "Useful plan/task/course action",
+          "",
+          ""
+        ]
+      ]
+    }
+  }
+}

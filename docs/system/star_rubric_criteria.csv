@@ -1,0 +1,5 @@
+dimension,weight_percent,0,1,2,3,4
+Situation depth,20,No context,Vague setting,"Basic context, gaps",Relevant context and constraints,"Concise context, stakes, constraints"
+Task ownership,25,No responsibility,Team goal only,Partial personal role,Clear responsibility,"Ownership, boundaries, team distinction"
+Action specificity,35,No actions,Verb labels only,Steps with unclear reasoning,Personal steps and reasoning,"Sequenced steps, reasoning, tradeoffs"
+Result quality,20,No outcome,Unsupported or vague,Outcome basis unclear,Grounded qualitative or quantitative outcome,"Grounded outcome, attribution, limits, learning"

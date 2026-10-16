@@ -1,0 +1,7 @@
+{
+  "javascript_tests": 17,
+  "passed": 17,
+  "matrix_rows": 20,
+  "embedded_script_syntax": "PASS",
+  "browser_ui_tested": false
+}

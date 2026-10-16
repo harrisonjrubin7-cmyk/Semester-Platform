@@ -1,0 +1,322 @@
+[
+  {
+    "university": "Harvard",
+    "structure": "Semester",
+    "fall": "Sep\u2013Dec",
+    "spring": "Jan\u2013May",
+    "summer": "Summer School",
+    "break_days": 5,
+    "break_scope": "Thanksgiving Nov 25\u201329, 2026",
+    "us_to_ects_planning_ratio": 2,
+    "transfer_policy": {
+      "scope": "Harvard College study abroad; selected official policy summary, not Extension School",
+      "status": "source-backed summary; human approval required",
+      "rules": "Faculty syllabus approval; C- minimum (departments may require more); up to 16 credits per semester abroad, 8 per summer, 32 total abroad excluding Harvard Summer School. Pass/fail generally ineligible unless no alternative.",
+      "source": "https://oie.fas.harvard.edu/transfer-credit-policies-guidelines-summer"
+    }
+  },
+  {
+    "university": "MIT",
+    "structure": "Semester",
+    "fall": "Sep\u2013Dec",
+    "spring": "Feb\u2013May",
+    "summer": "Jun\u2013Aug",
+    "break_days": 5,
+    "break_scope": "Spring break Mar 22\u201326, 2027",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "MIT transfer credit",
+      "status": "source-backed summary; human approval required",
+      "rules": "Department transfer-credit examiner approval; official transcript and approved request form; departmental minimum grades; HASS/CI require additional approval. Record grade S; excluded from GPA. No generic MIT-unit to US-hour factor.",
+      "source": "https://registrar.mit.edu/registration-academics/transfer-credit"
+    }
+  },
+  {
+    "university": "Stanford",
+    "structure": "Quarter",
+    "fall": "Sep\u2013Dec",
+    "spring": "Winter Jan\u2013Mar; separate spring",
+    "summer": "Jun\u2013Aug",
+    "break_days": null,
+    "break_scope": "Quarter gaps unverified",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "Program and receiving-institution policy not verified",
+      "status": "not verified; review required",
+      "rules": "No school-specific rule activated. Obtain official policy, course equivalency, grade threshold, transcript, residency/transfer caps and authorized decision.",
+      "source": null
+    }
+  },
+  {
+    "university": "UC Berkeley",
+    "structure": "Semester",
+    "fall": "Fall",
+    "spring": "Spring",
+    "summer": "3\u201310-week sessions",
+    "break_days": null,
+    "break_scope": "Unverified",
+    "us_to_ects_planning_ratio": 2,
+    "transfer_policy": {
+      "scope": "Program and receiving-institution policy not verified",
+      "status": "not verified; review required",
+      "rules": "No school-specific rule activated. Obtain official policy, course equivalency, grade threshold, transcript, residency/transfer caps and authorized decision.",
+      "source": null
+    }
+  },
+  {
+    "university": "Toronto",
+    "structure": "Semester",
+    "fall": "Sep\u2013Dec",
+    "spring": "Jan\u2013Apr",
+    "summer": "Two subterms",
+    "break_days": 5,
+    "break_scope": "Arts & Science reading week Oct 26\u201330, 2026",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "Program and receiving-institution policy not verified",
+      "status": "not verified; review required",
+      "rules": "No school-specific rule activated. Obtain official policy, course equivalency, grade threshold, transcript, residency/transfer caps and authorized decision.",
+      "source": null
+    }
+  },
+  {
+    "university": "UBC Vancouver",
+    "structure": "Semester",
+    "fall": "Sep\u2013Dec",
+    "spring": "Jan\u2013Apr",
+    "summer": "May\u2013Jun; Jul\u2013Aug",
+    "break_days": 5,
+    "break_scope": "Reading break Feb 15\u201319, 2027; exceptions",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "Program and receiving-institution policy not verified",
+      "status": "not verified; review required",
+      "rules": "No school-specific rule activated. Obtain official policy, course equivalency, grade threshold, transcript, residency/transfer caps and authorized decision.",
+      "source": null
+    }
+  },
+  {
+    "university": "McGill",
+    "structure": "Semester",
+    "fall": "Aug/Sep\u2013Dec",
+    "spring": "Jan\u2013Apr",
+    "summer": "Course-specific",
+    "break_days": 5,
+    "break_scope": "Reading break Mar 1\u20135, 2027",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "Program and receiving-institution policy not verified",
+      "status": "not verified; review required",
+      "rules": "No school-specific rule activated. Obtain official policy, course equivalency, grade threshold, transcript, residency/transfer caps and authorized decision.",
+      "source": null
+    }
+  },
+  {
+    "university": "Oxford",
+    "structure": "Three terms",
+    "fall": "Michaelmas",
+    "spring": "Hilary",
+    "summer": "Trinity regular",
+    "break_days": null,
+    "break_scope": "Three vacations",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "Program and receiving-institution policy not verified",
+      "status": "not verified; review required",
+      "rules": "No school-specific rule activated. Obtain official policy, course equivalency, grade threshold, transcript, residency/transfer caps and authorized decision.",
+      "source": null
+    }
+  },
+  {
+    "university": "Cambridge",
+    "structure": "Three terms",
+    "fall": "Michaelmas",
+    "spring": "Lent",
+    "summer": "Easter regular",
+    "break_days": null,
+    "break_scope": "Three vacations",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "Program and receiving-institution policy not verified",
+      "status": "not verified; review required",
+      "rules": "No school-specific rule activated. Obtain official policy, course equivalency, grade threshold, transcript, residency/transfer caps and authorized decision.",
+      "source": null
+    }
+  },
+  {
+    "university": "UCL",
+    "structure": "Three terms",
+    "fall": "Sep\u2013Dec",
+    "spring": "Jan\u2013Mar",
+    "summer": "Apr\u2013Jun regular",
+    "break_days": null,
+    "break_scope": "Christmas/Easter gaps",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "Program and receiving-institution policy not verified",
+      "status": "not verified; review required",
+      "rules": "No school-specific rule activated. Obtain official policy, course equivalency, grade threshold, transcript, residency/transfer caps and authorized decision.",
+      "source": null
+    }
+  },
+  {
+    "university": "Edinburgh",
+    "structure": "Semester",
+    "fall": "Sep\u2013Dec",
+    "spring": "Jan\u2013May",
+    "summer": "Vacation",
+    "break_days": null,
+    "break_scope": "Winter approximately 3 weeks",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "Program and receiving-institution policy not verified",
+      "status": "not verified; review required",
+      "rules": "No school-specific rule activated. Obtain official policy, course equivalency, grade threshold, transcript, residency/transfer caps and authorized decision.",
+      "source": null
+    }
+  },
+  {
+    "university": "ETH Zurich",
+    "structure": "Semester",
+    "fall": "Mid-Sep\u2013Dec",
+    "spring": "Mid-Feb\u2013May",
+    "summer": "No third regular term",
+    "break_days": 7,
+    "break_scope": "Easter class-free week; dates not stored",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "Program and receiving-institution policy not verified",
+      "status": "not verified; review required",
+      "rules": "No school-specific rule activated. Obtain official policy, course equivalency, grade threshold, transcript, residency/transfer caps and authorized decision.",
+      "source": null
+    }
+  },
+  {
+    "university": "Melbourne",
+    "structure": "Semester",
+    "fall": "Local autumn Feb/Mar\u2013Jun",
+    "spring": "Local spring Jul\u2013Nov",
+    "summer": "Subject-specific",
+    "break_days": null,
+    "break_scope": "Unverified",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "Prior external study / advanced standing, not blanket exchange approval",
+      "status": "source-backed summary; human approval required",
+      "rules": "External prior-study maximum normally 50% of course credit unless Board exception. Faculty/course-specific limits and content/standard suitability. No universal Australian conversion.",
+      "source": "https://policy.unimelb.edu.au/mpf1293/"
+    }
+  },
+  {
+    "university": "Sydney",
+    "structure": "Semester",
+    "fall": "Local autumn Feb\u2013Jun",
+    "spring": "Local spring Jul\u2013Nov",
+    "summer": "Intensives",
+    "break_days": null,
+    "break_scope": "Unverified",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "Program and receiving-institution policy not verified",
+      "status": "not verified; review required",
+      "rules": "No school-specific rule activated. Obtain official policy, course equivalency, grade threshold, transcript, residency/transfer caps and authorized decision.",
+      "source": null
+    }
+  },
+  {
+    "university": "UNSW Sydney",
+    "structure": "Three terms",
+    "fall": "T1 Feb\u2013May",
+    "spring": "T2 Jun\u2013Aug; T3 Sep\u2013Dec",
+    "summer": "January optional",
+    "break_days": null,
+    "break_scope": "Changes from 2028",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "Program and receiving-institution policy not verified",
+      "status": "not verified; review required",
+      "rules": "No school-specific rule activated. Obtain official policy, course equivalency, grade threshold, transcript, residency/transfer caps and authorized decision.",
+      "source": null
+    }
+  },
+  {
+    "university": "NUS",
+    "structure": "Semester",
+    "fall": "Aug\u2013Dec",
+    "spring": "Jan\u2013May",
+    "summer": "Two six-week parts",
+    "break_days": 9,
+    "break_scope": "Recess Sep 19\u201327, 2026",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "Program and receiving-institution policy not verified",
+      "status": "not verified; review required",
+      "rules": "No school-specific rule activated. Obtain official policy, course equivalency, grade threshold, transcript, residency/transfer caps and authorized decision.",
+      "source": null
+    }
+  },
+  {
+    "university": "NTU Singapore",
+    "structure": "Semester",
+    "fall": "Aug\u2013Dec",
+    "spring": "Jan\u2013May",
+    "summer": "May\u2013Jul special",
+    "break_days": null,
+    "break_scope": "Unverified",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "Program and receiving-institution policy not verified",
+      "status": "not verified; review required",
+      "rules": "No school-specific rule activated. Obtain official policy, course equivalency, grade threshold, transcript, residency/transfer caps and authorized decision.",
+      "source": null
+    }
+  },
+  {
+    "university": "Hong Kong",
+    "structure": "Semester",
+    "fall": "Sep\u2013Dec",
+    "spring": "Mid-Jan\u2013May",
+    "summer": "Faculty-specific",
+    "break_days": 6,
+    "break_scope": "Reading week Oct 12\u201317, 2026",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "Program and receiving-institution policy not verified",
+      "status": "not verified; review required",
+      "rules": "No school-specific rule activated. Obtain official policy, course equivalency, grade threshold, transcript, residency/transfer caps and authorized decision.",
+      "source": null
+    }
+  },
+  {
+    "university": "Tokyo",
+    "structure": "Semester/subterms",
+    "fall": "Autumn A terms",
+    "spring": "Spring S terms",
+    "summer": "School-specific",
+    "break_days": null,
+    "break_scope": "School-specific",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "Program and receiving-institution policy not verified",
+      "status": "not verified; review required",
+      "rules": "No school-specific rule activated. Obtain official policy, course equivalency, grade threshold, transcript, residency/transfer caps and authorized decision.",
+      "source": null
+    }
+  },
+  {
+    "university": "Seoul National University",
+    "structure": "Semester",
+    "fall": "Sep\u2013Dec",
+    "spring": "Mar\u2013Jun",
+    "summer": "Six-week seasonal sessions",
+    "break_days": null,
+    "break_scope": "Unverified",
+    "us_to_ects_planning_ratio": null,
+    "transfer_policy": {
+      "scope": "Program and receiving-institution policy not verified",
+      "status": "not verified; review required",
+      "rules": "No school-specific rule activated. Obtain official policy, course equivalency, grade threshold, transcript, residency/transfer caps and authorized decision.",
+      "source": null
+    }
+  }
+]

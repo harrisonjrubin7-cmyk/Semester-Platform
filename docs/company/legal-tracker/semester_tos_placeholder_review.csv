@@ -1,0 +1,17 @@
+Area,Required decision/evidence,Owner,Status
+Legal entity,"Exact contracting entity, address and contact",Founder / Counsel,Unverified
+Available service,Current capabilities; institutional activation limits,Product,Unverified
+Acceptance,Clickwrap/version evidence and authority,Engineering / Counsel,Unverified
+Eligibility,"Age, school and parent authorization design",Privacy / Counsel,Unverified
+Fees and renewal,"Actual prices, taxes, periods and renewal disclosures",Finance,Unverified
+Cancellation,"Actual method, timing and mandatory rights",Product / Counsel,Unverified
+Refunds,Policy and statutory rights,Finance / Counsel,Unverified
+Content/IP,Limited service-delivery license and private workspace boundaries,Counsel,Unverified
+Privacy roles,"Purpose-specific roles, notices and DPA incorporation",Privacy,Unverified
+AI,"Provider use, retention, training restrictions and human authority",AI / Trust,Unverified
+Support/SLA,"Verified targets, measurement, credits and exclusions",Engineering,Unverified
+Liability,"Cap basis, scope, aggregation, higher caps and exclusions",Counsel,Unverified
+Indemnification,"Claims, defense, notice and settlement control",Counsel,Unverified
+Termination/exit,"Export, deletion, backup retention and legal holds",Engineering / Privacy,Unverified
+Law/disputes,Jurisdiction and mandatory local rights,Counsel,Unverified
+Changes/precedence,"Versioning, change notices and negotiated agreement hierarchy",Counsel,Unverified

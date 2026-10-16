@@ -1,0 +1,50 @@
+// Company workflows: each step names the owner, the document it produces and the gate that must pass. Links point at docs/legal.
+window.CWF = [
+  { id: 'deal', name: 'Institution deal', lanes: ['Sales', 'Institution', 'Security & legal', 'Implementation', 'Finance'], steps: [
+    ['Sales', 'Discovery call', 'Mutual NDA', 'No student data shared before a DPA'],
+    ['Security & legal', 'Security questionnaire', 'Security Addendum', 'Answers match the control register; no unproven claims'],
+    ['Institution', 'Pilot scope and measures agreed', 'Pilot Agreement', 'Sponsor signs baseline, target and data source'],
+    ['Security & legal', 'Privacy terms', 'Student Data Privacy Addendum', 'FERPA school-official terms and state law in scope'],
+    ['Implementation', 'Setup plan', 'Statement of Work', 'Each deliverable has acceptance evidence'],
+    ['Implementation', 'Launch readiness', '', 'Institution signs readiness; negative access tests pass'],
+    ['Institution', 'Results report', '', 'Unmeasured outcomes reported as not measured'],
+    ['Sales', 'Annual decision', 'Order Form', 'Signed within 60 days → pilot fee credited'],
+    ['Finance', 'Invoice and collect', 'Order Form', 'PO and tax status on file'],
+  ] },
+  { id: 'renew', name: 'Renewal and exit', lanes: ['Customer success', 'Institution', 'Finance', 'Security & legal'], steps: [
+    ['Customer success', 'Renewal flagged 120 days out', '', 'Owner and notice period from the contract record'],
+    ['Customer success', 'Outcome review', '', 'Agreed measures only, with sources'],
+    ['Institution', 'Renew, expand or exit', 'Order Form', 'Decision recorded with reason'],
+    ['Finance', 'Renewal invoice', '', 'Price change notice given per MSA'],
+    ['Security & legal', 'Exit: export and deletion', 'Data Protection Addendum', 'Deletion certificate within 30 days'],
+  ] },
+  { id: 'hire', name: 'Hiring', lanes: ['Hiring manager', 'Candidate', 'People ops', 'Security'], steps: [
+    ['Hiring manager', 'Role and level approved', '', 'Budget line and board approval for equity'],
+    ['People ops', 'Offer', 'Offer Letter', 'Pay band and equity per plan'],
+    ['Candidate', 'Sign offer and IP agreement', 'Confidentiality and IP Assignment', 'Both signed before day one'],
+    ['People ops', 'Board approves equity', 'Board Written Consent', '409A price current'],
+    ['Security', 'Access provisioned', '', 'Least-privilege role grants; MFA enrolled'],
+    ['Security', 'Student-data training', 'Acceptable Use Policy', 'Completed before any student-data access'],
+  ] },
+  { id: 'vendor', name: 'Vendor onboarding', lanes: ['Requester', 'Security', 'Legal', 'Finance'], steps: [
+    ['Requester', 'Need and data in scope', '', 'States whether personal or student data is involved'],
+    ['Security', 'Risk tier and review', '', 'SOC 2 or equivalent for tier 1'],
+    ['Legal', 'Data terms', 'Vendor Data Processing Agreement', 'Flow-down of FERPA limits; 24 h breach notice'],
+    ['Legal', 'Subprocessor list updated', 'Subprocessors', '30-day notice to institutions where required'],
+    ['Finance', 'Purchase approved', 'Contract Playbook', 'Within signing authority'],
+  ] },
+  { id: 'partner', name: 'Partner and developer', lanes: ['Partnerships', 'Partner', 'Security', 'Institution'], steps: [
+    ['Partnerships', 'Tier agreed', 'Partner Agreement', 'Approved claims only'],
+    ['Partner', 'App registered with scopes', 'Developer and API Terms', 'Fewest scopes the feature needs'],
+    ['Security', 'App review', '', 'Scopes match the feature; secrets not in client code'],
+    ['Institution', 'Institution approves install', '', 'Approval per institution; revocable any time'],
+    ['Security', 'Monitoring', '', 'Calls logged per app; suspension on scope breach'],
+  ] },
+  { id: 'research', name: 'Outcome research', lanes: ['Researcher', 'Institution', 'Data steward', 'Semester'], steps: [
+    ['Researcher', 'Study plan and IRB approval', '', 'No data before IRB approval'],
+    ['Institution', 'FERPA basis decided', 'Research Data Use Agreement', 'De-identified or studies exception'],
+    ['Data steward', 'Fields released', 'Research Data Use Agreement', 'Groups under 10 suppressed'],
+    ['Researcher', 'Draft reviewed', '', 'Re-identification check only, not findings'],
+    ['Semester', 'Data destroyed', '', 'Written certification'],
+  ] },
+];

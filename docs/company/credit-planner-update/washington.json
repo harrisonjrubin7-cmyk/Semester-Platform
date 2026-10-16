@@ -1,0 +1,71 @@
+{
+  "university": "University of Washington",
+  "structure": "Quarter",
+  "fall": "Sep 30\u2013Dec 11, 2026 instruction; exams Dec 12\u201318",
+  "spring": "Winter Jan 4\u2013Mar 12; spring Mar 29\u2013Jun 4, 2027 instruction",
+  "summer": "Jun 21\u2013Aug 20, 2027 full term; A/B sessions also offered",
+  "break_days": 9,
+  "us_to_ects_planning_ratio": null,
+  "scope": "Spring break Mar 20\u201328, 2027 inclusive. Quarter credits must not be treated as US semester hours. Normal credit load not verified.",
+  "source": "https://www.washington.edu/students/reg/2627cal.html",
+  "academic_year": "2026\u20132027",
+  "timezone": "America/Los_Angeles",
+  "terms": [
+    {
+      "name": "Autumn",
+      "instruction_start": "2026-09-30",
+      "instruction_end": "2026-12-11",
+      "exam_start": "2026-12-12",
+      "exam_end": "2026-12-18"
+    },
+    {
+      "name": "Winter",
+      "instruction_start": "2027-01-04",
+      "instruction_end": "2027-03-12",
+      "exam_start": "2027-03-13",
+      "exam_end": "2027-03-19"
+    },
+    {
+      "name": "Spring",
+      "instruction_start": "2027-03-29",
+      "instruction_end": "2027-06-04",
+      "exam_start": "2027-06-05",
+      "exam_end": "2027-06-11"
+    },
+    {
+      "name": "Summer full term",
+      "instruction_start": "2027-06-21",
+      "instruction_end": "2027-08-20",
+      "exam_start": "2027-08-20",
+      "exam_end": "2027-08-20"
+    }
+  ],
+  "breaks": [
+    {
+      "name": "Winter",
+      "start": "2026-12-19",
+      "end": "2027-01-03",
+      "inclusive_days": 16
+    },
+    {
+      "name": "Spring",
+      "start": "2027-03-20",
+      "end": "2027-03-28",
+      "inclusive_days": 9
+    },
+    {
+      "name": "Summer",
+      "start": "2027-06-12",
+      "end": "2027-06-20",
+      "inclusive_days": 9
+    },
+    {
+      "name": "Autumn",
+      "start": "2027-08-21",
+      "end": "2027-09-28",
+      "inclusive_days": 39
+    }
+  ],
+  "credit_system": "US quarter credits",
+  "normal_credit_load": null
+}

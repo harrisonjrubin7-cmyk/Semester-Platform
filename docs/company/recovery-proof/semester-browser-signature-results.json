@@ -1,0 +1,50 @@
+{
+  "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/134.0.6998.35 Safari/537.36",
+  "origin": "http://127.0.0.1:38481",
+  "algorithm": "ECDSA P-256 / SHA-256",
+  "serialization": "fixed JSON.stringify UTF-8 bytes, not RFC 8785",
+  "results": [
+    {
+      "name": "secure context",
+      "passed": true
+    },
+    {
+      "name": "Web Crypto available",
+      "passed": true
+    },
+    {
+      "name": "private key non-extractable",
+      "passed": true
+    },
+    {
+      "name": "P-256 signature generated",
+      "passed": true
+    },
+    {
+      "name": "original verifies",
+      "passed": true
+    },
+    {
+      "name": "tampered payload rejected",
+      "passed": true
+    },
+    {
+      "name": "wrong public key rejected",
+      "passed": true
+    },
+    {
+      "name": "corrupt signature rejected",
+      "passed": true
+    },
+    {
+      "name": "reordered noncanonical JSON rejected",
+      "passed": true
+    },
+    {
+      "name": "replay still verifies: authorization must prevent replay",
+      "passed": true
+    }
+  ],
+  "browser_version": "134.0.6998.35",
+  "scope": "recreated cryptographic harness; prior interactive UI not tested"
+}

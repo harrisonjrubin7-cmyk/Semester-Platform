@@ -1,0 +1,6 @@
+id,role,stage,accountable_role,named_owner,next_action,approval_gate,proposed_target,budget,candidate_reference
+H01,Senior platform/backend,Planning,CEO / technical lead,,Measure authorization and reliability workload,"Budget, scorecard, coverage and workload approved",2026-11-06,,
+H02,Implementation/operations,Planning,CEO / implementation,,Confirm approved pilot coverage and backups,"Pilot demand, budget and training plan approved",2026-12-06,,
+H03,Fractional counsel,Planning,CEO,,Scope pilot agreement and IP review,Engagement scope and budget approved,2026-12-06,,
+H04,Independent trust/accessibility review,Planning,Technical / trust lead,,Scope independent critical-path review,"Reviewer independence, evidence access and budget approved",2026-12-06,,
+H05,Finance support,Planning,CEO / finance,,Assess reconciliation/reporting capacity,Reviewed workload and budget; restricted access,2026-12-21,,

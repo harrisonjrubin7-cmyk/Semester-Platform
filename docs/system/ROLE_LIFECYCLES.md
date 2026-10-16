@@ -1,0 +1,153 @@
+# Role lifecycles — every role, start to finish
+
+_2026-10-05 · From uploads/depect semester flow for every role…pdf. Interactive: ui_kits/role-lifecycle/index.html._
+
+One Education OS: one identity, policy, data, workflow, audit and intelligence layer, with a purpose-built workspace per role.
+
+**Lifecycle:** Discover / invite → Identity and account → Tenant, role, policy, consent → Role onboarding → First meaningful action → Daily workspace → Cross-role workflows → Support, audit, governance → Lifecycle change → Export, retention, offboarding or renewal.
+
+## Layers
+
+- **Public layer:** Company site · product · solutions · pricing · pilot · trust · resources · careers · developers · partners · status · legal · support
+- **Entry and identity:** Self-serve signup · institution SSO · invitation · buyer lead · family invite · developer account · employee provisioning · recovery
+- **Authorization and context:** Account + membership + tenant + role + capability + relationship + consent + entitlement + policy + destination
+- **Role-aware onboarding:** Journey assignment · required setup · optional profiling · training · resume · support hand-off · activation
+- **Experience layer:** Student OS · applicant · faculty · TA · advisor · registrar · accounts · campus · family · career · alumni · admin · IT · developer · company operations
+- **Shared platform and workflows:** Education Graph · workflow, policy and approval engines · audit ledger · notifications · search · files · AI gateway · data authority · consent · entitlements · integration factory
+- **Trust, reliability, lifecycle:** Security · privacy · accessibility · incidents · support · SLOs · retention · legal holds · data rights · portability · offboarding
+
+## Permission decision
+
+Identity + session + membership + role + capability + org scope + relationship + consent + classification + policy + entitlement + workflow state = allow / deny / require approval / require step-up authentication. Least privilege, scoped delegation, approvals and audit for every sensitive action.
+
+## User roles
+
+| Role | Enters | First meaningful action | Workspace | Ends |
+|---|---|---|---|---|
+| Self-serve student | Website, referral, app/PWA | Creates a real plan, task, course or registration action | Student OS | Graduates, exports data, continues as alumni / lifelong learner |
+| Institution-linked student | Campus SSO, invite, official link | Opens or acts on a permitted official academic action | Student OS + institution modules | Graduation, transfer, leave, alumni transition |
+| Applicant | Marketing site, admissions campaign, counselor invite | Creates an application or pathway action plan | Applicant Experience | Enrolls, declines, pauses or exports |
+| Parent / guardian | Student's family invitation | Accepts a scoped consent grant | Family Workspace | Grant expires or is revoked |
+| Alumni | Alumni link or invite | Verifies profile, joins mentoring or a career action | Alumni Workspace | Ongoing lifelong identity |
+| Faculty member | Institution SSO / invite | Completes a real course action | Faculty Workspace / Course Studio | End of term, role change, course archive |
+| Teaching assistant | Faculty or institution provision | Assists in an assigned course workflow | TA Workspace | Assignment ends, access removed |
+| Advisor | Institution SSO / invite | Completes a check-in, appointment, referral or success-plan step | Advisor Workspace | Caseload or role change, offboarding |
+| Student-success leader | Institution SSO | Reviews or acts on a permitted aggregate or service workflow | Student Success Console | Role change / offboarding |
+| Registrar | Institution SSO + elevated provisioning | Completes a controlled catalog, registration or record workflow | Registrar Workspace | Authorized transfer / offboarding |
+| Academic affairs administrator | Institution SSO | Configures an academic policy or program workflow | Academic Operations Console | Policy transfer / role change |
+| Student accounts operator | Institution SSO | Reviews an account or completes a governed financial workflow | Student Accounts Console | Role change / offboarding |
+| Financial aid liaison | Institution SSO | Handles an eligible aid hand-off | Financial Aid Workspace | Role change / offboarding |
+| Campus-services operator | Institution SSO | Completes a service, booking or case action | Campus Services Console | Role change / offboarding |
+| Housing / dining / library operator | Institution SSO | Manages a capacity, case or access task | Service Workspace | Role change / offboarding |
+| Community moderator | Institution approval / invite | Reviews a report or moderation-queue item | Community Safety Console | Review cycle, removal, offboarding |
+| Career / alumni staff | Institution SSO | Posts an opportunity or supports a career workflow | Career & Alumni Console | Role change / offboarding |
+| Employer | Employer invite or partner account | Posts an opportunity or reviews an approved candidate interaction | Employer Workspace | Account renewal / deactivation |
+| Institution executive | Institution SSO | Reviews a verified outcome, risk or decision | Executive Console | Role transition |
+| Institution administrator | Institution SSO + admin grant | Completes a configuration or launch task | Institution Control Plane | Delegates or ends admin role |
+| IT / security officer | Institution SSO + elevated grant | Reviews an identity, integration, access or assurance action | IT / Security Console | Access review / offboarding |
+| Privacy / compliance officer | Institution SSO + scoped privilege | Handles a policy, rights, retention or evidence workflow | Governance & Trust Console | Role transition |
+| Institutional buyer | Company site, demo or pilot form | Requests a demo, books discovery, starts pilot intake | Buyer / Pilot Workspace | Pilot conversion, renewal or closure |
+| Institution implementation lead | Contract + tenant invitation | Completes an implementation or launch-gate item | Implementation Workspace | Go-live → customer-success hand-off |
+| Partner | Partner invitation or application | Completes onboarding or a co-sell action | Partner Workspace | Agreement renewal / termination |
+| Developer | Developer site / account | Makes a sandbox API call or configures an app | Developer Console | App certification, deprecation, account closure |
+
+## Semester team
+
+| Role | Provisioning | Console | Controlled actions | Offboarding |
+|---|---|---|---|---|
+| Founder / CEO | Employee identity + board-approved authority | Executive Overview, strategy, risk, board | Strategy approval, major commercial and governance decisions | Access revocation, record retention |
+| COO / operations lead | Employee provisioning | Operations Command Center | Operating cadence, cross-functional work, escalations | Access review and reassignment |
+| Product leader | Employee provisioning | Product Operations | Roadmap, requirements, experiment approvals | Workspace / access revocation |
+| Product manager | Employee provisioning | Product Operations | Define and review product work, feature readiness | Project reassignment |
+| Designer / UX researcher | Employee provisioning | Design / Research Workspace | Design changes, research governance | Asset and access transfer |
+| Software engineer | Employee provisioning | Engineering Workspace | Code changes through review and CI; scoped environment access | Credential and repository revocation |
+| SRE / platform engineer | Elevated scoped provisioning | Reliability / Incident Console | Rollout, rollback, incident remediation | Immediate privileged-access revocation |
+| Security engineer | Elevated scoped provisioning | Security / Trust Console | Investigations, control evidence, vulnerability handling | Key rotation and access revocation |
+| Privacy / compliance lead | Scoped privileged provisioning | Privacy / Governance Console | Data rights, retention, policy and control workflows | Case reassignment and access revoke |
+| AI governance lead | Scoped provisioning | AI Governance Console | Model/provider policy, evaluation, safety review | Policy stewardship transfer |
+| Support specialist | Minimal support role | Support Console | Resolve cases; request time-bound support access | Queue reassignment / access revoke |
+| Customer-success manager | Employee provisioning | Customer 360 / Success Console | Success plans, QBRs, renewal coordination | Account reassignment |
+| Implementation manager | Employee provisioning | Implementation Console | Tenant configuration in scope, launch tasks, migration coordination | Project reassignment |
+| Account executive | Employee provisioning | Revenue Console | Leads, opportunities, proposals, quotes within approval limits | Pipeline reassignment |
+| Marketing / growth lead | Employee provisioning | Growth Console | Campaigns, content, consented lifecycle programs | Campaign ownership transfer |
+| Finance operator | Segregated provisioning | Finance Operations Console | Invoices, credits/refunds within limits, reconciliation | Financial access revoke and review |
+| Legal / vendor operator | Scoped provisioning | Legal / Vendor Console | Contract, policy and vendor workflows | Obligation reassignment |
+| People operations | Restricted provisioning | People Console | Hiring, onboarding, access lifecycle coordination | Record retention and access revoke |
+| Partner manager | Employee provisioning | Partner / Marketplace Console | Partner lifecycle, certification, revenue sharing | Partner ownership transfer |
+| Developer-relations lead | Employee provisioning | Developer Platform Console | Sandbox, developer support, certification coordination | Token and access revocation |
+| Board member | Invitation + restricted board access | Board Portal | Review governed board materials; approve resolutions | Board access closure |
+
+Support never has standing access to student, finance or institution-admin records.
+
+## Flows
+
+### Student lifecycle
+
+Discover (website, referral, campus link) → Identity (email/passkey or SSO) → Context (role, tenant, term, consent, entitlements) → Onboard (goal → term → course/registration → first plan) → Daily Student OS (Today, Action Center, Calendar, Courses, Study, Support) → Cross-role (faculty feedback, advising, registrar, accounts, campus, career) → Outcome (progress → registration → learning → credential → career) → Lifecycle (term archive → graduation/transfer/leave → alumni)
+
+### Faculty and teaching team
+
+Institution assigns faculty role and course → SSO / invite → Select course → course policy and AI rules → first teaching intent → Course setup (syllabus, objectives, resources, schedule, assignments, assessment rules) → Teaching (announcements, office hours, discussions, feedback) → Assessment (accommodation → grading → moderation → release → regrade) → Term close (grade hand-off → archive → outcomes → reuse) → Course access sunsets by policy
+
+### Teaching workflow
+
+Faculty creates assignment → Course rules verified → Accessibility checks → Clear instructions to students → Permitted submissions collected → Rubric / assessment workflow → Feedback prepared → Moderation where policy requires → Release through approved workflow → Audit and learning evidence updated
+
+### Advisor and student success
+
+Institution assigns caseload and scope → Verify notifications and work queue → Caseload → priority signals → check-in → plan/referral/outreach → Collaborate (student consent, permitted colleagues, office hand-off) → Resolution (action done, referral accepted, case resolved) → Aggregate outcomes, no overreach → Caseload reassignment, role change, offboarding
+
+### Student support
+
+Student request or advisor signal → Scope / classification check → Responsible office identified → Owner assigned → Outreach / appointment / referral → Student action and confirmation → Resolution or escalation → Outcome, satisfaction, audit
+
+### Registrar and academic operations
+
+Term planning (terms, catalog, programs, requirements, sections, rooms) → Preparation (windows, time tickets, holds, prerequisite rules) → Registration (validate → enroll / waitlist / deny / override → receipt → plan update) → Records (grades, changes, standing, transfer credit, degree audit) → Completion (graduation review → conferral → transcript) → Reporting and retention (exports, reconciliation, archive)
+
+### Registrar controlled action
+
+Request → Capability check → Policy and effective-date validation → Authoritative-record check → Prerequisite / capacity / holds → Approval if required → Idempotent command → Immutable audit → Outbox event → Read-model refresh → Receipt → Rollback / remediation where permitted
+
+### Institution lifecycle
+
+Sales / pilot (discovery → scoped pilot → contract → tenant) → Implementation (hierarchy, SSO/SCIM, roles, config, data mapping, dual run, training) → Launch readiness (security, privacy, accessibility, support, rollback, approval) → Go-live (cohorts, monitored rollout, support coverage) → Operate (academic ops, success, IT, governance) → Renew / expand (evidence → QBR → modules/campuses) → Offboard / port (export → holds → deprovision → archive/delete)
+
+### Semester employee lifecycle
+
+Recruit → candidate → interview and approval → Agreement → Identity and device provisioning → Role and capability grants → Security, privacy, accessibility and AI training → Role onboarding → Daily workspace and work queue → Access reviews → Role change or elevation approval → Offboarding: revoke sessions, keys, devices, access → Transfer ownership and open work → Retain required records
+
+### Semester support
+
+Contact → Classify and minimize data → Case created → Owner / queue → Review authorized context only → Resolve or escalate → Elevated access only if necessary → Time-bound access approved and audited → Response and confirmation → Resolved → Trend / quality analysis
+
+### Developer lifecycle
+
+Discover → Developer account → Terms and org verification → Sandbox tenant → OAuth client / service account → Scoped credentials → Docs and test data → Successful test request / webhook → Integration submission → Security, privacy, data-scope review → Certification → Marketplace listing → Tenant install approval → Versioning, support, incidents → Deprecation / retirement
+
+### Marketplace install
+
+Admin requests app → Scope and classification review → Policy and consent checks → Admin approval → OAuth / scoped grant → Installation audit → Health monitoring → Periodic access review → Revoke / uninstall / export
+
+### AI for every role
+
+Ask → Authenticate → Resolve tenant, role, context → Classify data → Consent and institution/course policy → Permitted model/provider → Approved sources only → Allowed tools/actions → Response with provenance → Label guidance and uncertainty → Human/official workflow for high-impact action → Audit / evaluation
+
+### Graduation or transfer
+
+Requirements satisfied → Authorized graduation review → Conferral if approved → Transcript / credential available → Transition to alumni identity → Student chooses what continues → Retention, holds, export policy → Revoked scopes removed → Status updated with audit
+
+### Institution offboarding
+
+Termination request → Contract and legal-hold review → Export / portability plan → Integration freeze and final reconciliation → Customer data export → Deprovision memberships and SSO → Archive / delete per contract and law → Revoke credentials, webhooks, service accounts → Final audit and closure evidence
+
+### Employee offboarding
+
+HR / legal trigger → Disable sessions → Revoke SSO, repo, cloud, DB, support, finance, vendor access → Rotate shared credentials → Transfer ownership → Recover assets → Preserve required records → Audit completion
+
+## Cross-role
+
+- **Student:** Faculty (content, assessment, feedback, office hours); Advisor (plan, appointment, referral, outreach); Registrar (registration, records, degree audit, graduation); Student Accounts (charges, credits, plans, statements); Campus Services (housing, dining, library, events, spaces); Career (opportunities, mentors, portfolio); Family (scoped, time-bounded grant only); Community (groups, study sessions, moderated); AI (governed help with citations)
+- **Faculty:** Registrar (section, roster, term, grade hand-off); Advisor (permitted support coordination); Teaching team (delegated capabilities); Accessibility Services (accommodations); AI (course policy, approved sources, drafting)
+- **Institution admin:** IT / Security (SSO, SCIM, access reviews, incidents); Academic Affairs (policies, requirements, curriculum); Registrar (authoritative workflows); Student Success (service configuration, outcomes); Semester Implementation (migration, launch gates); Semester Customer Success (outcomes, QBR, renewal)
+- **Semester team:** Institution (scoped implementation, support, commercial); Developers / partners (API governance, certification); Students (product experience via governed support); Board / investors (approved reporting, risk, governance)

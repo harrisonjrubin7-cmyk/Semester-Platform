@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: US to ECTS
+ok 1 - US to ECTS
+  ---
+  duration_ms: 1.191221
+  ...
+# Subtest: CATS to ECTS
+ok 2 - CATS to ECTS
+  ---
+  duration_ms: 0.148522
+  ...
+# Subtest: Australian explicit factor
+ok 3 - Australian explicit factor
+  ---
+  duration_ms: 0.171811
+  ...
+# Subtest: Australian no default
+ok 4 - Australian no default
+  ---
+  duration_ms: 0.262198
+  ...
+# Subtest: 120/60 baseline
+ok 5 - 120/60 baseline
+  ---
+  duration_ms: 0.234043
+  ...
+# Subtest: Pending remains separate
+ok 6 - Pending remains separate
+  ---
+  duration_ms: 0.21818
+  ...
+# Subtest: Conditional scenario
+ok 7 - Conditional scenario
+  ---
+  duration_ms: 0.132552
+  ...
+# Subtest: Reject -1
+ok 8 - Reject -1
+  ---
+  duration_ms: 0.147593
+  ...
+# Subtest: Reject 
+ok 9 - Reject 
+  ---
+  duration_ms: 0.179777
+  ...
+# Subtest: Reject null
+ok 10 - Reject null
+  ---
+  duration_ms: 0.190271
+  ...
+# Subtest: Reject Infinity
+ok 11 - Reject Infinity
+  ---
+  duration_ms: 0.154195
+  ...
+# Subtest: Reject true
+ok 12 - Reject true
+  ---
+  duration_ms: 0.104468
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 68.757817

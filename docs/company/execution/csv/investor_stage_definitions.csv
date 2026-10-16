@@ -1,0 +1,12 @@
+stage,entry_evidence,exit_gate
+Research,"Investor thesis, stage/geography fit, source",Fit evidence recorded
+Qualified,"Owner, fit rationale and appropriate contact route",Owner approves outreach preparation
+Outreach approved,"Personalized email, current deck and claims review",Explicit sending approval
+Contacted,Actual send/intro event and next action,Response or approved follow-up
+Meeting booked,Confirmed scheduling,Meeting held
+Meeting held,"Notes, interest/concerns and next action",Investor requests substantive follow-up
+Diligence,Requested materials and governed access,Questions answered; term discussion if any
+Terms/legal,Reviewed proposal and authority,Definitive documents executed if agreed
+Signed,Verified executed documents and obligations,Funds actually received and reconciled
+Funded,Actual bank receipt/reconciliation,Close and reporting obligations assigned
+Closed/paused,"Passed, no response, withdrawn or hold reason",No misleading active-pipeline count

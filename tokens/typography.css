@@ -1,0 +1,58 @@
+/* Semester type. Barlow for product reading, Barlow Condensed for headings/labels/controls,
+ * Cinzel for editorial display moments only, system mono for identifiers and timestamps.
+ * Sizes are the app's scale (app/src/styles/app.css) and respond to --text-scale. */
+:root{
+  --font-display:'Cinzel','Barlow Condensed',Georgia,serif;
+  --font-heading:'Barlow Condensed',system-ui,sans-serif;
+  --font-heading-weight:600;
+  --font-body:'Barlow',system-ui,sans-serif;
+  --font-mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+  --font-editorial:var(--font-display);
+  --font-product:var(--font-body);
+
+  --type-3xs:calc(9px * var(--text-scale,1));
+  --type-2xs:calc(10px * var(--text-scale,1));
+  --type-2xs-plus:calc(10.5px * var(--text-scale,1));
+  --type-xs:calc(11px * var(--text-scale,1));
+  --type-xs-plus:calc(11.5px * var(--text-scale,1));
+  --type-sm:calc(12px * var(--text-scale,1));
+  --type-sm-plus:calc(12.5px * var(--text-scale,1));
+  --type-control:calc(14px * var(--text-scale,1));
+  --type-base:calc(16px * var(--text-scale,1));
+  --type-base-plus:calc(16.5px * var(--text-scale,1));
+  --type-md:calc(17px * var(--text-scale,1));
+  --type-lg:calc(18px * var(--text-scale,1));
+  --type-display-xs:calc(19px * var(--text-scale,1));
+  --type-display-sm:calc(20px * var(--text-scale,1));
+  --type-display:calc(22px * var(--text-scale,1));
+  --type-display-lg:calc(24px * var(--text-scale,1));
+  --type-xl:calc(26px * var(--text-scale,1));
+  --type-2xl:calc(28px * var(--text-scale,1));
+  /* Editorial sizes (company-site h1/h2 scale from industry.css) */
+  --type-3xl:calc(32px * var(--text-scale,1));
+  --type-4xl:calc(42px * var(--text-scale,1));
+  --type-5xl:calc(56px * var(--text-scale,1));
+
+  --leading-none:1;/* @kind other */--leading-display-xl:1.08;/* @kind other */--leading-display-lg:1.1;/* @kind other */--leading-display:1.15;/* @kind other */--leading-display-sm:1.2;/* @kind other */--leading-display-xs:1.25;/* @kind other */
+  --leading-tight:1.3;/* @kind other */--leading-tight-plus:1.35;/* @kind other */--leading-normal:1.45;/* @kind other */--leading-relaxed:1.5;/* @kind other */--leading-relaxed-plus:1.55;/* @kind other */--leading-loose:1.6;/* @kind other */
+
+  --tracking-heading:-0.015em;/* @kind other */
+  --tracking-kicker:0.08em;/* @kind other */
+  --tracking-caps:0.1em;/* @kind other */
+  --tracking-wordmark:0.22em;/* @kind other */
+
+  /* Roles */
+  --type-role-editorial:var(--type-4xl);
+  --type-role-display:var(--type-xl);
+  --type-role-page:var(--type-display-lg);
+  --type-role-section:var(--type-display-sm);
+  --type-role-card-title:var(--type-lg);
+  --type-role-body:var(--type-base);
+  --type-role-compact:var(--type-sm);
+  --type-role-label:var(--type-xs);
+  --type-role-kicker:var(--type-2xs-plus);
+  --type-role-numeric:var(--type-display);
+  --type-role-control:var(--type-control);
+  --type-role-caption:var(--type-xs);
+  --layout-reading:66ch;/* @kind other */
+}

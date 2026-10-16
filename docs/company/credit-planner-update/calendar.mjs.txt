@@ -1,0 +1,21 @@
+function day(s) {
+  if (typeof s !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(s)) {
+    throw Error('ISO date required');
+  }
+  const t = Date.parse(s + 'T00:00:00Z');
+  if (!Number.isFinite(t) || new Date(t).toISOString().slice(0, 10) !== s) {
+    throw Error('Invalid date');
+  }
+  return t / 86400000;
+}
+
+export function overlapDays(aStart, aEnd, bStart, bEnd) {
+  const a = day(aStart), b = day(aEnd);
+  const c = day(bStart), d = day(bEnd);
+  if (b < a || d < c) throw Error('Reversed interval');
+  return Math.max(0, Math.min(b, d) - Math.max(a, c) + 1);
+}
+
+export function intervalDays(start, end) {
+  return overlapDays(start, end, start, end);
+}

@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "audit_id": "server-generated",
+  "tenant_id": "server-resolved",
+  "stream_id": "tenant-domain-stream",
+  "sequence": 42,
+  "occurred_at": "server-time",
+  "recorded_at": "database-time",
+  "actor": {
+    "account_ref": "protected-ref",
+    "membership_ref": "protected-ref",
+    "service_ref": "recovery-worker",
+    "authentication_context_ref": "protected-ref"
+  },
+  "action": "command.transition",
+  "command_id": "protected-ref",
+  "attempt_id": "protected-ref",
+  "request_digest": "sha256:canonical-request",
+  "resource": {
+    "ref": "protected-ref",
+    "before_version": 3,
+    "after_version": 4
+  },
+  "transition": {
+    "from": "reconciling",
+    "to": "confirmed",
+    "reason_code": "SOURCE_CONFIRMED"
+  },
+  "authority": {
+    "decision_ref": "protected-ref",
+    "policy_version": "version",
+    "authority_epoch": 8,
+    "approval_refs": []
+  },
+  "verification": {
+    "statement_ref": "protected-ref",
+    "verification_ref": "protected-ref",
+    "cryptographic_result": "valid",
+    "semantic_result": "accepted",
+    "execution_binding_result": "accepted"
+  },
+  "source": {
+    "connection_ref": "protected-ref",
+    "result_ref": "protected-ref",
+    "result_digest": "sha256:minimized-statement"
+  },
+  "integrity": {
+    "previous_hash": "sha256:previous-entry",
+    "entry_hash": "sha256:canonical-body-including-previous-hash",
+    "attestation_ref": null
+  },
+  "governance": {
+    "classification": "restricted",
+    "retention_policy_ref": "versioned-policy",
+    "legal_hold_ref": null
+  }
+}

@@ -1,0 +1,9 @@
+funnel,metric,definition,actual,target_policy
+Hiring,Screen-to-loop,Candidates entering loop / screened candidates in same entry cohort,Not measured,Baseline first; no assumed benchmark
+Hiring,Offer acceptance,Accepted offers / issued offers in same cohort,Not measured,Review reasons and workload
+Hiring,Time in stage,Stage exit minus entry; report active-item age separately,Not measured,Configure approved service target
+Investors,Positive response,Unique investors with substantive positive response / unique contacted investors,Not measured,Define response taxonomy; baseline first
+Investors,Meeting-to-diligence,Investors entering diligence / investors with held meetings in same cohort,Not measured,No invented conversion target
+Investors,Signed-to-funded,Investors with reconciled receipts / investors with executed commitments,Not measured,Never count interest as cash
+Pilot,Gate pass rate,Passed applicable checks / applicable reviewed checks; mandatory blocker count separately,Not measured,100% mandatory passes before activation
+Pilot,First value,Eligible onboarded users completing agreed first action / eligible onboarded users in same cohort,Not measured,Approve cohort/action before measurement

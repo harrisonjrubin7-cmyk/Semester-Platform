@@ -1,0 +1,4 @@
+# Data room index (draft, 14 Oct 2026)
+Mirrors the investor portal structure. Every item shows version, date, owner and disclosure level. Nothing is shared until the owner approves the recipient and expiry.
+00 Index and disclosure notes · 01 Corporate & governance (formation, consents, cap table summary) · 02 Financing (SAFE terms, instruments) · 03 Financial reporting (monthly statements — management-prepared, not audited; model with assumptions) · 04 Commercial (pilot agreement summary — Vanderbilt naming needs permission) · 05 Product & execution (roadmap, maturity register — nothing above Level 2) · 06 Trust & institutional readiness (security overview, HECVAT status, accessibility status, insurance status) · 07 Team & operations (roles, hiring triggers) · 08 Investor reporting (monthly packages) · 09 Superseded.
+Owner: Harrison Rubin. Status: deferred until a fundraising process starts.

@@ -1,0 +1,21 @@
+id,check,owner,reviewer,result,evidence,verified_at,gate,next_action
+P01,Charter/sponsor,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P02,Legal/signature authority,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P03,Source authority,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P04,Identity/scoped grants,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P05,Tenant isolation,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P06,Integration reconciliation,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P07,Privacy/retention/consent,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P08,Accessibility,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P09,Controlled actions,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P10,Recovery/revocation,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P11,Support access,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P12,Incident coverage,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P13,Restore/continuity,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P14,Training,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P15,Metrics/baseline/cost,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P16,Portability/offboarding,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P17,Deployment/configuration,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P18,Internal approval,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P19,Institution authorization,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence
+P20,Review/stop plan,,,Not assessed,,,Mandatory unless reviewer marks justified N/A,Collect acceptance evidence

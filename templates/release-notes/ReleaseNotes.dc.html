@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Release notes" description="Per-release notes for students and staff: highlights, changes by audience with status labels, fixes, known issues, what stays the same" -->
+<helmet><script src="./ds-base.js"></script><script src="./doc-page.js"></script><style>html,body{margin:0}doc-page:not(:defined){visibility:hidden}a{color:var(--text-link)}a:hover{color:var(--text-primary)}</style></helmet>
+<doc-page data-theme="light" margin="0.75in">
+<div slot="footer" style="display:flex;justify-content:space-between;font-family:var(--font-body);font-size:9pt;color:var(--text-secondary);border-top:1px solid var(--border-subtle);padding-top:8px"><span>Semester · Release notes</span><span>Release 2026.10.2 · semester.app/changelog</span></div>
+<div data-theme="{{ theme }}" style="font-family:var(--font-body);font-size:11pt;line-height:1.55;color:var(--text-primary);background:var(--surface-canvas)">
+<div style="font-size:9pt;letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary)">Release 2026.10.2 · Thu 15 Oct 2026</div>
+<h1 style="font-family:var(--font-heading);font-weight:600;font-size:28pt;letter-spacing:-.015em;line-height:1.1;margin:8px 0 10px">Registration readiness, sooner</h1>
+<p style="font-size:12.5pt;color:var(--text-secondary);margin:0 0 18px;max-width:34em">Students see holds that block registration three weeks before their window opens, with the office that can clear each one.</p>
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:15pt;margin:20px 0 10px;padding-top:12px;border-top:1px solid var(--border-default)">For students</h2>
+<div style="display:grid;gap:10px">
+<div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px"><span style="font-size:9pt;align-self:start;padding:1px 6px;border:1px solid var(--status-success-line);color:var(--status-success);border-radius:3px;justify-self:start">✓ New</span><div><strong>Readiness checklist on Today.</strong> Holds, advising and prerequisites in one list, each with the office that decides.</div></div>
+<div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px"><span style="font-size:9pt;align-self:start;padding:1px 6px;border:1px solid var(--border-default);border-radius:3px;justify-self:start">↻ Improved</span><div><strong>Clearer freshness labels.</strong> Every synced date now says when it was last checked.</div></div>
+</div>
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:15pt;margin:20px 0 10px;padding-top:12px;border-top:1px solid var(--border-default)">For staff</h2>
+<div style="display:grid;gap:10px">
+<div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px"><span style="font-size:9pt;align-self:start;padding:1px 6px;border:1px solid var(--status-success-line);color:var(--status-success);border-radius:3px;justify-self:start">✓ New</span><div><strong>Holds by office (Registrar console).</strong> See how many students each office is blocking and preview what they see.</div></div>
+<div style="display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px"><span style="font-size:9pt;align-self:start;padding:1px 6px;border:1px solid var(--status-pending-line);color:var(--status-pending);background:var(--status-pending-wash);border-radius:3px;justify-self:start">◌ Pilot only</span><div><strong>Outreach over 200 students needs a second approver.</strong> Opt-outs are honoured automatically.</div></div>
+</div>
+<sc-if value="{{ showFixes }}" hint-placeholder-val="{{ true }}">
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:15pt;margin:20px 0 10px;padding-top:12px;border-top:1px solid var(--border-default)">Fixed</h2>
+<ul style="margin:0;padding-left:18px;display:grid;gap:4px"><li>Screen readers announced the due date twice on assignment rows.</li><li>Dark mode chips on the Grades page dropped below 4.5:1 contrast.</li><li>Time zones in calendar exports for students abroad.</li></ul>
+</sc-if>
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:15pt;margin:20px 0 10px;padding-top:12px;border-top:1px solid var(--border-default)">Known issues</h2>
+<ul style="margin:0;padding-left:18px;display:grid;gap:4px"><li>Housing holds from StarRez can be up to 6 hours behind. The label says so.</li></ul>
+<div style="margin-top:20px;border:1px solid var(--border-strong);border-radius:6px;padding:14px 16px;break-inside:avoid"><div style="font-family:var(--font-heading);font-weight:600;font-size:13pt;margin-bottom:4px">What stays the same</div><p style="margin:0">YES is still where you register and the registrar's record is still the official one. Nothing in this release changes what data the AI can see.</p></div>
+</div>
+</doc-page>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showFixes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;dark&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return { theme: this.props.dark ? 'dark' : 'light', showFixes: this.props.showFixes ?? true };
+  }
+}
+</script>
+</body>
+</html>

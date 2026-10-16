@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Policy document" description="Printable policy: control header (owner, version, review date, status), purpose, scope, rules, roles, exceptions, enforcement, revision history" -->
+<helmet><script src="./ds-base.js"></script><script src="./doc-page.js"></script><style>html,body{margin:0}doc-page:not(:defined){visibility:hidden}a{color:var(--text-link)}a:hover{color:var(--text-primary)}</style></helmet>
+<doc-page data-theme="light" margin="0.75in">
+<div slot="footer" style="display:flex;justify-content:space-between;font-family:var(--font-body);font-size:9pt;color:var(--text-secondary);border-top:1px solid var(--border-subtle);padding-top:8px"><span>Semester · SEC-POL-004 Access Control Policy · v1.2</span><span>Internal · draft for attorney review</span></div>
+<div data-theme="{{ theme }}" style="font-family:var(--font-body);font-size:11pt;line-height:1.55;color:var(--text-primary);background:var(--surface-canvas)">
+<div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap"><div style="font-size:9pt;letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary)">Security policy · SEC-POL-004</div><span style="font-size:9pt;padding:2px 8px;border:1px solid var(--status-pending-line);background:var(--status-pending-wash);color:var(--status-pending);border-radius:3px">{{ statusGlyph }} {{ status }}</span></div>
+<h1 style="font-family:var(--font-heading);font-weight:600;font-size:28pt;letter-spacing:-.015em;line-height:1.1;margin:8px 0 14px">Access Control Policy</h1>
+<table style="width:100%;border-collapse:collapse;font-size:10pt;margin:0 0 20px">
+<tbody>
+<tr><td style="padding:6px 10px 6px 0;border-top:1px solid var(--border-subtle);color:var(--text-secondary);width:22%">Owner</td><td style="padding:6px 0;border-top:1px solid var(--border-subtle)">Founder (acting Security Lead)</td><td style="padding:6px 10px 6px 16px;border-top:1px solid var(--border-subtle);color:var(--text-secondary);width:22%">Version</td><td style="padding:6px 0;border-top:1px solid var(--border-subtle)">1.2</td></tr>
+<tr><td style="padding:6px 10px 6px 0;border-top:1px solid var(--border-subtle);color:var(--text-secondary)">Approved by</td><td style="padding:6px 0;border-top:1px solid var(--border-subtle)">Not yet approved</td><td style="padding:6px 10px 6px 16px;border-top:1px solid var(--border-subtle);color:var(--text-secondary)">Next review</td><td style="padding:6px 0;border-top:1px solid var(--border-subtle)">Apr 2027</td></tr>
+<tr><td style="padding:6px 10px 6px 0;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);color:var(--text-secondary)">Applies to</td><td colspan="3" style="padding:6px 0;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)">All Semester staff, contractors and service accounts</td></tr>
+</tbody>
+</table>
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:15pt;margin:22px 0 8px;padding-top:14px;border-top:1px solid var(--border-default)">1. Purpose</h2>
+<p style="margin:0 0 10px;max-width:40em">Make sure people and systems get only the access their job needs, for only as long as they need it, and that every grant can be traced to a person who approved it.</p>
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:15pt;margin:22px 0 8px;padding-top:14px;border-top:1px solid var(--border-default)">2. Scope</h2>
+<p style="margin:0 0 10px;max-width:40em">Production and staging on Vercel and Supabase, GitHub, the company Google Workspace, the support desk and any tool that stores customer or institution data. Institution staff access inside the product is governed by each institution's own roles; this policy covers Semester's own people.</p>
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:15pt;margin:22px 0 8px;padding-top:14px;border-top:1px solid var(--border-default)">3. Rules</h2>
+<ol style="margin:0 0 10px;padding-left:20px;display:grid;gap:6px">
+<li><strong>Least privilege.</strong> Access is granted per role, never per request for convenience.</li>
+<li><strong>No standing access to student records.</strong> Company staff cannot read student records. Support uses institution-approved, time-boxed break-glass access (4 hours maximum) with a recorded reason.</li>
+<li><strong>Strong sign-in.</strong> SSO with phishing-resistant MFA on every system that supports it.</li>
+<li><strong>Two people for high-impact changes.</strong> Production database roles, RLS policy changes and secret rotation need a second approver.</li>
+<li><strong>Quarterly review.</strong> The owner reviews every grant each quarter and removes anything unused for 30 days.</li>
+<li><strong>Leavers same day.</strong> Access is removed within 4 working hours of a person leaving.</li>
+</ol>
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:15pt;margin:22px 0 8px;padding-top:14px;border-top:1px solid var(--border-default)">4. Roles</h2>
+<table style="width:100%;border-collapse:collapse;font-size:10pt;margin:0 0 10px">
+<thead><tr><th style="text-align:left;padding:6px 10px 6px 0;border-bottom:1px solid var(--border-strong);font-weight:600">Role</th><th style="text-align:left;padding:6px 0;border-bottom:1px solid var(--border-strong);font-weight:600">Responsibility</th></tr></thead>
+<tbody>
+<tr><td style="padding:6px 10px 6px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top">Policy owner</td><td style="padding:6px 0;border-bottom:1px solid var(--border-subtle)">Approves grants, runs quarterly review, keeps this document current.</td></tr>
+<tr><td style="padding:6px 10px 6px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top">Manager</td><td style="padding:6px 0;border-bottom:1px solid var(--border-subtle)">Requests access for their reports and confirms it at review.</td></tr>
+<tr><td style="padding:6px 10px 6px 0;border-bottom:1px solid var(--border-subtle);vertical-align:top">Every person</td><td style="padding:6px 0;border-bottom:1px solid var(--border-subtle)">Uses only their own account, reports suspected misuse within 24 hours.</td></tr>
+</tbody>
+</table>
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:15pt;margin:22px 0 8px;padding-top:14px;border-top:1px solid var(--border-default)">5. Exceptions</h2>
+<p style="margin:0 0 10px;max-width:40em">Written, time-limited (90 days maximum), approved by the policy owner and logged in the exception register with a compensating control.</p>
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:15pt;margin:22px 0 8px;padding-top:14px;border-top:1px solid var(--border-default)">6. Enforcement and evidence</h2>
+<p style="margin:0 0 10px;max-width:40em">Violations may lead to access removal and disciplinary action. Evidence: access review exports, the audit log, and the exception register. Related: Incident Response Plan, Vendor Risk Policy, Data Retention Policy.</p>
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:15pt;margin:22px 0 8px;padding-top:14px;border-top:1px solid var(--border-default)">Revision history</h2>
+<table style="width:100%;border-collapse:collapse;font-size:10pt;break-inside:avoid">
+<thead><tr><th style="text-align:left;padding:6px 10px 6px 0;border-bottom:1px solid var(--border-strong);font-weight:600">Version</th><th style="text-align:left;padding:6px 10px 6px 0;border-bottom:1px solid var(--border-strong);font-weight:600">Date</th><th style="text-align:left;padding:6px 0;border-bottom:1px solid var(--border-strong);font-weight:600">Change</th></tr></thead>
+<tbody>
+<tr><td style="padding:6px 10px 6px 0;border-bottom:1px solid var(--border-subtle)">1.2</td><td style="padding:6px 10px 6px 0;border-bottom:1px solid var(--border-subtle);white-space:nowrap">5 Oct 2026</td><td style="padding:6px 0;border-bottom:1px solid var(--border-subtle)">Break-glass capped at 4 hours.</td></tr>
+<tr><td style="padding:6px 10px 6px 0;border-bottom:1px solid var(--border-subtle)">1.1</td><td style="padding:6px 10px 6px 0;border-bottom:1px solid var(--border-subtle);white-space:nowrap">14 Sep 2026</td><td style="padding:6px 0;border-bottom:1px solid var(--border-subtle)">Two-person rule added for RLS changes.</td></tr>
+<tr><td style="padding:6px 10px 6px 0;border-bottom:1px solid var(--border-subtle)">1.0</td><td style="padding:6px 10px 6px 0;border-bottom:1px solid var(--border-subtle);white-space:nowrap">2 Aug 2026</td><td style="padding:6px 0;border-bottom:1px solid var(--border-subtle)">First draft.</td></tr>
+</tbody>
+</table>
+</div>
+</doc-page>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;status&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Draft&quot;,&quot;In review&quot;,&quot;Approved&quot;],&quot;default&quot;:&quot;Draft&quot;,&quot;tsType&quot;:&quot;\&quot;Draft\&quot; | \&quot;In review\&quot; | \&quot;Approved\&quot;&quot;},&quot;dark&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const status = this.props.status ?? 'Draft';
+    return { status, statusGlyph: { Draft: '○', 'In review': '?', Approved: '◆' }[status] || '○', theme: this.props.dark ? 'dark' : 'light' };
+  }
+}
+</script>
+</body>
+</html>

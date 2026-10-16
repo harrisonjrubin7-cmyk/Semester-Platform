@@ -1,0 +1,55 @@
+
+function parseLocalDateTime(value) {
+  if (typeof value !== 'string') return null;
+  const match = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})$/.exec(value);
+  if (!match) return null;
+  const [, year, month, day, hour, minute] = match.map(Number);
+  if (year < 1000 || month < 1 || month > 12 || day < 1 || day > 31 || hour > 23 || minute > 59) return null;
+  const date = new Date(year, month - 1, day, hour, minute);
+  if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day || date.getHours() !== hour || date.getMinutes() !== minute) return null;
+  return date.getTime();
+}
+function validateStudyBlock({task, start, minutes: rawMinutes, blocks, now = Date.now()}) {
+  if (!task) return {ok:false, reason:'Choose an assignment.'};
+  if (typeof rawMinutes === 'string' && !rawMinutes.trim()) return {ok:false, reason:'Enter a duration.'};
+  const minutes = Number(rawMinutes), begin = parseLocalDateTime(start), deadline = parseLocalDateTime(task.due);
+  if (!Number.isFinite(now)) return {ok:false, reason:'Current time unavailable.'};
+  if (begin === null) return {ok:false, reason:'Enter a valid start date and time.'};
+  if (deadline === null) return {ok:false, reason:'Assignment deadline is invalid. Confirm the source deadline.'};
+  if (!Number.isFinite(minutes) || !Number.isInteger(minutes) || minutes < 15 || minutes > 480 || minutes % 15 !== 0) return {ok:false, reason:'Use 15–480 minutes in 15-minute increments.'};
+  if (begin < now) return {ok:false, reason:'Past study blocks cannot be scheduled. Choose a future time.'};
+  if (task.stale) return {ok:false, reason:'Refresh the stale deadline source first.'};
+  const end = begin + minutes * 60000;
+  if (end > deadline) return {ok:false, reason:'Study block must end by the assignment deadline.'};
+  for (const block of blocks) {
+    const existingStart = parseLocalDateTime(block.start), duration = Number(block.minutes);
+    if (existingStart === null || !Number.isFinite(duration) || duration <= 0) return {ok:false, reason:'An existing block is invalid. Repair it before scheduling.'};
+    if (begin < existingStart + duration * 60000 && end > existingStart) return {ok:false, reason:'This overlaps an existing study block.'};
+  }
+  return {ok:true, begin, end, minutes};
+}
+function classifyPriority(task, now = Date.now()) {
+  const deadline = parseLocalDateTime(task.due);
+  if (deadline === null || task.stale) return 'Needs review';
+  if (['Submitted','Graded'].includes(task.status)) return 'Low';
+  const hours = (deadline - now) / 3600000;
+  return hours <= 72 ? 'High' : hours <= 168 ? 'Medium' : 'Low';
+}
+function calculateGrade(rows, weighted) {
+  const parsed = rows.map(row => ({
+    earned: String(row.earned ?? '').trim() === '' ? null : Number(row.earned),
+    possible: Number(row.possible), weight: Number(row.weight), raw: row
+  }));
+  if (parsed.some(row => !String(row.raw.possible ?? '').trim() || !Number.isFinite(row.possible) || row.possible <= 0 || (row.earned !== null && (!Number.isFinite(row.earned) || row.earned < 0)) || (weighted && (!String(row.raw.weight ?? '').trim() || !Number.isFinite(row.weight) || row.weight < 0 || row.weight > 100)))) throw Error('Possible must be positive; earned blank or nonnegative; category weights 0–100.');
+  if (weighted && Math.abs(parsed.reduce((sum,row)=>sum+row.weight,0)-100)>0.001) throw Error('Category weights must total 100%.');
+  const known = parsed.filter(row=>row.earned !== null);
+  const denominator = known.reduce((sum,row)=>sum+(weighted?row.weight:row.possible),0);
+  if (!denominator) throw Error('No known scores with positive points or weight.');
+  const numerator = known.reduce((sum,row)=>sum+(weighted?row.earned/row.possible*row.weight:row.earned),0);
+  return {
+    percent: 100*numerator/denominator,
+    coverage: weighted?denominator:100*denominator/parsed.reduce((sum,row)=>sum+row.possible,0),
+    unknown: parsed.length-known.length,
+    extraCreditNeedsReview: known.some(row=>row.earned>row.possible)
+  };
+}

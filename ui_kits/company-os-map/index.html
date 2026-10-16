@@ -1,0 +1,134 @@
+<!-- @dsCard group="Company & operations" viewport="1440x900" name="Company OS map" subtitle="The 10 layers of the Semester native Company OS, every feature mapped to the screen that does it, with gaps and rollout phase" -->
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="../../styles.css"><script src="../platform/appearance.js"></script><title>Semester — Company OS map</title>
+<style>body{margin:0;background:var(--surface-canvas);color:var(--text-primary)}a{color:var(--text-link)}a:hover{color:var(--text-primary)}.page{max-width:1280px;margin:0 auto;padding:32px var(--page-pad,24px) 72px;display:grid;gap:24px}.kicker{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary)}h1{margin:4px 0 0}h2{margin:0;font-size:20px}.lead{color:var(--text-secondary);max-width:72ch;margin:8px 0 0;line-height:1.55;text-wrap:pretty}.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.btn{font:inherit;font-size:13px;border:1px solid var(--border-strong);background:var(--surface-card,#fff);color:var(--text-primary);border-radius:4px;padding:5px 11px;cursor:pointer}.btn[aria-pressed="true"]{background:var(--text-primary);color:var(--surface-card,#fff);border-color:var(--text-primary)}.sum{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}.sum div{background:var(--surface-card,#fff);border:1px solid var(--border-subtle);border-radius:6px;padding:12px 14px}.sum b{display:block;font-size:26px;font-family:var(--font-display,inherit)}.sum span{font-size:13px;color:var(--text-secondary)}.layer{background:var(--surface-card,#fff);border:1px solid var(--border-subtle);border-radius:6px;padding:18px 20px;display:grid;gap:10px}.lh{display:flex;gap:12px;justify-content:space-between;align-items:baseline;flex-wrap:wrap}.job{color:var(--text-secondary);font-size:14px;margin:0;max-width:80ch;text-wrap:pretty}.it{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1.4fr) 92px;gap:14px;padding:9px 0;border-top:1px solid var(--border-subtle);align-items:baseline;font-size:14px}.muted{color:var(--text-secondary);font-size:13px}.chip{display:inline-flex;border:1px solid currentColor;border-radius:3px;padding:1px 7px;font-size:12px;white-space:nowrap}.s-built{color:var(--text-link)}.s-partial{color:var(--status-pending)}.s-gap{color:var(--status-danger);border-style:dashed}.ph{font-size:12px;color:var(--text-secondary)}.links{display:flex;gap:10px;flex-wrap:wrap}.rule{border:1px solid var(--border-strong);border-radius:6px;padding:14px 18px;background:var(--surface-card,#fff)}.rule p{margin:4px 0 0;line-height:1.5}ol{margin:6px 0 0;padding-left:20px;line-height:1.7}@media(max-width:760px){.it{grid-template-columns:minmax(0,1fr)}}</style></head>
+<body><main class="page">
+<header><div class="kicker">Semester · Company OS</div><h1>One operating system for the whole campus and student lifecycle</h1><p class="lead">Open the product home at <a href="../semester-app/index.html#/os/home">Semester OS</a> and the <a href="../semester-app/index.html#/os/blueprint">architecture blueprint</a>. A shared platform core with eight domain OSs and an automation layer on top. Each feature below links to the screen that does it in the main prototype. Partial means a screen exists but doesn't cover the whole feature yet. Gap means no screen exists yet. <b>Prototype built</b> means a working prototype exists — not that it is implemented, tested, deployed or institution-authorized. Production green is tracked per capability in the <a href="../semester-app/index.html#/os/green">Green status register</a>.</p></header>
+<section class="sum" id="sum"></section>
+<div class="row" id="filters"></div>
+<section class="rule"><b>Two rules that apply to every layer</b><p>Students see one task list, one inbox and one identity. They never need to know which office owns a workflow.</p><p>AI recommends, summarizes and routes. Final decisions on financial, academic and disciplinary matters stay policy-controlled, and protected records never reach social or open surfaces.</p></section>
+<div id="layers" style="display:grid;gap:16px"></div>
+<section class="rule"><b>Rollout order</b><ol><li>Platform core, Student OS home, communications, Campus Life OS</li><li>Admissions OS and student onboarding</li><li>Revenue and Finance OS with ledger and reconciliation</li><li>Academic and Student Success OS with intervention workflows</li><li>Partner and Operations OS, plus advanced Executive OS dashboards</li></ol><p class="muted">The AI layer and the internal team OS ship alongside each phase rather than as their own phase.</p></section>
+</main>
+<script>
+const A='../semester-app/index.html#/';
+const L=[
+{n:'Platform core',p:1,j:'The shared backbone every product depends on: identity, permissions, workflow, notifications, search, files, audit, analytics and integrations.',f:[
+['Identity and lifecycle graph (prospect → alumnus, staff, parent, partner)','built',['institution/lifecycle','institution/people','alumni/home']],
+['Role-based access and policy engine','built',['trust/matrix','operations/access']],
+['Organization graph (campus, college, department, cohort, club, housing, provider)','built',['institution/orggraph','institution/authority']],
+['Workflow and approvals engine','built',['institution/queue','institution/handoffs']],
+['Notification hub (in-app, email, SMS, push, webhooks)','built',['operations/notify','student/actions']],
+['Search and recommendations','built',['student/search','student/recommendation']],
+['Document and file store','built',['institution/documents']],
+['Audit log and compliance events','built',['trust/audit','trust/monitor']],
+['Integration bus (SIS, LMS, ERP, aid, payments, CRM)','built',['institution/integrations','operations/lti','operations/deadletters']],
+['Reporting warehouse and operational metrics','built',['operations/warehouse','insights/readiness']]]},
+{n:'Student OS',p:1,j:'One app for everything a student needs to do at school.',f:[
+['Unified home dashboard','built',['student/today']],
+['Public and private profile','built',['student/profile']],
+['Daily feed and announcements','built',['student/changes','student/community']],
+['Direct messages and support inboxes','built',['student/messages','student/help']],
+['Clubs, events and attendance','built',['student/clubs','student/activities']],
+['Marketplace, jobs, gigs, sublets, housing, textbooks','built',['student/opportunities','student/market','student/housing']],
+['Study abroad discovery and applications','built',['student/abroad']],
+['Billing, invoices, payment plans, receipts','built',['student/bill','student/account']],
+['Task center, documents, deadlines, signatures','built',['student/actions','student/sign']],
+['Support requests and status','built',['student/help']],
+['Career, internships and outcomes','built',['student/career']],
+['Mobile-first navigation and personalized recommendations','built',['student/recommendation'],'Mobile: semester-app/mobile.html']]},
+{n:'Admissions OS',p:2,j:'From first inquiry to enrolled student, then a clean hand-off into Student OS.',f:[
+['Lead capture and source attribution','built',['admissions/leads']],
+['Prospect profiles and communication history','built',['admissions/applicants','admissions/timeline']],
+['Application intake and checklist tracking','built',['applicant/application']],
+['Reviewer queues and rubric scoring','built',['admissions/review']],
+['Interview and event scheduling','built',['admissions/interviews']],
+['Offer, admit, waitlist and deny workflows','built',['admissions/decisions']],
+['Deposit checkout and payment plan options','built',['applicant/deposit']],
+['Enrollment intent and matriculation','built',['applicant/onboarding','institution/onbverify']],
+['Transfer credit intake','built',['admissions/transfer']],
+['Funnel analytics by source, program, cohort','built',['admissions/funnel']]]},
+{n:'Academic and Student Success OS',p:4,j:'Persistence, retention and coordinated intervention, without exposing protected records to social surfaces.',f:[
+['Student milestone tracking','built',['student/degree']],
+['Risk signals and intervention scoring','built',['success/risk']],
+['Advising appointments and case notes','built',['advisor/caseload','advisor/notes']],
+['Two-way outreach and campaigns','built',['success/campaigns']],
+['Success plans and checklists','built',['student/recovery']],
+['Referral routing (tutoring, counseling, aid, registrar)','built',['success/referrals']],
+['Academic alerts and holds visibility','built',['student/registration','institution/registrar']],
+['Service history and engagement timeline','built',['success/timeline']],
+['Cohort-based support programs','built',['success/cohorts']],
+['Outcome measurement for retention and completion','built',['success/outcomes']]]},
+{n:'Campus Life OS',p:1,j:'Engagement and belonging, measurable without disconnected tools.',f:[
+['Club and organization directory','built',['student/clubs']],
+['Membership applications and rosters','built',['campus/membership']],
+['Events: create, approve, RSVP, waitlist, check-in','built',['campus/events','student/activities']],
+['Community spaces and social feed','built',['student/community','student/groupwork']],
+['Polls, forms, elections, volunteer sign-ups','built',['campus/forms']],
+['Attendance analytics and participation history','built',['campus/events']],
+['Peer ambassador and orientation communities','built',['campus/ambassadors']],
+['Announcements by audience and interest','built',['institution/announce']],
+['Co-curricular record and badges','built',['student/cocurricular']],
+['Campus maps, resources and service discovery','built',['student/maps','student/everything']]]},
+{n:'Revenue and Finance OS',p:3,j:'Every money workflow, from charge creation to cash reconciliation. Submodules: Checkout, Billing, Ledger, Reconciliation, Bursar, Refund.',f:[
+['Product catalog (fees, deposits, services, marketplace)','built',['finops/catalog']],
+['Checkout and payment intents','built',['student/plan']],
+['Invoices and statements','built',['company/billing','student/bill']],
+['Installment plans and autopay','built',['finops/autopay','student/account']],
+['Scholarships, credits and adjustments','built',['finops/adjustments']],
+['Double-entry native ledger','built',['company/ledger']],
+['Gateway orchestration (cards, ACH, wallets, refunds)','built',['finops/gateway']],
+['Reconciliation console and exception matching','built',['company/recon']],
+['Refund operations and payout rails','built',['finops/refunds']],
+['Collections and bursar holds','built',['finops/collections']],
+['Revenue, cash, aging and write-off reporting','built',['insights/revenue']]]},
+{n:'Partner and Operations OS',p:5,j:'Runs the outside organizations Semester depends on. This turns the product into an operating system, not just a student app.',f:[
+['Partner directory and relationship history','built',['company/partners']],
+['Contract records and renewal reminders','built',['company/contracts','company/agreements']],
+['Vendor onboarding and verification','built',['company/vendoronboard']],
+['Program-provider inventory (abroad, internships, employers)','built',['company/providers']],
+['SLA monitoring','built',['operations/sla']],
+['Partner payout approvals','built',['company/payouts']],
+['Trust-and-safety and compliance reviews','built',['marketplace/queue','career/review']],
+['Operational case queues','built',['institution/queue','support/desk']],
+['Exceptions and escalations','built',['operations/incidents','operations/deadletters']],
+['Internal notes and cross-team workflows','built',['institution/notes']]]},
+{n:'Executive OS',p:5,j:'The decision layer: operational and strategic metrics together, not raw tables.',f:[
+['Enrollment funnel dashboards','built',['admissions/funnel','executive/overview']],
+['Revenue, cash, aging and collections','built',['insights/revenue','finops/collections']],
+['Engagement and belonging KPIs','built',['executive/overview']],
+['Retention and persistence','built',['success/outcomes']],
+['Support workload and SLA reporting','built',['operations/sla']],
+['Marketplace and partner performance','built',['executive/marketplace']],
+['Forecasting by term, cohort and program','built',['executive/forecast']],
+['Data quality and operational risk','built',['trust/monitor']],
+['Compliance reporting and exports','built',['operations/privacy','trust/audit']],
+['Board-ready narrative dashboards','built',['executive/board']]]},
+{n:'Internal team OS',p:0,j:'The tools the Semester team uses to sell, implement, support and improve the platform across many campuses.',f:[
+['CRM and pipeline for institutions','built',['company/pipeline']],
+['Implementation project tracking','built',['company/implementation']],
+['Product configuration by campus','built',['institution/activation','institution/entitlements']],
+['Support desk and issue triage','built',['company/support']],
+['Customer success playbooks','built',['company/playbooks']],
+['Usage analytics and adoption monitoring','built',['company/adoption']],
+['Release management and incident operations','built',['operations/releases','operations/incidents']],
+['Trust, compliance and security review','built',['trust/matrix','operations/jwt']],
+['Finance and vendor management','built',['company/ledger','company/vendors']],
+['Knowledge base and internal documentation','built',['company/kb']]]},
+{n:'AI and automation layer',p:0,j:'Sits across every OS. It recommends, summarizes and routes. It never makes the final call on sensitive actions.',f:[
+['Next-best action for students','built',['student/recommendation','student/briefing']],
+['Staff copilots for review queues and case summaries','built',['success/risk','admissions/review']],
+['Deadline reminders and outreach campaigns','built',['success/reminders']],
+['Matching and routing (advisor, provider, queue, payment exception)','built',['institution/routing']],
+['Reconciliation suggestions','built',['company/risk']],
+['Fraud and abuse heuristics','built',['company/risk']],
+['Risk scoring for persistence and delinquency','built',['success/risk','success/delinquency']],
+['Workflow triggers and policy enforcement','built',['trust/monitor','institution/authority']],
+['Search and answers grounded in institutional data','partial',['student/ai','os/green'],'Prototype only — needs permission-aware retrieval, citations, abstention and injection evaluation.']]}];
+const LBL={built:'Prototype built',partial:'Partial',gap:'Gap'};let F='all';
+function render(){const all=L.flatMap(l=>l.f);const c=s=>all.filter(f=>f[1]===s).length;
+document.getElementById('sum').innerHTML=`<div><b>${L.length}</b><span>layers</span></div><div><b>${all.length}</b><span>features</span></div><div><b>${c('built')}</b><span>built</span></div><div><b>${c('partial')}</b><span>partial</span></div><div><b>${c('gap')}</b><span>gaps</span></div>`;
+document.getElementById('filters').innerHTML=['all','built','partial','gap'].map(s=>`<button class="btn" aria-pressed="${F===s}" data-s="${s}">${s==='all'?'All features':LBL[s]}</button>`).join('');
+document.getElementById('layers').innerHTML=L.map(l=>{const rows=l.f.filter(f=>F==='all'||f[1]===F);if(!rows.length)return'';const b=l.f.filter(f=>f[1]==='built').length;
+return `<section class="layer"><div class="lh"><h2>${l.n}</h2><span class="ph">${l.p?'Phase '+l.p:'Ships with every phase'} · ${b}/${l.f.length} built</span></div><p class="job">${l.j}</p>${rows.map(([t,s,r,note])=>`<div class="it"><div>${t}${note?`<div class="muted">${note}</div>`:''}</div><div class="links">${r.length?r.map(x=>`<a href="${A+x}">${x}</a>`).join(''):'<span class="muted">No screen yet</span>'}</div><div><span class="chip s-${s}">${LBL[s]}</span></div></div>`).join('')}</section>`}).join('');}
+document.getElementById('filters').addEventListener('click',e=>{const s=e.target.dataset.s;if(s){F=s;render();}});render();
+</script></body></html>

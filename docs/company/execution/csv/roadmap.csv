@@ -1,0 +1,7 @@
+days,start,end,phase,role,deliverables,exit_gate,status
+1-15,2026-10-08,2026-10-22,Audit and scope,CEO / technical lead,Inspect canonical routes/models/grants; assign owners/backups; scope pilot,Canonical source map and blockers reviewed,Not assessed
+16-30,2026-10-23,2026-11-06,Access and capacity,Platform / operations,G01 discovery; G02 authorization; Inbox; approved staffing coverage,Allowed/denied tests and one real owned work item,Not assessed
+31-45,2026-11-07,2026-11-21,Controlled execution,Backend / implementation,Approval binding; idempotency; receipts; obligations; failure recovery,Complete staging workflow with fault evidence,Not assessed
+46-60,2026-11-22,2026-12-06,Readiness rehearsal,Implementation / trust,Integration reconciliation; legal/accessibility review; incident/restore training,Current signed readiness package,Not assessed
+61-75,2026-12-07,2026-12-21,Conditional pilot,Sponsor / release owner,"Approved cohort; monitor support, cost and integrity; governed reporting",Verified evidence; no automatic expansion,Not assessed
+76-90,2026-12-22,2027-01-05,Hardening and disposition,CEO / function owners,Fix defects; review outcomes/costs; refresh capacity/capital,"Continue, expand, pause or stop decision",Not assessed

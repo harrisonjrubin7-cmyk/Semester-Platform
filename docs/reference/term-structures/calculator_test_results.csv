@@ -1,0 +1,18 @@
+name,status
+15 US -> 30 ECTS,PASS
+30 ECTS -> 15 US,PASS
+3 US workload estimates,PASS
+750 hours at 25 hours/ECTS,PASS
+900 hours at 30 hours/ECTS,PASS
+Custom ratio,PASS
+Fractional credits preserved,PASS
+Zero credits,PASS
+Negative rejected,PASS
+Blank rejected,PASS
+NaN rejected,PASS
+Infinity rejected,PASS
+Zero ratio rejected,PASS
+Negative ratio rejected,PASS
+Zero hours factor rejected,PASS
+Unknown unit rejected,PASS
+Round trip,PASS

@@ -1,0 +1,87 @@
+{
+  "simulationOnly": true,
+  "domains": [
+    "Corporate governance",
+    "Capitalization and issuances",
+    "IP chain of title",
+    "Finance and taxes",
+    "People and classification",
+    "Customer/privacy obligations",
+    "Securities compliance",
+    "Trust and institutional authority"
+  ],
+  "scenarios": [
+    {
+      "name": "Baseline \u2014 not assessed",
+      "passed": 0,
+      "total": 8,
+      "blocked": [
+        "Corporate governance",
+        "Capitalization and issuances",
+        "IP chain of title",
+        "Finance and taxes",
+        "People and classification",
+        "Customer/privacy obligations",
+        "Securities compliance",
+        "Trust and institutional authority"
+      ],
+      "outcome": "Unknown: no evidence supplied; do not assert readiness"
+    },
+    {
+      "name": "Hypothetical \u2014 two critical blockers",
+      "passed": 6,
+      "total": 8,
+      "blocked": [
+        "IP chain of title",
+        "Customer/privacy obligations"
+      ],
+      "outcome": "Blocked despite 75% checklist coverage"
+    },
+    {
+      "name": "Hypothetical \u2014 evidence complete",
+      "passed": 8,
+      "total": 8,
+      "blocked": [],
+      "outcome": "Ready for counsel/investor review only; not closing authorization"
+    }
+  ],
+  "deadlineTests": [
+    {
+      "transfer": "2026-10-07",
+      "holidays": [],
+      "raw": "2026-11-06",
+      "adjusted": "2026-11-06",
+      "passed": true
+    },
+    {
+      "transfer": "2026-10-01",
+      "holidays": [],
+      "raw": "2026-10-31",
+      "adjusted": "2026-11-02",
+      "passed": true
+    },
+    {
+      "transfer": "2026-10-02",
+      "holidays": [],
+      "raw": "2026-11-01",
+      "adjusted": "2026-11-02",
+      "passed": true
+    },
+    {
+      "transfer": "2026-12-02",
+      "holidays": [
+        "2027-01-01"
+      ],
+      "raw": "2027-01-01",
+      "adjusted": "2027-01-04",
+      "passed": true
+    },
+    {
+      "transfer": "2028-02-01",
+      "holidays": [],
+      "raw": "2028-03-02",
+      "adjusted": "2028-03-02",
+      "passed": true
+    }
+  ]
+}

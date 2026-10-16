@@ -1,0 +1,5 @@
+id,role,stage,owner,budget_approval,scorecard,next_action,due,candidate_ref
+H01,Platform/backend,Planning,,Not approved,,Measure workload,2026-11-06,
+H02,Implementation/operations,Planning,,Not approved,,Confirm pilot coverage,2026-12-06,
+H03,Fractional counsel/trust/accessibility,Planning,,Not approved,,Scope reviews,2026-12-06,
+H04,Finance capacity,Planning,,Not approved,,Review reconciliation load,2026-12-21,

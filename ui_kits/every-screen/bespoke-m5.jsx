@@ -1,0 +1,50 @@
+// Bespoke Privacy screens (group M), batch 5: export, erasure, consent records, subprocessor records, incidents, impact assessments, reporting. Uses window.ESM + ESMP. Sample data only.
+(() => {
+const { N, ref, Box, Receipt, T, Chip, Bar } = window.ESB;
+const { TODAY, useTr, age } = window.ESM;
+const { usePriv } = window.ESMP;
+const { useState } = React;
+
+function PrivExportRequests() {
+  const [S, P, put] = usePriv(); const [who, setWho] = useState('S-0418 J. Okafor'); const [fmt, setFmt] = useState('JSON + files'); const [rc, setRc] = useState(null);
+  const make = () => { const id = ref('EXP'); put({ exports: [...P.exports, { id, who, fmt, st: 'Ready', exp: '7 days', at: TODAY }] }, 'Export ' + id + ' prepared for ' + who); setRc({ head: 'Export ready', body: 'Signed link valid 7 days · download logged · includes data they own; official records via Registrar transcript', ref: id }); };
+  return <div className="two"><div className="stack"><Box title="Prepare an export"><N.TextField label="Subject" value={who} onChange={(e) => setWho(e.target.value)} /><N.Segmented label="Format" value={fmt} onChange={setFmt} options={['JSON + files', 'CSV', 'PDF summary'].map((x) => ({ value: x, label: x }))} /><N.Button variant="primary" disabled={!who.trim()} disabledReason="Who is it for" onClick={make}>Prepare</N.Button></Box><T head={['ID', 'For', 'Format', 'Status', '']} rows={P.exports.map((e) => [e.id, e.who, e.fmt, <Chip tone={e.st === 'Ready' ? 'ok' : undefined}>{e.st}</Chip>, e.st === 'Ready' ? <button className="link-quiet" onClick={() => put({ exports: P.exports.map((x) => (x.id === e.id ? { ...x, st: 'Link revoked' } : x)) }, 'Revoked export link ' + e.id)}>Revoke link</button> : ''])} empty="No exports yet." /><Receipt r={rc} /></div><aside className="stack"><Box title="Note">Revoking a link stops future downloads; it can't recall a copy already downloaded.</Box></aside></div>;
+}
+
+function PrivErasureRequests() {
+  const [S, P, put] = usePriv(); const r = P.dsr.find((x) => x.kind === 'Erasure'); const [rc, setRc] = useState(null);
+  const SC = [['Private notes and files', 'Erase', 'Owned by the requester'], ['Messages they sent', 'Erase content, keep tombstone', 'Other participants keep context'], ['Official records (grades, enrollment)', 'Not erasable here', 'Institution record — Registrar decides'], ['Audit events', 'Retain', 'Required 7 years; contain no content'], ['Messages under legal hold LH-1', 'Paused', 'Hold active']];
+  const go = () => { const id = ref('ER'); put({ erasures: [...P.erasures, { id, dsr: r.id, at: TODAY }], dsr: P.dsr.map((x) => (x.id === r.id ? { ...x, st: 'Fulfilled' } : x)) }, 'Erasure ' + id + ' executed for ' + r.id); setRc({ head: 'Erasure done', body: '2 categories erased · 1 tombstoned · 2 retained with reasons · requester gets this table', ref: id }); };
+  return <div className="two"><div className="stack">{r ? <Box title={r.id + ' · ' + r.who} aside={<Chip tone={r.st === 'Fulfilled' ? 'ok' : 'warn'}>{r.st}</Chip>}><T head={['Data', 'Action', 'Why']} rows={SC.map((s) => [s[0], <Chip tone={/Erase/.test(s[1]) ? 'ok' : s[1] === 'Paused' ? 'bad' : undefined}>{s[1]}</Chip>, s[2]])} />{r.st !== 'Fulfilled' && <N.Button variant="primary" disabled={r.st === 'Received'} disabledReason="Verify identity first (Data subject requests)" onClick={go}>Execute erasure</N.Button>}</Box> : <N.EmptyState title="No erasure requests" body="They arrive through Data subject requests." />}<Receipt r={rc} /></div><aside className="stack"><Box title="Explain, don't hide">The requester gets the exact table above — what was erased, what wasn't and why.</Box></aside></div>;
+}
+
+function PrivConsentRecords() {
+  const F = (() => { try { return JSON.parse(localStorage.getItem('sem-b:family')); } catch (e) { return null; } })(); const L = (() => { try { return JSON.parse(localStorage.getItem('sem-lifecycle:cp-journey')); } catch (e) { return null; } })();
+  const rows = [['Family access · Maya Chen → Dana Chen', F ? (F.st === 'active' ? 'Active' : F.st) : 'Invitation sent', F && F.cats ? Object.keys(F.cats).filter((k) => F.cats[k]).join(', ') || 'none' : '—', F && F.until ? F.until : 'No end date'], ['Lifecycle demo · CNS-1', L && L.consent ? L.consent.status + ' · epoch ' + L.consent.epoch : 'Not signed', 'released-grades:course-1', '—'], ['Marketing email · alumni', 'Opted in', 'news, events', 'Until withdrawn'], ['Research study · Study habits 2026', 'Withdrawn', 'survey responses', 'Withdrawn 2026-09-30']];
+  return <div className="two"><T head={['Consent', 'State', 'Scope', 'Ends']} rows={rows.map((r) => [r[0], <Chip tone={/Active|active|Opted/.test(r[1]) ? 'ok' : /revoked|Withdrawn/.test(r[1]) ? 'bad' : 'warn'}>{r[1]}</Chip>, r[2], r[3]])} /><aside className="stack"><Box title="Live records">The first two rows read the Family (I) screens and the student lifecycle compliance journey — change them there and they update here.</Box><Box title="Kept">Every version, signer and revocation is retained as evidence even after consent ends.</Box></aside></div>;
+}
+
+function PrivSubprocessorRecords() {
+  const [S] = useTr();
+  return <div className="two"><T head={['Subprocessor', 'Data', 'Region', 'DPA', 'Reviewed', 'Status']} rows={S.subs.map((x) => [<b>{x.n}</b>, x.data, x.region, x.dpa ? <Chip tone="ok">Signed</Chip> : <Chip tone="bad">Missing</Chip>, x.reviewed || '—', x.st])} /><aside className="stack"><Box title="Same source">The public Trust: Subprocessors page and Sec: Vendor risk read these records. Approve vendors in Sec: Vendor risk.</Box></aside></div>;
+}
+
+function PrivIncidents() {
+  const [S, P, put] = usePriv(); const sec = S.incidents.filter((i) => i.personal); const [rc, setRc] = useState(null);
+  const assess = (i, notify) => { put({ incidents: [...P.incidents.filter((x) => x.id !== i.id), { id: i.id, notify, at: TODAY }] }, 'Privacy assessment ' + i.id + ': ' + (notify ? 'notification required' : 'no notification (documented)')); setRc({ head: notify ? 'Notification required' : 'Documented — no notification', body: notify ? 'Notify affected institutions within the contract window (e.g. 72 h); they notify students' : 'Reason recorded; reviewable by institutions', ref: i.id }); };
+  return <div className="two"><div className="stack">{sec.length ? sec.map((i) => { const a = P.incidents.find((x) => x.id === i.id); return <Box key={i.id} title={i.id + ' · ' + i.t} aside={a ? <Chip tone={a.notify ? 'bad' : 'ok'}>{a.notify ? 'Notify' : 'No notice'}</Chip> : <Chip tone="warn">Assessment due</Chip>}><span className="muted">Started {i.start}</span>{!a && <div className="row"><N.Button variant="primary" onClick={() => assess(i, true)}>Notification required</N.Button><N.Button onClick={() => assess(i, false)}>Not required (record why)</N.Button></div>}</Box>; }) : <N.EmptyState title="No incidents with personal data" body="Mark 'Personal data involved: Yes' in Sec: Incident command center to see one here." />}<Receipt r={rc} /></div><aside className="stack"><Box title="Clock">Starts when we become aware, not when it's confirmed. Institutions own student notification for their records.</Box></aside></div>;
+}
+
+function PrivImpactAssessments() {
+  const [S, P, put] = usePriv(); const [sel, setSel] = useState(1); const d = P.dpia[sel]; const [ans, setAns] = useState({}); const Q = [['purpose', 'Purpose is specific and necessary'], ['min', 'Data minimized (no student-private if not needed)'], ['students', 'Students can see and control it'], ['ai', 'No student records to AI providers'], ['exit', 'Deletion and exit plan exist']];
+  const all = Q.every(([k]) => ans[k]);
+  return <div className="two"><T head={['ID', 'Assessment', 'Risk', 'Status', 'Next review']} rows={P.dpia.map((x) => [x.id, x.n, <Chip tone={x.risk === 'High' ? 'bad' : 'warn'}>{x.risk}</Chip>, x.st, x.next || '—'])} onRow={setSel} sel={sel} /><aside className="stack"><Box title={d.id + ' · ' + d.n}>{d.st === 'Draft' ? <>{Q.map(([k, l]) => <label key={k} className="row" style={{ fontSize: 13 }}><input type="checkbox" checked={!!ans[k]} onChange={(e) => setAns({ ...ans, [k]: e.target.checked })} /> {l}</label>)}<N.Button variant="primary" disabled={!all} disabledReason="Every answer must be yes — otherwise redesign" onClick={() => put({ dpia: P.dpia.map((x, i) => (i === sel ? { ...x, st: 'Approved', risk: 'Medium', next: '2027-04-08' } : x)) }, 'DPIA ' + d.id + ' approved')}>Approve</N.Button><span className="muted">For Lumen Search: removing student-private notes from the index is what makes "Data minimized" true.</span></> : <span className="muted">Approved · review {d.next}</span>}</Box></aside></div>;
+}
+
+function PrivReporting() {
+  const [S, P] = usePriv(); const open = P.dsr.filter((r) => r.st !== 'Fulfilled');
+  return <div className="stack"><div className="tiles"><N.MetricTile label="Open requests" value={String(open.length)} source="official" updated="Now" /><N.MetricTile label="Oldest open (days)" value={String(open.length ? Math.max(...open.map((r) => age(r.rec))) : 0)} source="official" updated="45-day limit" /><N.MetricTile label="Active legal holds" value={String(P.holds.filter((h) => h.st === 'Active').length)} source="official" updated="Now" /><N.MetricTile label="Deletion runs verified" value={P.runs.filter((r) => r.verified).length + '/' + P.runs.length} source="official" updated="All time" /></div><div className="two"><Box title="Request types">{['Access', 'Erasure', 'Correction'].map((k) => <Bar key={k} label={k} v={P.dsr.filter((r) => r.kind === k).length} max={Math.max(1, P.dsr.length)} right={String(P.dsr.filter((r) => r.kind === k).length)} />)}</Box><Box title="Assessments">{P.dpia.map((d) => <div key={d.id} style={{ fontSize: 13 }}>{d.id} · {d.n} · {d.st}</div>)}</Box></div></div>;
+}
+
+Object.assign(window.EVERY_BESPOKE, { 'M:Priv: Export requests': PrivExportRequests, 'M:Priv: Erasure requests': PrivErasureRequests, 'M:Priv: Consent records': PrivConsentRecords, 'M:Priv: Subprocessor records': PrivSubprocessorRecords, 'M:Priv: Incidents': PrivIncidents, 'M:Priv: Impact assessments': PrivImpactAssessments, 'M:Priv: Reporting': PrivReporting });
+})();

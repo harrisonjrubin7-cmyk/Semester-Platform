@@ -1,0 +1,86 @@
+{
+  "scheduling": [
+    {
+      "name": "past",
+      "ok": false,
+      "reason": "Past study blocks cannot be scheduled. Choose a future time.",
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "future",
+      "ok": true,
+      "begin": 1791471600000,
+      "end": 1791475200000,
+      "minutes": 60,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "overlap",
+      "ok": false,
+      "reason": "This overlaps an existing study block.",
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "deadline boundary",
+      "ok": true,
+      "begin": 1791561600000,
+      "end": 1791565200000,
+      "minutes": 60,
+      "expected": true,
+      "passed": true
+    },
+    {
+      "name": "after deadline",
+      "ok": false,
+      "reason": "Study block must end by the assignment deadline.",
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "invalid deadline",
+      "ok": false,
+      "reason": "Assignment deadline is invalid. Confirm the source deadline.",
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "impossible date",
+      "ok": false,
+      "reason": "Assignment deadline is invalid. Confirm the source deadline.",
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "blank duration",
+      "ok": false,
+      "reason": "Enter a duration.",
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "nonfinite duration",
+      "ok": false,
+      "reason": "Use 15\u2013480 minutes in 15-minute increments.",
+      "expected": false,
+      "passed": true
+    },
+    {
+      "name": "stale source",
+      "ok": false,
+      "reason": "Refresh the stale deadline source first.",
+      "expected": false,
+      "passed": true
+    }
+  ],
+  "invalidDeadlinePriority": "Needs review",
+  "grade": {
+    "percent": 87,
+    "coverage": 60,
+    "unknown": 1,
+    "extraCreditNeedsReview": false
+  },
+  "javascriptSyntaxPassed": true
+}

@@ -1,0 +1,11 @@
+id,risk,illustrative_likelihood,illustrative_impact,accountable_role,control,trigger,illustrative_inherent_score,residual_score,named_owner,evidence,review_date
+R01,Unauthorized disclosure,3,5,Trust/platform,Isolation and least privilege,Suspected exposure: contain affected access,15,,,,
+R02,Stale grant or failed revocation,3,5,Platform,Expiry/revocation/reconciliation,Cannot confirm revoke: deny access,15,,,,
+R03,Duplicate/partial action,3,5,Backend,Idempotency and atomic audit/outbox,Mismatch: pause affected commands,15,,,,
+R04,Stale/incorrect official data,4,4,Integration,Freshness and reconciliation,Official mismatch: halt affected transition,16,,,,
+R05,Missing legal/institution authority,3,5,CEO/counsel/sponsor,Approved scope and agreements,Missing approval: no launch,15,,,,
+R06,Missing coverage,4,4,Operations,Named backup and rehearsal,No coverage: defer rollout,16,,,,
+R07,Underestimated cash,3,5,Finance/CEO,Reconciled scenario and commitments,Approved cash floor breached: review spend,15,,,,
+R08,Inaccessible critical task,3,4,Design,Keyboard/assistive-tech review,Critical barrier: block release,12,,,,
+R09,Unsupported claims,3,4,CEO/product,Evidence-linked claims review,Unverified claim: remove,12,,,,
+R10,Unapproved expansion,3,5,Implementation,Changed-scope gates,New data/module not approved: block expansion,15,,,,

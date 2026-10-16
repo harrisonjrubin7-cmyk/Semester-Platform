@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Runbook" description="Printable incident/ops runbook: trigger, severity, first 15 minutes, diagnosis, fix, rollback, comms, verification, escalation" -->
+<helmet><script src="./ds-base.js"></script><script src="./doc-page.js"></script><style>html,body{margin:0}doc-page:not(:defined){visibility:hidden}a{color:var(--text-link)}a:hover{color:var(--text-primary)}</style></helmet>
+<doc-page data-theme="light" margin="0.7in">
+<div slot="footer" style="display:flex;justify-content:space-between;font-family:var(--font-body);font-size:9pt;color:var(--text-secondary);border-top:1px solid var(--border-subtle);padding-top:8px"><span>Semester · Runbook R4 · SIS sync stalled</span><span>Last tested 22 Sep 2026 (tabletop)</span></div>
+<div data-theme="{{ theme }}" style="font-family:var(--font-body);font-size:10.5pt;line-height:1.5;color:var(--text-primary);background:var(--surface-canvas)">
+<div style="font-size:9pt;letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary)">Runbook R4 · Operate</div>
+<h1 style="font-family:var(--font-heading);font-weight:600;font-size:26pt;letter-spacing:-.015em;line-height:1.1;margin:8px 0 14px">SIS sync stalled</h1>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 18px">
+<div style="border:1px solid var(--border-default);border-radius:6px;padding:8px 10px"><div style="font-size:8.5pt;color:var(--text-secondary)">Trigger</div><div>No successful sync for 2 h</div></div>
+<div style="border:1px solid var(--status-pending-line);background:var(--status-pending-wash);border-radius:6px;padding:8px 10px"><div style="font-size:8.5pt;color:var(--text-secondary)">Default severity</div><div>! SEV-2 · {{ sevNote }}</div></div>
+<div style="border:1px solid var(--border-default);border-radius:6px;padding:8px 10px"><div style="font-size:8.5pt;color:var(--text-secondary)">Owner</div><div>On-call engineer</div></div>
+<div style="border:1px solid var(--border-default);border-radius:6px;padding:8px 10px"><div style="font-size:8.5pt;color:var(--text-secondary)">Target</div><div>Fresh data in 4 h</div></div>
+</div>
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:14pt;margin:18px 0 8px;padding-top:12px;border-top:1px solid var(--border-default)">First 15 minutes</h2>
+<ol style="margin:0;padding:0;list-style:none;display:grid;gap:8px">
+<li style="display:grid;grid-template-columns:22px 1fr;gap:8px"><span style="font-family:var(--font-heading);font-weight:600;color:var(--text-secondary)">1</span><div>Acknowledge the alert and open an incident in the ops inbox. Name yourself incident lead.</div></li>
+<li style="display:grid;grid-template-columns:22px 1fr;gap:8px"><span style="font-family:var(--font-heading);font-weight:600;color:var(--text-secondary)">2</span><div>Confirm the freshness banner is showing to students: <em>“Your registration status hasn't updated since 09:10. Check YES before you act on it.”</em></div></li>
+<li style="display:grid;grid-template-columns:22px 1fr;gap:8px"><span style="font-family:var(--font-heading);font-weight:600;color:var(--text-secondary)">3</span><div>Pause outbound reminders that depend on hold or registration data.</div></li>
+<li style="display:grid;grid-template-columns:22px 1fr;gap:8px"><span style="font-family:var(--font-heading);font-weight:600;color:var(--text-secondary)">4</span><div>Post in #incidents: what is stale, since when, who is affected, next update time.</div></li>
+</ol>
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:14pt;margin:18px 0 8px;padding-top:12px;border-top:1px solid var(--border-default)">Diagnose</h2>
+<table style="width:100%;border-collapse:collapse;font-size:9.5pt">
+<thead><tr><th style="text-align:left;padding:5px 10px 5px 0;border-bottom:1px solid var(--border-strong);font-weight:600">Check</th><th style="text-align:left;padding:5px 10px 5px 0;border-bottom:1px solid var(--border-strong);font-weight:600">Where</th><th style="text-align:left;padding:5px 0;border-bottom:1px solid var(--border-strong);font-weight:600">If yes</th></tr></thead>
+<tbody>
+<tr><td style="padding:5px 10px 5px 0;border-bottom:1px solid var(--border-subtle)">Auth to SIS failing (401/403)?</td><td style="padding:5px 10px 5px 0;border-bottom:1px solid var(--border-subtle);font-family:var(--font-mono,monospace);font-size:8.5pt">ops.sync_runs.error</td><td style="padding:5px 0;border-bottom:1px solid var(--border-subtle)">Ask institution IT to rotate the service credential.</td></tr>
+<tr><td style="padding:5px 10px 5px 0;border-bottom:1px solid var(--border-subtle)">SIS returning 5xx or timing out?</td><td style="padding:5px 10px 5px 0;border-bottom:1px solid var(--border-subtle);font-family:var(--font-mono,monospace);font-size:8.5pt">connector logs</td><td style="padding:5px 0;border-bottom:1px solid var(--border-subtle)">Their outage: back off, notify the institution contact.</td></tr>
+<tr><td style="padding:5px 10px 5px 0;border-bottom:1px solid var(--border-subtle)">Job queue backed up?</td><td style="padding:5px 10px 5px 0;border-bottom:1px solid var(--border-subtle);font-family:var(--font-mono,monospace);font-size:8.5pt">queue depth panel</td><td style="padding:5px 0;border-bottom:1px solid var(--border-subtle)">Scale workers; check for a poison record.</td></tr>
+<tr><td style="padding:5px 10px 5px 0;border-bottom:1px solid var(--border-subtle)">Schema mismatch after an SIS upgrade?</td><td style="padding:5px 10px 5px 0;border-bottom:1px solid var(--border-subtle);font-family:var(--font-mono,monospace);font-size:8.5pt">mapping validator</td><td style="padding:5px 0;border-bottom:1px solid var(--border-subtle)">Freeze imports; fix mapping in staging first.</td></tr>
+</tbody>
+</table>
+<div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:18px;break-inside:avoid">
+<div><h2 style="font-family:var(--font-heading);font-weight:600;font-size:14pt;margin:0 0 6px;padding-top:12px;border-top:1px solid var(--border-default)">Fix and verify</h2><ul style="margin:0;padding-left:16px;display:grid;gap:4px"><li>Re-run sync for one cohort first.</li><li>Compare 20 sampled records with the SIS.</li><li>Clear the banner only when the read model is under 15 min old.</li><li>Resume reminders.</li></ul></div>
+<div><h2 style="font-family:var(--font-heading);font-weight:600;font-size:14pt;margin:0 0 6px;padding-top:12px;border-top:1px solid var(--border-default)">Rollback</h2><ul style="margin:0;padding-left:16px;display:grid;gap:4px"><li>Revert the connector to the last good release tag.</li><li>Never hand-edit synced records: the SIS is the system of record.</li><li>Replay from the last good cursor.</li></ul></div>
+</div>
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:14pt;margin:18px 0 8px;padding-top:12px;border-top:1px solid var(--border-default)">Escalate</h2>
+<p style="margin:0">Over 4 h, or wrong data shown to a student: raise to SEV-1, page the founder, and tell the institution contact within 1 h. After close, write a blameless review within 5 working days.</p>
+</div>
+</doc-page>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;registrationWindow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;},&quot;dark&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return { theme: this.props.dark ? 'dark' : 'light', sevNote: this.props.registrationWindow ? 'SEV-1 during registration' : 'raise if stale over 4 h' };
+  }
+}
+</script>
+</body>
+</html>

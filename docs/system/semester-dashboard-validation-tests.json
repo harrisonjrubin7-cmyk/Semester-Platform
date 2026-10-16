@@ -1,0 +1,138 @@
+{
+  "scheduling": [
+    {
+      "name": "Adjacent valid block",
+      "start": "2026-10-08T15:00",
+      "minutes": "60",
+      "expected": "Accepted",
+      "actual": "Accepted",
+      "pass": true
+    },
+    {
+      "name": "Overlap",
+      "start": "2026-10-08T14:30",
+      "minutes": "60",
+      "expected": "Overlap",
+      "actual": "Overlap",
+      "pass": true
+    },
+    {
+      "name": "End after deadline",
+      "start": "2026-10-09T16:30",
+      "minutes": "60",
+      "expected": "After deadline",
+      "actual": "After deadline",
+      "pass": true
+    },
+    {
+      "name": "End at deadline",
+      "start": "2026-10-09T16:00",
+      "minutes": "60",
+      "expected": "Accepted",
+      "actual": "Accepted",
+      "pass": true
+    },
+    {
+      "name": "Short duration",
+      "start": "2026-10-08T15:00",
+      "minutes": "10",
+      "expected": "Invalid input",
+      "actual": "Invalid input",
+      "pass": true
+    },
+    {
+      "name": "Nonincrement duration",
+      "start": "2026-10-08T15:00",
+      "minutes": "50",
+      "expected": "Invalid input",
+      "actual": "Invalid input",
+      "pass": true
+    },
+    {
+      "name": "Stale deadline",
+      "start": "2026-10-08T15:00",
+      "minutes": "60",
+      "expected": "Stale source",
+      "actual": "Stale source",
+      "pass": true
+    },
+    {
+      "name": "Invalid start",
+      "start": "invalid",
+      "minutes": "60",
+      "expected": "Invalid input",
+      "actual": "Invalid input",
+      "pass": true
+    },
+    {
+      "name": "Past block allowed by existing rules",
+      "start": "2026-10-06T15:00",
+      "minutes": "60",
+      "expected": "Accepted",
+      "actual": "Accepted",
+      "pass": true
+    },
+    {
+      "name": "Invalid deadline allowed by existing rules",
+      "start": "2026-10-08T15:00",
+      "minutes": "60",
+      "expected": "Accepted",
+      "actual": "Accepted",
+      "pass": true
+    }
+  ],
+  "priority": [
+    {
+      "name": "72h boundary",
+      "expected": "High",
+      "actual": "High",
+      "pass": true
+    },
+    {
+      "name": "Just beyond 72h",
+      "expected": "Medium",
+      "actual": "Medium",
+      "pass": true
+    },
+    {
+      "name": "7d boundary",
+      "expected": "Medium",
+      "actual": "Medium",
+      "pass": true
+    },
+    {
+      "name": "Beyond 7d",
+      "expected": "Low",
+      "actual": "Low",
+      "pass": true
+    },
+    {
+      "name": "Submitted stale",
+      "expected": "Low",
+      "actual": "Low",
+      "pass": true
+    },
+    {
+      "name": "Overdue active",
+      "expected": "High",
+      "actual": "High",
+      "pass": true
+    },
+    {
+      "name": "Invalid deadline",
+      "expected": "Low",
+      "actual": "Low",
+      "pass": true
+    }
+  ],
+  "weighted": {
+    "percent": 87,
+    "coverage": 60,
+    "unknown": 1
+  },
+  "zero": {
+    "percent": 52.2,
+    "coverage": 100,
+    "unknown": 0
+  }
+}

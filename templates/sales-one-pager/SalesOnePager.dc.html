@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Sales one-pager" description="One-page institution leave-behind: problem, what Semester does, per-role outcomes, pilot shape, trust status, contact" -->
+<helmet><script src="./ds-base.js"></script><script src="./doc-page.js"></script><style>html,body{margin:0}doc-page:not(:defined){visibility:hidden}a{color:var(--text-link)}a:hover{color:var(--text-primary)}</style></helmet>
+<doc-page data-theme="light" margin="0">
+<section class="page" data-theme="{{ theme }}" style="display:grid;grid-template-rows:auto 1fr auto;height:100%;font-family:var(--font-body);font-size:10.5pt;line-height:1.5;color:var(--text-primary);background:var(--surface-canvas)">
+<div style="background:#090a0e;color:#eceef2;padding:0.55in 0.6in 0.45in;display:grid;gap:14px">
+<img src="../../assets/logo-horizontal-reversed.svg" alt="Semester" style="height:26px;align-self:start;justify-self:start">
+<h1 style="margin:0;font-family:var(--font-heading);font-weight:600;font-size:30pt;letter-spacing:-.015em;line-height:1.05;max-width:16em">Every student knows what's next. Every office sees the same picture.</h1>
+<p style="margin:0;font-size:12pt;color:rgba(236,238,242,.72);max-width:36em">Semester is a student action platform that sits on top of {{ institution }}'s SIS, LMS and SSO. It doesn't replace them.</p>
+</div>
+<div style="padding:0.4in 0.6in;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:0.35in;align-content:start">
+<div style="display:grid;gap:16px;align-content:start">
+<div><div style="font-size:8.5pt;letter-spacing:.08em;text-transform:uppercase;color:var(--text-link);margin-bottom:6px">What changes</div>
+<table style="width:100%;border-collapse:collapse;font-size:10pt">
+<tbody>
+<tr><td style="padding:7px 10px 7px 0;border-top:1px solid var(--border-default);font-weight:600;vertical-align:top;width:30%">Students</td><td style="padding:7px 0;border-top:1px solid var(--border-default)">One Today view of deadlines, holds and registration readiness, each labelled with its source.</td></tr>
+<tr><td style="padding:7px 10px 7px 0;border-top:1px solid var(--border-subtle);font-weight:600;vertical-align:top">Advisors</td><td style="padding:7px 0;border-top:1px solid var(--border-subtle)">A caseload sorted by who needs help and why, before it's too late.</td></tr>
+<tr><td style="padding:7px 10px 7px 0;border-top:1px solid var(--border-subtle);font-weight:600;vertical-align:top">Registrar</td><td style="padding:7px 0;border-top:1px solid var(--border-subtle)">Readiness by cohort, holds by office, overrides with a decision trail.</td></tr>
+<tr><td style="padding:7px 10px 7px 0;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);font-weight:600;vertical-align:top">IT</td><td style="padding:7px 0;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle)">SAML SSO, read-only connectors, integration health and a full audit log.</td></tr>
+</tbody>
+</table></div>
+<div><div style="font-size:8.5pt;letter-spacing:.08em;text-transform:uppercase;color:var(--text-link);margin-bottom:6px">How a pilot runs</div>
+<ol style="margin:0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px">
+<li style="border-top:3px solid var(--text-primary);padding-top:6px"><b style="font-family:var(--font-heading);font-size:14pt;display:block">1</b>Agree success measures</li>
+<li style="border-top:3px solid var(--text-primary);padding-top:6px"><b style="font-family:var(--font-heading);font-size:14pt;display:block">2</b>Connect SIS + SSO</li>
+<li style="border-top:3px solid var(--text-primary);padding-top:6px"><b style="font-family:var(--font-heading);font-size:14pt;display:block">3</b>One term, one cohort</li>
+<li style="border-top:3px solid var(--text-primary);padding-top:6px"><b style="font-family:var(--font-heading);font-size:14pt;display:block">4</b>Results report + decision</li>
+</ol></div>
+</div>
+<div style="display:grid;gap:14px;align-content:start">
+<div style="border:1px solid var(--border-strong);border-radius:6px;padding:14px 16px;display:grid;gap:6px"><div style="font-family:var(--font-heading);font-weight:600;font-size:13pt">Data and AI</div><ul style="margin:0;padding-left:16px;display:grid;gap:4px"><li>The institution stays the system of record.</li><li>The AI never receives student records.</li><li>Company staff never see student records.</li><li>FERPA DPA with every institution; every access logged.</li></ul></div>
+<div style="border:1px solid var(--border-default);border-radius:6px;padding:14px 16px;display:grid;gap:6px"><div style="font-family:var(--font-heading);font-weight:600;font-size:13pt">Status, plainly</div><ul style="margin:0;padding:0;list-style:none;display:grid;gap:4px;font-size:9.5pt"><li>◆ Signed paid pilot with Vanderbilt — launch Spring 2027, pending institutional activation</li><li>… HECVAT (institution-required version): in progress</li><li>… VPAT / ACR (WCAG 2.2): in progress</li><li>… SAML SSO: in progress</li><li>○ SOC 2: not started; readiness plan in place</li></ul></div>
+<div style="border:1px solid var(--border-default);border-radius:6px;padding:14px 16px"><div style="font-family:var(--font-heading);font-weight:600;font-size:13pt;margin-bottom:4px">Pilot pricing</div><div style="font-size:9.5pt;color:var(--text-secondary)">{{ pricingLine }}</div></div>
+</div>
+</div>
+<div style="padding:14px 0.6in;border-top:1px solid var(--border-default);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:9.5pt;color:var(--text-secondary)"><span><b style="color:var(--text-primary)">Talk to the founder:</b> add email · semester.app</span><span>Prepared for {{ institution }} · Oct 2026</span></div>
+</section>
+</doc-page>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;institution&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;your institution&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showPricing&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;dark&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      theme: this.props.dark ? 'dark' : 'light',
+      institution: this.props.institution ?? 'your institution',
+      pricingLine: this.props.showPricing === false ? 'Shared on request, scoped to your cohort size.' : 'Implementation $35k–$150k by scope; annual platform fee quoted per enrolled student.',
+    };
+  }
+}
+</script>
+</body>
+</html>

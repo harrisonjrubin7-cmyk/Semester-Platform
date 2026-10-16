@@ -1,0 +1,124 @@
+/* Semester colour.
+ * Primitives come from the app's measured grounds and accents (app/src/lib/look.ts):
+ *   Ink (default dark) and Parchment (default light) ramps, Sterling/Brass metals, and the Industry blue ramp
+ *   which this system names "Semester blue" for interactive focus and trust.
+ * Source-status hues are desaturated stones drawn toward the brief's semantics (official navy, connected teal,
+ * personal graphite, AI violet, pending amber, risk red, success green). Every state also carries a word + glyph.
+ * Default scope = warm off-white content (Parchment). Chrome (rail, tab bar, console header) is always Ink.
+ * [data-theme="dark"] flips content to Ink. [data-theme="light"] re-scopes a subtree (e.g. printable paper) back to Parchment inside a dark page. */
+:root,[data-theme="light"]{
+  /* Light elevation (also restores it when a host forces dark onto html/body) */
+  --elevation-raised:var(--shadow-sm);--elevation-floating:var(--shadow-md);--elevation-modal:var(--shadow-lg);
+  /* Ink ground — near-black, cooled */
+  --ink-void:#040507;--ink-bg:#090a0e;--ink-panel:#12141a;--ink-hero:#191c23;--ink-raise:#22262f;--ink-fg:#eceef2;
+  /* Parchment ground — warm off-white */
+  --parchment-void:#e8e4dc;--parchment-bg:#f4f1ea;--parchment-panel:#fbf9f4;--parchment-hero:#ffffff;--parchment-raise:#ffffff;--parchment-fg:#1b1a17;
+  /* Graphite (alt dark) */
+  --graphite-bg:#16181c;--graphite-panel:#1f2229;--graphite-raise:#333843;
+
+  /* Metals */
+  --sterling:#d4d9e2;--sterling-bright:#f6f8fb;--sterling-deep:#9ca3b2;--sterling-shade:#4c5561;
+  --brass:#d8c79a;--brass-bright:#f2e7c8;--brass-deep:#b09f76;--brass-shade:#695a33;
+
+  /* Semester blue — the Industry ramp from the codebase */
+  --blue-100:#eef6ff;--blue-200:#d6ebff;--blue-300:#b5d9fd;--blue-400:#94bce3;--blue-500:#749dc4;--blue-600:#597ea3;--blue-700:#416180;--blue-800:#2c455d;--blue-900:#1d2d3d;
+
+  /* Neutral ramp (Industry neutrals) */
+  --neutral-100:#f5f5f8;--neutral-200:#e7e7ea;--neutral-300:#d4d4d7;--neutral-400:#b7b7ba;--neutral-500:#98989b;--neutral-600:#7a7a7d;--neutral-700:#5d5d60;--neutral-800:#424244;--neutral-900:#2b2b2d;
+
+  /* Source / status primitives: ink (text on light), tint (text on dark) */
+  --official-ink:#2c455d;--official-tint:#b5d9fd;
+  --connected-ink:#2d5c61;--connected-tint:#9fcbcd;
+  --personal-ink:#4a4b4f;--personal-tint:#b9b9bd;
+  --ai-ink:#544a7f;--ai-tint:#bcb2df;
+  --pending-ink:#7a5310;--pending-tint:#e2c27a;
+  --risk-ink:#a3301f;--risk-tint:#f0907a;
+  --success-ink:#3e6141;--success-tint:#a9c9a3;
+
+  /* ── Semantic (light content default) ─────────────────────────── */
+  --surface-sunken:var(--parchment-void);
+  --surface-canvas:var(--parchment-bg);
+  --surface-base:var(--parchment-panel);
+  --surface-quiet:#f1ede4;
+  --surface-raised:var(--parchment-hero);
+  --surface-card:var(--parchment-hero);
+  --surface-overlay:var(--parchment-raise);
+
+  --text-primary:var(--parchment-fg);
+  --text-secondary:rgba(27,26,23,.68);
+  --text-tertiary:rgba(27,26,23,.52);
+  --text-disabled:rgba(27,26,23,.52);
+  --text-on-action:#ffffff;
+  --text-link:var(--blue-700);
+
+  --border-subtle:rgba(27,26,23,.09);
+  --border-default:rgba(27,26,23,.16);
+  --border-strong:rgba(27,26,23,.34);
+
+  --action-primary:var(--blue-700);
+  --action-primary-hover:var(--blue-800);
+  --action-primary-press:var(--blue-900);
+  --action-secondary:rgba(65,97,128,.08);
+  --action-secondary-hover:rgba(65,97,128,.14);
+  --focus-color:var(--blue-600);
+  --accent-editorial:var(--brass-shade);
+
+  /* Source semantics — fg / line / wash */
+  --source-official:var(--official-ink);--source-official-line:rgba(44,69,93,.45);--source-official-wash:rgba(44,69,93,.08);
+  --source-connected:var(--connected-ink);--source-connected-line:rgba(45,92,97,.45);--source-connected-wash:rgba(45,92,97,.08);
+  --source-personal:var(--personal-ink);--source-personal-line:rgba(74,75,79,.40);--source-personal-wash:rgba(74,75,79,.06);
+  --source-ai:var(--ai-ink);--source-ai-line:rgba(84,74,127,.45);--source-ai-wash:rgba(84,74,127,.08);
+  --status-pending:var(--pending-ink);--status-pending-line:rgba(160,112,24,.50);--status-pending-wash:rgba(196,146,48,.12);
+  --status-danger:var(--risk-ink);--status-danger-line:rgba(163,48,31,.45);--status-danger-wash:rgba(163,48,31,.08);
+  --status-success:var(--success-ink);--status-success-line:rgba(62,97,65,.45);--status-success-wash:rgba(62,97,65,.08);
+  --status-neutral:var(--text-secondary);
+
+  /* Chrome — always dark (rail, tab bar, console bar) */
+  --chrome-surface:var(--ink-bg);
+  --chrome-surface-raised:var(--ink-panel);
+  --chrome-text:var(--ink-fg);
+  --chrome-text-secondary:rgba(236,238,242,.64);
+  --chrome-line:rgba(236,238,242,.10);
+  --chrome-active:rgba(148,188,227,.14);
+  --chrome-metal:linear-gradient(180deg,#f6f8fb 0%,#d4d9e2 45%,#9ca3b2 100%);/* @kind color */
+
+  --scrim:rgba(4,5,7,.5);
+
+  /* Brand roles shared with the company site */
+  --brand-canvas:var(--surface-canvas);--brand-surface:var(--surface-base);--brand-ink:var(--text-primary);--brand-muted:var(--text-secondary);--brand-accent:var(--action-primary);--brand-focus:var(--focus-color);
+}
+
+[data-theme="dark"]{
+  --surface-sunken:var(--ink-void);--surface-canvas:var(--ink-bg);--surface-base:var(--ink-panel);--surface-quiet:#161820;--surface-raised:var(--ink-hero);--surface-card:var(--ink-panel);--surface-overlay:var(--ink-raise);
+  --text-primary:var(--ink-fg);--text-secondary:rgba(236,238,242,.64);--text-tertiary:rgba(236,238,242,.42);--text-disabled:rgba(236,238,242,.42);--text-on-action:#08090c;--text-link:var(--blue-300);
+  --border-subtle:rgba(236,238,242,.08);--border-default:rgba(236,238,242,.14);--border-strong:rgba(236,238,242,.30);
+  --action-primary:var(--blue-400);--action-primary-hover:var(--blue-300);--action-primary-press:var(--blue-500);--action-secondary:rgba(148,188,227,.10);--action-secondary-hover:rgba(148,188,227,.18);--focus-color:var(--blue-400);--accent-editorial:var(--brass);
+  --source-official:var(--official-tint);--source-official-line:rgba(181,217,253,.40);--source-official-wash:rgba(181,217,253,.08);
+  --source-connected:var(--connected-tint);--source-connected-line:rgba(159,203,205,.40);--source-connected-wash:rgba(159,203,205,.08);
+  --source-personal:var(--personal-tint);--source-personal-line:rgba(185,185,189,.34);--source-personal-wash:rgba(185,185,189,.06);
+  --source-ai:var(--ai-tint);--source-ai-line:rgba(188,178,223,.42);--source-ai-wash:rgba(188,178,223,.09);
+  --status-pending:var(--pending-tint);--status-pending-line:rgba(226,194,122,.45);--status-pending-wash:rgba(226,194,122,.09);
+  --status-danger:var(--risk-tint);--status-danger-line:rgba(240,144,122,.45);--status-danger-wash:rgba(240,144,122,.09);
+  --status-success:var(--success-tint);--status-success-line:rgba(169,201,163,.42);--status-success-wash:rgba(169,201,163,.08);
+}
+
+@media (prefers-contrast:more){
+  :root{--text-secondary:rgba(27,26,23,.9);--text-tertiary:rgba(27,26,23,.76);--border-default:rgba(27,26,23,.34);--border-subtle:rgba(27,26,23,.2)}
+  [data-theme="dark"]{--text-secondary:rgba(236,238,242,.9);--text-tertiary:rgba(236,238,242,.76);--border-default:rgba(236,238,242,.34);--border-subtle:rgba(236,238,242,.2)}
+}
+
+/* Metal accents: base on dark, shade as text/icons on light. Identify things; never status. */
+:root{--accent-copper:#d6a98d;--accent-copper-shade:#7a4c33;--accent-jade:#a8ccbd;--accent-jade-shade:#3d5f52;--accent-slate:#aebdd0;--accent-slate-shade:#445466;--accent-pewter:#b9b9bd;--accent-pewter-shade:#55555a;--accent-industry:#94bce3;--accent-industry-shade:#3f5e7c;--accent-oxblood:#c99a9a;--accent-oxblood-shade:#6f3f3f;--accent-moss:#b6c39b;--accent-moss-shade:#4f5a37;--accent-indigo:#a9aed6;--accent-indigo-shade:#454a72;--accent-old-gold:#d6c089;--accent-old-gold-shade:#695a2f;--accent-sterling:var(--sterling);--accent-sterling-shade:var(--sterling-shade);--accent-brass:var(--brass);--accent-brass-shade:var(--brass-shade)}
+/* Reader grounds: optional per-reader setting. Ink + Parchment are the shipped defaults. */
+:root{--ground-graphite-bg:#16181c;--ground-graphite-panel:#1f2229;--ground-graphite-fg:#eceef2;--ground-midnight-bg:#080b15;--ground-midnight-panel:#101524;--ground-midnight-fg:#e8ecf4;--ground-basalt-bg:#131211;--ground-basalt-panel:#1c1a18;--ground-basalt-fg:#eeebe6;--ground-oxide-bg:#000000;--ground-oxide-panel:#0b0d10;--ground-oxide-fg:#eceef2;--ground-forest-bg:#070d0a;--ground-forest-panel:#0e1712;--ground-forest-fg:#e7efe9;--ground-wine-bg:#0e090a;--ground-wine-panel:#171012;--ground-wine-fg:#f0e9ea;--ground-industry-dark-bg:#1b1c1e;--ground-industry-dark-panel:#232426;--ground-industry-dark-fg:#f2f2f3;--ground-paper-bg:#f2f4f7;--ground-paper-panel:#fbfcfd;--ground-paper-fg:#15181d;--ground-bone-bg:#ece9e3;--ground-bone-panel:#faf9f7;--ground-bone-fg:#1a1a18;--ground-industry-bg:#f2f2f3;--ground-industry-panel:#f5f5f8;--ground-industry-fg:#1d1f20;--ground-fog-bg:#dde1e7;--ground-fog-panel:#e9ecf1;--ground-fog-fg:#14171c;}
+[data-ground="graphite"]{--surface-canvas:var(--ground-graphite-bg);--surface-base:var(--ground-graphite-panel);--text-primary:var(--ground-graphite-fg);color-scheme:dark}
+[data-ground="midnight"]{--surface-canvas:var(--ground-midnight-bg);--surface-base:var(--ground-midnight-panel);--text-primary:var(--ground-midnight-fg);color-scheme:dark}
+[data-ground="basalt"]{--surface-canvas:var(--ground-basalt-bg);--surface-base:var(--ground-basalt-panel);--text-primary:var(--ground-basalt-fg);color-scheme:dark}
+[data-ground="oxide"]{--surface-canvas:var(--ground-oxide-bg);--surface-base:var(--ground-oxide-panel);--text-primary:var(--ground-oxide-fg);color-scheme:dark}
+[data-ground="forest"]{--surface-canvas:var(--ground-forest-bg);--surface-base:var(--ground-forest-panel);--text-primary:var(--ground-forest-fg);color-scheme:dark}
+[data-ground="wine"]{--surface-canvas:var(--ground-wine-bg);--surface-base:var(--ground-wine-panel);--text-primary:var(--ground-wine-fg);color-scheme:dark}
+[data-ground="industry-dark"]{--surface-canvas:var(--ground-industry-dark-bg);--surface-base:var(--ground-industry-dark-panel);--text-primary:var(--ground-industry-dark-fg);color-scheme:dark}
+[data-ground="paper"]{--surface-canvas:var(--ground-paper-bg);--surface-base:var(--ground-paper-panel);--text-primary:var(--ground-paper-fg);color-scheme:light}
+[data-ground="bone"]{--surface-canvas:var(--ground-bone-bg);--surface-base:var(--ground-bone-panel);--text-primary:var(--ground-bone-fg);color-scheme:light}
+[data-ground="industry"]{--surface-canvas:var(--ground-industry-bg);--surface-base:var(--ground-industry-panel);--text-primary:var(--ground-industry-fg);color-scheme:light}
+[data-ground="fog"]{--surface-canvas:var(--ground-fog-bg);--surface-base:var(--ground-fog-panel);--text-primary:var(--ground-fog-fg);color-scheme:light}

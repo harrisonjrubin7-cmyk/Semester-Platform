@@ -1,0 +1,45 @@
+-- REFERENCE ONLY. Not applied or mapped to existing production tables.
+-- PostgreSQL read-only query against an INLINE JSON SNAPSHOT CONTRACT.
+-- $1 is a JSON array produced by an authorized server-side adapter from verified canonical records.
+-- Fields: partner_id, scope_id, currency, period_start, period_end,
+-- gmv_cents, refund_cents, fee_cents, fee_reversal_cents, variable_cost_cents,
+-- program_cost_cents, incremental_contribution_cents (nullable),
+-- start_active boolean, exited boolean, complete boolean.
+-- $2 scope resolved and authorized server-side; $3 currency; $4 start; $5 end.
+-- Do not interpret this filter as authentication or replace existing capability/RLS checks.
+WITH facts AS (
+ SELECT * FROM jsonb_to_recordset($1::jsonb) AS f(
+ partner_id text, scope_id text, currency text, period_start date, period_end date,
+ gmv_cents bigint, refund_cents bigint, fee_cents bigint, fee_reversal_cents bigint,
+ variable_cost_cents bigint, program_cost_cents bigint,
+ incremental_contribution_cents bigint, start_active boolean, exited boolean, complete boolean)
+), scoped AS (
+ SELECT * FROM facts WHERE scope_id=$2 AND currency=$3
+ AND period_start=$4::date AND period_end=$5::date
+), totals AS (
+ SELECT count(*) AS partner_rows,
+ sum(gmv_cents) AS gross_gmv_cents,
+ sum(gmv_cents-refund_cents) AS net_gmv_cents,
+ sum(fee_cents-fee_reversal_cents) AS net_fee_cents,
+ sum(fee_cents-fee_reversal_cents-variable_cost_cents) AS contribution_cents,
+ sum(program_cost_cents) AS program_cost_cents,
+ sum(incremental_contribution_cents) AS incremental_contribution_cents,
+ count(*) FILTER(WHERE start_active) AS starting_partners,
+ count(*) FILTER(WHERE start_active AND exited) AS exited_starting_partners,
+ count(*) FILTER(WHERE incremental_contribution_cents IS NULL) AS missing_roi,
+ bool_and(complete IS TRUE) AS complete
+ FROM scoped
+)
+SELECT *, net_fee_cents::numeric/NULLIF(net_gmv_cents,0) AS realized_take_rate,
+ exited_starting_partners::numeric/NULLIF(starting_partners,0) AS exit_rate,
+ CASE WHEN missing_roi=0 THEN
+ (incremental_contribution_cents-program_cost_cents)::numeric/NULLIF(program_cost_cents,0)
+ END AS program_roi
+FROM totals;
+
+-- Companion monthly forecast extraction contract:
+-- Group verified fulfilled transaction facts by transaction cohort month, currency and scope.
+-- Aggregate refunds and fee reversals separately per order BEFORE joining to avoid fanout.
+-- Include only complete months; retain event cutoff and cohort/refund method in metadata.
+-- No actual marketplace-order, partner-lifecycle or fee-allocation table was verified.
+-- Do NOT use subscription invoices or generic payment event counts as marketplace GMV.

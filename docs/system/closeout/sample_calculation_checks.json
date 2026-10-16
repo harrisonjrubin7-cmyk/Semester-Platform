@@ -1,0 +1,35 @@
+{
+  "courses": [
+    {
+      "course": "CS 201",
+      "projected_percent": 87.9,
+      "required_remaining_average": 97.429,
+      "scheduled_hours": 21,
+      "estimated_hours": 21
+    },
+    {
+      "course": "MATH 221",
+      "projected_percent": 89.7,
+      "required_remaining_average": 92.333,
+      "scheduled_hours": 21,
+      "estimated_hours": 21
+    },
+    {
+      "course": "CS 240",
+      "projected_percent": 92.15,
+      "required_remaining_average": 96.714,
+      "scheduled_hours": 21,
+      "estimated_hours": 21
+    },
+    {
+      "course": "STAT 210",
+      "projected_percent": 85.8,
+      "required_remaining_average": 94.0,
+      "scheduled_hours": 21,
+      "estimated_hours": 21
+    }
+  ],
+  "projected_semester_gpa": 3.35,
+  "total_scheduled_hours": 84,
+  "verification": "Independent Python arithmetic and workbook structure; Excel formula engine not executed."
+}

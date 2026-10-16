@@ -1,0 +1,23 @@
+/* Base element styles — what a Semester page looks like before any component. */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--surface-canvas);color:var(--text-primary);font-family:var(--font-body);font-size:var(--type-base);line-height:var(--leading-relaxed-plus);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-heading);font-weight:var(--font-heading-weight);line-height:var(--leading-display-sm);letter-spacing:var(--tracking-heading);margin:0;text-wrap:balance}
+h1{font-size:var(--type-role-page)}h2{font-size:var(--type-role-section)}h3{font-size:var(--type-lg)}h4{font-size:var(--type-md)}
+p{margin:0;text-wrap:pretty}
+a{color:var(--text-link);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{color:var(--text-primary)}
+:focus{outline:none}
+:focus-visible{outline:var(--focus-ring-width) solid var(--focus-color);outline-offset:var(--focus-ring-offset)}
+::selection{background:rgba(116,157,196,.3)}
+button{font:inherit;color:inherit}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.nums{font-variant-numeric:tabular-nums}
+.mono{font-family:var(--font-mono);font-size:.92em}
+.kicker{font-family:var(--font-body);font-size:var(--type-role-kicker);font-weight:500;letter-spacing:var(--tracking-kicker);text-transform:uppercase;color:var(--text-secondary)}
+.editorial{font-family:var(--font-display);font-weight:500;letter-spacing:.01em;line-height:var(--leading-display-lg)}
+.chrome-text{background:var(--chrome-metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.link-quiet{color:var(--text-secondary);text-decoration:underline dotted;text-underline-offset:3px;font-size:var(--type-sm);background:none;border:0;padding:0;cursor:pointer}
+.link-quiet:hover{color:var(--text-primary)}
+.skip-link{position:absolute;left:var(--sp-4);top:-60px;z-index:var(--layer-skip);padding:var(--sp-4) var(--sp-6);background:var(--surface-overlay);border:1px solid var(--border-default);border-radius:var(--r-md)}
+.skip-link:focus{top:var(--sp-4)}

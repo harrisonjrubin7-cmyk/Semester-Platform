@@ -1,0 +1,3 @@
+# Role-based conversion map
+
+See [ROLE_BASED_CONVERSION_PATHS.md](ROLE_BASED_CONVERSION_PATHS.md).

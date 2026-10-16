@@ -1,0 +1,13 @@
+id,workstream,named_owner,backup,status,designed,implemented,tested,deployed,institution_authorized,production_enabled,native_authoritative,evidence,next_action
+G01,Console discovery/routing,,,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,,Inspect existing canonical implementation
+G02,Authorization/isolation,,,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,,Inspect existing canonical implementation
+G03,Controlled actions,,,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,,Inspect existing canonical implementation
+G04,Inbox/My Work/approvals,,,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,,Inspect existing canonical implementation
+G05,Pilot authority,,,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,,Inspect existing canonical implementation
+G06,Legal obligations,,,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,,Inspect existing canonical implementation
+G07,Integration integrity,,,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,,Inspect existing canonical implementation
+G08,Recovery/coverage,,,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,,Inspect existing canonical implementation
+G09,Accessibility/lifecycle,,,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,,Inspect existing canonical implementation
+G10,Finance reporting,,,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,,Inspect existing canonical implementation
+G11,Hiring/capacity,,,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,,Inspect existing canonical implementation
+G12,Fundraising,,,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,Not assessed,,Inspect existing canonical implementation

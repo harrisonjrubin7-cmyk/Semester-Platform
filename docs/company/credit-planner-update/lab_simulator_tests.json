@@ -1,0 +1,57 @@
+{
+  "scope": "Shared JavaScript arithmetic executed using Node; UI not tested",
+  "checks": [
+    {
+      "test": "conservation 16",
+      "pass": true
+    },
+    {
+      "test": "lab conservation 16",
+      "pass": true
+    },
+    {
+      "test": "conservation 10",
+      "pass": true
+    },
+    {
+      "test": "lab conservation 10",
+      "pass": true
+    },
+    {
+      "test": "conservation 12",
+      "pass": true
+    },
+    {
+      "test": "lab conservation 12",
+      "pass": true
+    },
+    {
+      "test": "conservation 4",
+      "pass": true
+    },
+    {
+      "test": "lab conservation 4",
+      "pass": true
+    },
+    {
+      "test": "winter 33.75 academic",
+      "pass": true
+    },
+    {
+      "test": "winter 7.5 lab",
+      "pass": true
+    },
+    {
+      "test": "invalid input 10",
+      "pass": true
+    },
+    {
+      "test": "invalid input 11",
+      "pass": true
+    },
+    {
+      "test": "invalid input 12",
+      "pass": true
+    }
+  ]
+}

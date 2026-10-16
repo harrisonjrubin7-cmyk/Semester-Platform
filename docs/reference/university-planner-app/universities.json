@@ -1,0 +1,202 @@
+[
+  {
+    "university": "Harvard",
+    "structure": "Semester",
+    "fall": "Sep\u2013Dec",
+    "spring": "Jan\u2013May",
+    "summer": "Summer School",
+    "break_days": 5,
+    "us_to_ects_planning_ratio": 2,
+    "scope": "Thanksgiving Nov 25\u201329, 2026"
+  },
+  {
+    "university": "MIT",
+    "structure": "Semester",
+    "fall": "Sep\u2013Dec",
+    "spring": "Feb\u2013May",
+    "summer": "Jun\u2013Aug",
+    "break_days": 5,
+    "us_to_ects_planning_ratio": null,
+    "scope": "Spring break Mar 22\u201326, 2027; MIT units are not US hours"
+  },
+  {
+    "university": "Stanford",
+    "structure": "Quarter",
+    "fall": "Sep\u2013Dec",
+    "spring": "Winter Jan\u2013Mar; spring separate",
+    "summer": "Jun\u2013Aug",
+    "break_days": null,
+    "us_to_ects_planning_ratio": null,
+    "scope": "Quarter units; break unverified"
+  },
+  {
+    "university": "UC Berkeley",
+    "structure": "Semester",
+    "fall": "Fall",
+    "spring": "Spring",
+    "summer": "3\u201310-week sessions",
+    "break_days": null,
+    "us_to_ects_planning_ratio": 2,
+    "scope": "Break unverified"
+  },
+  {
+    "university": "Toronto",
+    "structure": "Semester",
+    "fall": "Sep\u2013Dec",
+    "spring": "Jan\u2013Apr",
+    "summer": "Two subterms",
+    "break_days": 5,
+    "us_to_ects_planning_ratio": null,
+    "scope": "Arts & Science reading week Oct 26\u201330, 2026"
+  },
+  {
+    "university": "UBC Vancouver",
+    "structure": "Semester",
+    "fall": "Sep\u2013Dec",
+    "spring": "Jan\u2013Apr",
+    "summer": "May\u2013Jun; Jul\u2013Aug",
+    "break_days": 5,
+    "us_to_ects_planning_ratio": null,
+    "scope": "Reading break Feb 15\u201319, 2027; exceptions"
+  },
+  {
+    "university": "McGill",
+    "structure": "Semester",
+    "fall": "Aug/Sep\u2013Dec",
+    "spring": "Jan\u2013Apr",
+    "summer": "Course-specific",
+    "break_days": 5,
+    "us_to_ects_planning_ratio": null,
+    "scope": "Reading break Mar 1\u20135, 2027"
+  },
+  {
+    "university": "Oxford",
+    "structure": "Three terms",
+    "fall": "Michaelmas",
+    "spring": "Hilary",
+    "summer": "Trinity regular",
+    "break_days": null,
+    "us_to_ects_planning_ratio": null,
+    "scope": "8-week Full Terms; break lengths unknown"
+  },
+  {
+    "university": "Cambridge",
+    "structure": "Three terms",
+    "fall": "Michaelmas",
+    "spring": "Lent",
+    "summer": "Easter regular",
+    "break_days": null,
+    "us_to_ects_planning_ratio": null,
+    "scope": "8-week Full Terms; break lengths unknown"
+  },
+  {
+    "university": "UCL",
+    "structure": "Three terms",
+    "fall": "Sep\u2013Dec",
+    "spring": "Jan\u2013Mar",
+    "summer": "Apr\u2013Jun regular",
+    "break_days": null,
+    "us_to_ects_planning_ratio": null,
+    "scope": "CATS convention; US ratio is not institutional authorization"
+  },
+  {
+    "university": "Edinburgh",
+    "structure": "Semester",
+    "fall": "Sep\u2013Dec",
+    "spring": "Jan\u2013May",
+    "summer": "Vacation",
+    "break_days": null,
+    "us_to_ects_planning_ratio": null,
+    "scope": "60 local credits = 30 ECTS"
+  },
+  {
+    "university": "ETH Zurich",
+    "structure": "Semester",
+    "fall": "Mid-Sep\u2013Dec",
+    "spring": "Mid-Feb\u2013May",
+    "summer": "No third regular term",
+    "break_days": 7,
+    "us_to_ects_planning_ratio": null,
+    "scope": "Easter class-free week; dates not stored"
+  },
+  {
+    "university": "Melbourne",
+    "structure": "Semester",
+    "fall": "Local autumn Feb/Mar\u2013Jun",
+    "spring": "Local spring Jul\u2013Nov",
+    "summer": "Subject-specific",
+    "break_days": null,
+    "us_to_ects_planning_ratio": null,
+    "scope": "50 local points/half-year; conversion requires approved factor"
+  },
+  {
+    "university": "Sydney",
+    "structure": "Semester",
+    "fall": "Local autumn Feb\u2013Jun",
+    "spring": "Local spring Jul\u2013Nov",
+    "summer": "Intensives",
+    "break_days": null,
+    "us_to_ects_planning_ratio": null,
+    "scope": "24 local points/term; conversion requires approved factor"
+  },
+  {
+    "university": "UNSW Sydney",
+    "structure": "Three terms",
+    "fall": "T1 Feb\u2013May",
+    "spring": "T2 Jun\u2013Aug; T3 Sep\u2013Dec",
+    "summer": "January optional",
+    "break_days": null,
+    "us_to_ects_planning_ratio": null,
+    "scope": "Changes from 2028"
+  },
+  {
+    "university": "NUS",
+    "structure": "Semester",
+    "fall": "Aug\u2013Dec",
+    "spring": "Jan\u2013May",
+    "summer": "Two six-week parts",
+    "break_days": 9,
+    "us_to_ects_planning_ratio": null,
+    "scope": "Recess Sep 19\u201327, 2026"
+  },
+  {
+    "university": "NTU Singapore",
+    "structure": "Semester",
+    "fall": "Aug\u2013Dec",
+    "spring": "Jan\u2013May",
+    "summer": "May\u2013Jul special",
+    "break_days": null,
+    "us_to_ects_planning_ratio": null,
+    "scope": "Academic Units; ratio unverified"
+  },
+  {
+    "university": "Hong Kong",
+    "structure": "Semester",
+    "fall": "Sep\u2013Dec",
+    "spring": "Mid-Jan\u2013May",
+    "summer": "Faculty-specific",
+    "break_days": 6,
+    "us_to_ects_planning_ratio": null,
+    "scope": "Reading week Oct 12\u201317, 2026"
+  },
+  {
+    "university": "Tokyo",
+    "structure": "Semester/subterms",
+    "fall": "Autumn A terms",
+    "spring": "Spring S terms",
+    "summer": "School-specific",
+    "break_days": null,
+    "us_to_ects_planning_ratio": null,
+    "scope": "Faculty-specific dates"
+  },
+  {
+    "university": "Seoul National University",
+    "structure": "Semester",
+    "fall": "Sep\u2013Dec",
+    "spring": "Mar\u2013Jun",
+    "summer": "Six-week seasonal sessions",
+    "break_days": null,
+    "us_to_ects_planning_ratio": null,
+    "scope": "16-week semesters; break lengths unverified"
+  }
+]

@@ -1,0 +1,3 @@
+# Activation event definitions
+
+See [FIRST_VALUE_AND_ACTIVATION_MODEL.md](FIRST_VALUE_AND_ACTIVATION_MODEL.md).

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="Job description" description="Printable role posting: summary facts, what you'll do, first 90 days, must-haves, nice-to-haves, how we work, compensation, how to apply" -->
+<helmet><script src="./ds-base.js"></script><script src="./doc-page.js"></script><style>html,body{margin:0}doc-page:not(:defined){visibility:hidden}a{color:var(--text-link)}a:hover{color:var(--text-primary)}</style></helmet>
+<doc-page data-theme="light" margin="0.75in">
+<div slot="footer" style="display:flex;justify-content:space-between;font-family:var(--font-body);font-size:9pt;color:var(--text-secondary);border-top:1px solid var(--border-subtle);padding-top:8px"><span>Semester · Careers</span><span>Semester is an equal opportunity employer</span></div>
+<div data-theme="{{ theme }}" style="font-family:var(--font-body);font-size:11pt;line-height:1.55;color:var(--text-primary);background:var(--surface-canvas)">
+<img src="../../assets/logo-horizontal.svg" alt="Semester" style="height:22px;display:block;margin-bottom:18px">
+<div style="font-size:9pt;letter-spacing:.08em;text-transform:uppercase;color:var(--text-secondary)">Engineering · founding team</div>
+<h1 style="font-family:var(--font-heading);font-weight:600;font-size:30pt;letter-spacing:-.015em;line-height:1.1;margin:6px 0 10px">Founding full-stack engineer</h1>
+<p style="font-size:12.5pt;color:var(--text-secondary);margin:0 0 16px;max-width:34em">Build the platform that tells students what's next and why, on top of their university's own systems, with privacy rules enforced in the database rather than in a slide.</p>
+<div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--border-default);border-bottom:1px solid var(--border-default);margin:0 0 6px">
+<div style="padding:8px 10px 8px 0"><div style="font-size:8.5pt;color:var(--text-secondary)">Location</div><div>{{ location }}</div></div>
+<div style="padding:8px 10px;border-left:1px solid var(--border-subtle)"><div style="font-size:8.5pt;color:var(--text-secondary)">Type</div><div>{{ type }}</div></div>
+<div style="padding:8px 10px;border-left:1px solid var(--border-subtle)"><div style="font-size:8.5pt;color:var(--text-secondary)">Reports to</div><div>Founder</div></div>
+<div style="padding:8px 10px;border-left:1px solid var(--border-subtle)"><div style="font-size:8.5pt;color:var(--text-secondary)">Stack</div><div>Next.js · Supabase</div></div>
+</div>
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:15pt;margin:20px 0 8px;padding-top:12px;border-top:1px solid var(--border-default)">What you'll do</h2>
+<ul style="margin:0;padding-left:18px;display:grid;gap:4px"><li>Ship student and staff features end to end: schema, RLS policy, API, UI, tests.</li><li>Build read-only connectors to SIS and LMS systems and keep them honest about freshness.</li><li>Own the release process on Vercel and Supabase, including rollback.</li><li>Pair with institution IT on SSO and data reviews.</li></ul>
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:15pt;margin:20px 0 8px;padding-top:12px;border-top:1px solid var(--border-default)">Your first 90 days</h2>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;break-inside:avoid">
+<div style="border-top:3px solid var(--text-primary);padding-top:6px"><b style="font-family:var(--font-heading);font-size:12pt">Day 30</b><div>Shipped a feature to the pilot and run one on-call week.</div></div>
+<div style="border-top:3px solid var(--text-primary);padding-top:6px"><b style="font-family:var(--font-heading);font-size:12pt">Day 60</b><div>Own the SIS connector and its runbooks.</div></div>
+<div style="border-top:3px solid var(--text-primary);padding-top:6px"><b style="font-family:var(--font-heading);font-size:12pt">Day 90</b><div>RLS test coverage on every table you touch.</div></div>
+</div>
+<div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;break-inside:avoid">
+<div><h2 style="font-family:var(--font-heading);font-weight:600;font-size:15pt;margin:20px 0 8px;padding-top:12px;border-top:1px solid var(--border-default)">You have</h2><ul style="margin:0;padding-left:18px;display:grid;gap:4px"><li>4+ years shipping production web apps in TypeScript.</li><li>Real Postgres: schemas, indexes, policies.</li><li>Care for accessibility and plain language.</li></ul></div>
+<div><h2 style="font-family:var(--font-heading);font-weight:600;font-size:15pt;margin:20px 0 8px;padding-top:12px;border-top:1px solid var(--border-default)">Nice to have</h2><ul style="margin:0;padding-left:18px;display:grid;gap:4px"><li>Higher-ed systems (Banner, Workday, Canvas).</li><li>SAML / OIDC.</li><li>FERPA or SOC 2 work.</li></ul></div>
+</div>
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:15pt;margin:20px 0 8px;padding-top:12px;border-top:1px solid var(--border-default)">How we work</h2>
+<p style="margin:0;max-width:40em">Small, written, async-first. We say what's true about our status, we don't hold certifications we haven't earned, and nobody at Semester sees student records.</p>
+<h2 style="font-family:var(--font-heading);font-weight:600;font-size:15pt;margin:20px 0 8px;padding-top:12px;border-top:1px solid var(--border-default)">Compensation</h2>
+<p style="margin:0">{{ compLine }}</p>
+<div style="margin-top:20px;border:1px solid var(--border-strong);border-radius:6px;padding:14px 16px;break-inside:avoid"><div style="font-family:var(--font-heading);font-weight:600;font-size:13pt;margin-bottom:4px">How to apply</div><p style="margin:0">Send a short note and one thing you built to careers@semester.app (placeholder). Process: 30-minute call, a paid take-home (4 hours), a working session, references. We reply to everyone within 10 working days.</p></div>
+</div>
+</doc-page>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;location&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Remote (US)&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;type&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Full-time&quot;,&quot;Contract&quot;,&quot;Part-time&quot;],&quot;default&quot;:&quot;Full-time&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;showComp&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;dark&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      theme: this.props.dark ? 'dark' : 'light',
+      location: this.props.location ?? 'Remote (US)',
+      type: this.props.type ?? 'Full-time',
+      compLine: this.props.showComp === false ? 'Discussed on the first call.' : '$130k–$155k base plus meaningful early-stage equity. Range set from public benchmarks; final offer depends on level.',
+    };
+  }
+}
+</script>
+</body>
+</html>

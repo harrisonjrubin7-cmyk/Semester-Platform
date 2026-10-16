@@ -1,0 +1,41 @@
+<!-- @dsCard group="Screens & atlas" viewport="1440x980" name="All screens" subtitle="Every route in the Semester app as live thumbnails, in any of six states: default, loading, empty, error, no permission, offline" -->
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Semester — all screens</title><link rel="stylesheet" href="../../styles.css">
+<style>body{margin:0;background:var(--surface-canvas);color:var(--text-primary);font-family:var(--font-body)}a{color:var(--text-link)}a:hover{color:var(--text-primary)}.w{max-width:1440px;margin:0 auto;padding:28px 24px;display:grid;gap:16px}h1{font-family:var(--font-heading);font-size:34px;margin:0}.sub{color:var(--text-secondary);margin:4px 0 0;max-width:80ch}.f{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.f select,.f input{font:inherit;font-size:14px;padding:6px 8px;border:1px solid var(--border-default);border-radius:6px;background:var(--surface-base);color:inherit}.chip{all:unset;cursor:pointer;font-size:13px;padding:5px 10px;border:1px solid var(--border-default);border-radius:999px;background:var(--surface-base)}.chip[aria-pressed=true]{border-color:var(--action-primary);font-weight:600}.chip:focus-visible{outline:2px solid var(--action-primary)}.g{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}.c{display:grid;gap:6px}.fr{position:relative;width:100%;aspect-ratio:16/10;overflow:hidden;border:1px solid var(--border-subtle);border-radius:8px;background:var(--surface-base)}.fr iframe{position:absolute;top:0;left:0;width:1280px;height:800px;border:0;transform-origin:0 0;pointer-events:none}.ph{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--font-mono);font-size:12px;color:var(--text-secondary)}.c b{font-size:14px}.c span{font-size:12px;color:var(--text-secondary);font-family:var(--font-mono)}.muted{color:var(--text-secondary);font-size:13px}</style></head>
+<body><div class="w"><div><h1>All screens</h1><p class="sub">Every route in the Semester app, live, in any of the six states each screen must handle. Thumbnails load as you scroll. Click one to open it full size. Inside the app, press Alt+S to show the state switcher on any screen.</p></div>
+<div class="f"><select id="ws" aria-label="Workspace"></select><input id="q" placeholder="Filter screens" aria-label="Filter screens"><span class="muted">State</span><span id="states" class="f"></span><span class="muted" id="cnt"></span></div>
+<div class="g" id="g"></div></div>
+<iframe id="probe" src="index.html" title="Route index" style="display:none"></iframe>
+<script>
+var STATES = ['default', 'loading', 'empty', 'error', 'no-permission', 'offline'];
+var WS = {};
+var st = localStorage.getItem('sem-gallery-state') || 'default';
+var cur = localStorage.getItem('sem-gallery-ws') || 'student';
+function $(s) { return document.querySelector(s); }
+function el(tag, props, kids) { var e = document.createElement(tag); Object.keys(props || {}).forEach(function (k) { if (k === 'dataset') Object.assign(e.dataset, props[k]); else if (k === 'text') e.textContent = props[k]; else e.setAttribute(k, props[k]); }); (kids || []).forEach(function (c) { e.appendChild(c); }); return e; }
+STATES.forEach(function (s) { var b = el('button', { class: 'chip', 'aria-pressed': String(s === st), text: s.replace('-', ' ') }); b.dataset.s = s; $('#states').appendChild(b); });
+$('#states').addEventListener('click', function (e) { var s = e.target.dataset && e.target.dataset.s; if (!s) return; st = s; localStorage.setItem('sem-gallery-state', s); document.querySelectorAll('#states .chip').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.s === s)); }); render(); });
+var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (!e.isIntersecting) return; var fr = e.target; if (fr.dataset.loaded) return; fr.dataset.loaded = '1'; var f = el('iframe', { title: fr.dataset.t, tabindex: '-1', loading: 'lazy' }); f.src = fr.dataset.src; fr.appendChild(f); var sc = function () { f.style.transform = 'scale(' + (fr.clientWidth / 1280) + ')'; }; sc(); new ResizeObserver(sc).observe(fr); }); }, { rootMargin: '200px' });
+function render() {
+  var W = WS[cur]; if (!W) return; var q = $('#q').value.toLowerCase();
+  var items = W.nav.filter(function (n) { return !q || n[1].toLowerCase().indexOf(q) >= 0 || n[0].indexOf(q) >= 0; });
+  var total = Object.keys(WS).reduce(function (s, k) { return s + WS[k].nav.length; }, 0);
+  $('#cnt').textContent = items.length + ' screens in ' + W.label + ' · ' + total + ' total';
+  io.disconnect(); var g = $('#g'); g.innerHTML = '';
+  items.forEach(function (n) {
+    var href = 'index.html' + (st === 'default' ? '' : '?state=' + st) + '#/' + cur + '/' + n[0];
+    var fr = el('div', { class: 'fr' }, [el('div', { class: 'ph', text: 'loading…' })]); fr.dataset.src = href; fr.dataset.t = n[1];
+    var a = el('a', { class: 'c', href: href, style: 'text-decoration:none;color:inherit' }, [fr, el('b', { text: n[1] }), el('span', { text: '#/' + cur + '/' + n[0] })]);
+    g.appendChild(a); io.observe(fr);
+  });
+}
+function fill(w) {
+  WS = {}; Object.keys(w.SEM_WS).forEach(function (k) { WS[k] = { label: w.SEM_WS[k].label, nav: w.SEM_WS[k].nav.map(function (n) { return [n[0], n[1]]; }) }; });
+  var sel = $('#ws'); sel.innerHTML = ''; var seen = {};
+  (w.SEM_OS_GROUPS || []).forEach(function (grp) { var ids = grp[1].filter(function (i) { return WS[i]; }); if (!ids.length) return; var og = el('optgroup', { label: grp[0] }); ids.forEach(function (i) { seen[i] = 1; og.appendChild(el('option', { value: i, text: WS[i].label + ' (' + WS[i].nav.length + ')' })); }); sel.appendChild(og); });
+  var rest = Object.keys(WS).filter(function (k) { return !seen[k]; }); if (rest.length) { var og = el('optgroup', { label: 'Other' }); rest.forEach(function (i) { og.appendChild(el('option', { value: i, text: WS[i].label + ' (' + WS[i].nav.length + ')' })); }); sel.appendChild(og); }
+  if (!WS[cur]) cur = 'student'; sel.value = cur; render();
+}
+$('#probe').addEventListener('load', function () { var tries = 0; var t = setInterval(function () { tries++; var w = $('#probe').contentWindow; if (w && w.SEM_WS && w.SEM_SCREENS && w.SEM_SCREENS.studio && w.SEM_SCREENS.studio.workspace) { clearInterval(t); fill(w); } else if (tries > 100) { clearInterval(t); $('#cnt').textContent = 'Couldn’t read the app’s screen list.'; } }, 300); });
+$('#ws').addEventListener('change', function (e) { cur = e.target.value; localStorage.setItem('sem-gallery-ws', cur); render(); });
+$('#q').addEventListener('input', render);
+</script></body></html>
